@@ -1,0 +1,1466 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Website resmi Satuan Polisi Air (POLAIR) Polres Indramayu. Melayani, Melindungi, dan Mengayomi Masyarakat Perairan Indramayu." />
+  <meta name="keywords" content="POLAIR Indramayu, Polisi Air, Patroli Laut, Satuan Polisi Air, Indramayu" />
+  <meta property="og:title" content="POLAIR Indramayu — Satuan Polisi Air" />
+  <meta property="og:description" content="Satuan Polisi Air Polres Indramayu — Menjaga Keamanan Perairan demi Kejayaan Bangsa." />
+  <meta property="og:type" content="website" />
+  <title>POLAIR Indramayu — Satuan Polisi Air Polres Indramayu</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+
+  <!-- Leaflet Map -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
+
+  <!-- Icons: Lucide -->
+  <script src="https://unpkg.com/lucide@latest" defer></script>
+</head>
+
+<body>
+
+<!-- ══════════════════════════════════════════════════════
+     NAVBAR
+═══════════════════════════════════════════════════════ -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="#beranda" class="nav-logo">
+      <div class="nav-logo-icon">⚓</div>
+      <div class="nav-logo-text">
+        <span class="brand">POLAIR</span>
+        <span class="sub">Indramayu</span>
+      </div>
+    </a>
+
+  <ul class="nav-links">
+      <li><a href="#beranda">Beranda</a></li>
+      <li><a href="#profil">Profil</a></li>
+      <li><a href="#armada">Armada</a></li>
+      <li><a href="#fasilitas">Fasilitas</a></li>
+      <li><a href="#kegiatan">Kegiatan</a></li>
+      <li><a href="pages/berita.html">Berita</a></li>
+      <li><a href="pages/galeri.html">Galeri</a></li>
+      <li><a href="#wilayah">Wilayah</a></li>
+      <li><a href="#edukasi">Edukasi</a></li>
+      <li><a href="#kontak">Kontak</a></li>
+      <li><a href="pages/pengaduan.html" class="nav-cta">🚨 Lapor Darurat</a></li>
+  </ul>
+
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+    <a href="#beranda">🏠 Beranda</a>
+    <a href="#profil">📋 Profil</a>
+    <a href="#armada">🚢 Armada</a>
+    <a href="#fasilitas">🏗️ Fasilitas</a>
+    <a href="#kegiatan">⚡ Kegiatan</a>
+    <a href="pages/berita.html">📰 Berita</a>
+    <a href="pages/galeri.html">📷 Galeri</a>
+    <a href="#wilayah">🗺️ Wilayah Kerja</a>
+    <a href="#kontak">📞 Kontak</a>
+    <a href="pages/pengaduan.html" style="color:#f87171;font-weight:700;">🚨 Lapor Darurat</a>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════
+     1. BERANDA — HERO
+═══════════════════════════════════════════════════════ -->
+<section id="beranda">
+  <!-- Ocean animated background -->
+  <div class="hero-ocean">
+    <div class="hero-grid"></div>
+
+    <!-- Wave layers -->
+    <div class="wave-layer wave-1">
+      <svg viewBox="0 0 1440 320" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path fill="rgba(0,180,216,1)" d="M0,192L48,197.3C96,203,192,213,288,229.3C384,245,480,267,576,250.7C672,235,768,181,864,181.3C960,181,1056,235,1152,234.7C1248,235,1344,181,1392,154.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"/>
+      </svg>
+    </div>
+    <div class="wave-layer wave-2">
+      <svg viewBox="0 0 1440 320" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path fill="rgba(0,71,184,1)" d="M0,96L48,128C96,160,192,224,288,218.7C384,213,480,139,576,128C672,117,768,171,864,192C960,213,1056,203,1152,181.3C1248,160,1344,128,1392,112L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"/>
+      </svg>
+    </div>
+    <div class="wave-layer wave-3">
+      <svg viewBox="0 0 1440 320" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path fill="rgba(0,26,94,1)" d="M0,256L48,234.7C96,213,192,171,288,165.3C384,160,480,192,576,186.7C672,181,768,139,864,117.3C960,96,1056,96,1152,117.3C1248,139,1344,181,1392,202.7L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"/>
+      </svg>
+    </div>
+
+    <!-- Particles -->
+    <div class="particles" id="particles"></div>
+  </div>
+
+  <div class="container">
+    <div class="hero-row">
+      <!-- Left: Text -->
+      <div class="hero-content">
+        <div class="hero-eyebrow">
+          <div class="hero-eyebrow-line"></div>
+          <span class="hero-eyebrow-text">Satuan Polisi Air — Polres Indramayu</span>
+        </div>
+
+        <h1 class="hero-title">
+          POLAIR<br/>
+          <span class="highlight">Indramayu</span>
+        </h1>
+
+        <p class="hero-subtitle-line">Menjaga Keamanan Perairan Nusantara</p>
+
+        <p class="hero-desc">
+          Satuan Polisi Air Polres Indramayu hadir untuk melayani, melindungi, dan mengayomi masyarakat di wilayah perairan Kabupaten Indramayu — dari pesisir pantai hingga jalur pelayaran.
+        </p>
+
+        <div class="hero-buttons">
+          <a href="#profil" class="btn-primary">🔍 Pelajari Lebih Lanjut</a>
+          <a href="#kontak" class="btn-outline">📞 Hubungi Kami</a>
+        </div>
+
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <div class="hero-stat-num"><span class="counter" data-target="12">0</span>+</div>
+            <div class="hero-stat-label">Unit Armada</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-num"><span class="counter" data-target="240">0</span>+</div>
+            <div class="hero-stat-label">Patroli / Tahun</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-num"><span class="counter" data-target="3200">0</span>+</div>
+            <div class="hero-stat-label">Warga Dilayani</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: SVG Ship Illustration -->
+      <div class="hero-visual">
+        <div class="hero-ship-scene">
+          <svg viewBox="0 0 580 400" xmlns="http://www.w3.org/2000/svg">
+            <!-- Ocean surface -->
+            <defs>
+              <linearGradient id="oceanGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" style="stop-color:#003087;stop-opacity:0.8"/>
+                <stop offset="100%" style="stop-color:#001a5e;stop-opacity:1"/>
+              </linearGradient>
+              <linearGradient id="hullGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" style="stop-color:#003087"/>
+                <stop offset="100%" style="stop-color:#001a5e"/>
+              </linearGradient>
+              <linearGradient id="skyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" style="stop-color:#060c1a;stop-opacity:0"/>
+                <stop offset="100%" style="stop-color:#003087;stop-opacity:0.2"/>
+              </linearGradient>
+              <filter id="glow">
+                <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+              </filter>
+            </defs>
+
+            <!-- Sky / background glow -->
+            <ellipse cx="290" cy="220" rx="280" ry="180" fill="rgba(0,180,216,0.05)"/>
+
+            <!-- Ocean -->
+            <rect x="0" y="260" width="580" height="140" fill="url(#oceanGrad)" rx="4"/>
+            <!-- Wave highlights -->
+            <path d="M0,270 Q70,260 140,270 Q210,280 280,270 Q350,260 420,270 Q490,280 580,270" stroke="rgba(0,180,216,0.4)" stroke-width="1.5" fill="none"/>
+            <path d="M20,285 Q80,277 150,285 Q220,293 290,285 Q360,277 430,285 Q500,293 560,285" stroke="rgba(0,180,216,0.2)" stroke-width="1" fill="none"/>
+
+            <!-- Wake trails -->
+            <path d="M60,280 Q30,295 10,320" stroke="rgba(255,255,255,0.15)" stroke-width="8" fill="none" stroke-linecap="round"/>
+            <path d="M80,275 Q40,295 10,330" stroke="rgba(255,255,255,0.08)" stroke-width="14" fill="none" stroke-linecap="round"/>
+
+            <!-- Hull (main body) -->
+            <path d="M90,250 L490,250 L530,265 L480,285 L100,285 L50,270 Z" fill="url(#hullGrad)" stroke="rgba(0,180,216,0.6)" stroke-width="1.5"/>
+            <!-- Hull stripe -->
+            <path d="M95,254 L485,254 L520,266 L480,270 L100,270 L65,262 Z" fill="rgba(0,180,216,0.15)"/>
+            <!-- Hull highlight line -->
+            <line x1="105" y1="258" x2="475" y2="258" stroke="rgba(0,180,216,0.5)" stroke-width="1"/>
+
+            <!-- Main deck -->
+            <rect x="110" y="210" width="360" height="42" rx="3" fill="#002060" stroke="rgba(0,180,216,0.4)" stroke-width="1"/>
+            <!-- Deck detail lines -->
+            <line x1="120" y1="225" x2="460" y2="225" stroke="rgba(0,180,216,0.2)" stroke-width="1"/>
+            <line x1="120" y1="235" x2="460" y2="235" stroke="rgba(0,180,216,0.1)" stroke-width="1"/>
+
+            <!-- Bridge / cabin -->
+            <rect x="200" y="155" width="180" height="57" rx="4" fill="#003087" stroke="rgba(0,180,216,0.5)" stroke-width="1.5"/>
+            <!-- Bridge windows -->
+            <rect x="215" y="167" width="35" height="25" rx="3" fill="rgba(0,180,216,0.6)" stroke="rgba(0,180,216,0.8)" stroke-width="1"/>
+            <rect x="260" y="167" width="35" height="25" rx="3" fill="rgba(0,180,216,0.7)" stroke="rgba(0,180,216,0.9)" stroke-width="1"/>
+            <rect x="305" y="167" width="35" height="25" rx="3" fill="rgba(0,180,216,0.5)" stroke="rgba(0,180,216,0.8)" stroke-width="1"/>
+            <rect x="350" y="167" width="20" height="25" rx="3" fill="rgba(0,180,216,0.4)" stroke="rgba(0,180,216,0.6)" stroke-width="1"/>
+            <!-- Window glow -->
+            <rect x="215" y="167" width="35" height="25" rx="3" fill="rgba(0,220,255,0.1)" filter="url(#glow)"/>
+
+            <!-- Mast -->
+            <line x1="290" y1="80" x2="290" y2="155" stroke="rgba(200,220,255,0.8)" stroke-width="2.5"/>
+            <!-- Radar circle -->
+            <circle cx="290" cy="80" r="15" fill="none" stroke="rgba(0,180,216,0.6)" stroke-width="1.5" stroke-dasharray="4,2"/>
+            <circle cx="290" cy="80" r="5" fill="rgba(0,180,216,0.8)" filter="url(#glow)"/>
+            <!-- Radar sweep (CSS animated) -->
+            <g class="radar-spinner">
+              <line x1="290" y1="80" x2="305" y2="80" stroke="rgba(0,255,200,0.75)" stroke-width="1.5" stroke-linecap="round"/>
+            </g>
+
+            <!-- Indonesian Flag on mast -->
+            <rect x="293" y="95" width="28" height="9" rx="1" fill="#CE1126"/>
+            <rect x="293" y="104" width="28" height="9" rx="1" fill="#FFFFFF"/>
+
+            <!-- Crane / boom arm -->
+            <line x1="155" y1="155" x2="155" y2="210" stroke="rgba(150,180,255,0.7)" stroke-width="2"/>
+            <line x1="155" y1="170" x2="195" y2="185" stroke="rgba(150,180,255,0.5)" stroke-width="1.5"/>
+
+            <!-- Funnel / Exhaust -->
+            <rect x="390" y="170" width="30" height="42" rx="3" fill="#001a5e" stroke="rgba(0,180,216,0.4)" stroke-width="1"/>
+            <!-- Smoke -->
+            <ellipse cx="405" cy="162" rx="6" ry="5" fill="rgba(100,120,150,0.3)"/>
+            <ellipse cx="410" cy="148" rx="5" ry="4" fill="rgba(100,120,150,0.2)"/>
+
+            <!-- Bow (front) detail -->
+            <path d="M90,250 L110,210 L110,250 Z" fill="rgba(0,180,216,0.15)"/>
+
+            <!-- Anchor symbol on hull -->
+            <text x="165" y="275" font-family="serif" font-size="16" fill="rgba(0,180,216,0.6)" text-anchor="middle">⚓</text>
+
+            <!-- Life rings -->
+            <circle cx="175" cy="220" r="8" fill="none" stroke="rgba(255,100,100,0.8)" stroke-width="2.5"/>
+            <circle cx="175" cy="220" r="4" fill="rgba(255,255,255,0.2)"/>
+            <circle cx="440" cy="220" r="8" fill="none" stroke="rgba(255,100,100,0.8)" stroke-width="2.5"/>
+            <circle cx="440" cy="220" r="4" fill="rgba(255,255,255,0.2)"/>
+
+            <!-- POLISI text on hull -->
+            <text x="290" y="273" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="rgba(255,255,255,0.8)" text-anchor="middle" letter-spacing="4">POLISI</text>
+
+            <!-- Speed lines / motion -->
+            <path d="M30,268 Q20,268 10,270" stroke="rgba(255,255,255,0.3)" stroke-width="2" fill="none" stroke-linecap="round"/>
+            <path d="M30,275 Q15,275 5,278" stroke="rgba(255,255,255,0.2)" stroke-width="3" fill="none" stroke-linecap="round"/>
+
+            <!-- Light/beacon on top -->
+            <circle cx="290" cy="79" r="3" fill="#FFD700" filter="url(#glow)"/>
+
+            <!-- Stars in background -->
+            <circle cx="100" cy="80" r="1.5" fill="rgba(255,255,255,0.5)"/>
+            <circle cx="180" cy="50" r="1" fill="rgba(255,255,255,0.4)"/>
+            <circle cx="420" cy="60" r="1.5" fill="rgba(255,255,255,0.5)"/>
+            <circle cx="510" cy="90" r="1" fill="rgba(255,255,255,0.3)"/>
+            <circle cx="60" cy="110" r="1" fill="rgba(255,255,255,0.4)"/>
+            <circle cx="480" cy="40" r="2" fill="rgba(255,255,255,0.5)"/>
+            <circle cx="350" cy="30" r="1" fill="rgba(255,255,255,0.4)"/>
+            <circle cx="150" cy="30" r="1.5" fill="rgba(255,255,255,0.3)"/>
+          </svg>
+
+          <!-- Animated radar ping -->
+          <div class="hero-ping" style="width:40px;height:40px;border:2px solid rgba(0,180,216,0.5);top:22%;left:48%;"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Feature cards -->
+    <div class="features-row reveal">
+      <div class="feature-card">
+        <span class="feature-icon">🛡️</span>
+        <h3>Keamanan Perairan</h3>
+        <p>Menjaga ketertiban dan keamanan di seluruh wilayah perairan Indramayu 24 jam sehari.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">🆘</span>
+        <h3>SAR & Penyelamatan</h3>
+        <p>Tim SAR siap siaga merespons kecelakaan dan bencana di perairan dengan cepat dan profesional.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">⚖️</span>
+        <h3>Penegakan Hukum</h3>
+        <p>Menegakkan hukum di wilayah perairan — mencegah penyelundupan, IUU fishing, dan kejahatan laut.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════
+     2. PROFIL
+═══════════════════════════════════════════════════════ -->
+<section id="profil" class="section">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-badge">📋 Tentang Kami</div>
+      <h2 class="section-title">Profil POLAIR Indramayu</h2>
+      <p class="section-subtitle">Mengenal lebih dekat Satuan Polisi Air Polres Indramayu — sejarah, visi, misi, dan tugas kami.</p>
+    </div>
+
+    <div class="profil-grid">
+      <!-- Left: Sejarah -->
+      <div class="profil-text reveal-left">
+        <div class="section-badge" style="margin-bottom:1.25rem;">📜 Sejarah</div>
+        <p>
+          Satuan Polisi Air (POLAIR) Polres Indramayu merupakan satuan fungsi Kepolisian Negara Republik Indonesia yang bertugas di wilayah perairan. Terbentuk seiring perkembangan kepolisian daerah untuk memenuhi kebutuhan pengamanan wilayah maritim Kabupaten Indramayu.
+        </p>
+        <p>
+          Kabupaten Indramayu memiliki garis pantai sepanjang ±147 km yang membentang dari timur ke barat, berbatasan langsung dengan Laut Jawa. Wilayah ini menjadi jalur vital pelayaran dan perikanan yang membutuhkan pengawasan intensif dari aparat kepolisian.
+        </p>
+        <div class="profil-highlight">
+          "POLAIR Indramayu berkomitmen untuk menjadi garda terdepan dalam menjaga keamanan, ketertiban, dan kesejahteraan masyarakat perairan Indramayu."
+        </div>
+        <p>
+          Dengan armada modern dan personel terlatih, POLAIR Indramayu terus berinovasi dalam memberikan pelayanan terbaik kepada masyarakat pesisir dan pelaut yang beroperasi di wilayah perairan Indramayu.
+        </p>
+      </div>
+
+      <!-- Right: Visi Misi & Tugas Fungsi -->
+      <div class="reveal-right">
+        <!-- Visi Misi Tabs -->
+        <div class="visi-misi-tabs">
+          <button class="tab-btn active" data-tab="visi">🎯 Visi</button>
+          <button class="tab-btn" data-tab="misi">🚀 Misi</button>
+          <button class="tab-btn" data-tab="nilai">💎 Nilai</button>
+        </div>
+
+        <div id="tab-visi" class="tab-content active">
+          <p><strong style="color:var(--accent)">Visi POLAIR Indramayu:</strong></p>
+          <p>
+            "Terwujudnya Satuan Polisi Air Polres Indramayu yang Profesional, Modern, Terpercaya, dan Berwibawa dalam Mewujudkan Keamanan di Wilayah Perairan Indramayu guna Mendukung Pembangunan Daerah."
+          </p>
+        </div>
+
+        <div id="tab-misi" class="tab-content">
+          <p><strong style="color:var(--accent)">Misi POLAIR Indramayu:</strong></p>
+          <ul class="misi-list">
+            <li>Melaksanakan patroli rutin di seluruh wilayah perairan Indramayu</li>
+            <li>Menegakkan hukum di perairan secara tegas, adil, dan manusiawi</li>
+            <li>Meningkatkan kapasitas SDM personel yang profesional dan berintegritas</li>
+            <li>Membangun kemitraan dengan masyarakat nelayan dan pelaut</li>
+            <li>Menyelenggarakan SAR dan penanggulangan bencana laut</li>
+            <li>Melaksanakan sosialisasi keselamatan pelayaran kepada masyarakat</li>
+            <li>Meningkatkan sarana-prasarana armada dan peralatan modern</li>
+          </ul>
+        </div>
+
+        <div id="tab-nilai" class="tab-content">
+          <p><strong style="color:var(--accent)">Nilai-Nilai Inti:</strong></p>
+          <ul class="misi-list">
+            <li>🛡️ <strong>Integritas</strong> — Jujur, berani, dan bertanggung jawab dalam setiap tindakan</li>
+            <li>⚖️ <strong>Profesionalisme</strong> — Kompeten, handal, dan terlatih dalam tugas kepolisian</li>
+            <li>🤝 <strong>Kemanusiaan</strong> — Menjunjung hak asasi dan melayani dengan tulus</li>
+            <li>🌊 <strong>Kepedulian</strong> — Peduli terhadap keselamatan masyarakat perairan</li>
+            <li>🏅 <strong>Sinergi</strong> — Bekerja sama lintas instansi demi keamanan bersama</li>
+          </ul>
+        </div>
+
+        <!-- Tugas & Fungsi -->
+        <div class="section-badge" style="margin:2rem 0 1rem;">⚡ Tugas & Fungsi</div>
+        <div class="tugfung-grid">
+          <div class="tugfung-item">
+            <div class="tugfung-icon">🚢</div>
+            <div>
+              <h4>Patroli Perairan</h4>
+              <p>Patroli rutin di seluruh wilayah perairan untuk menjaga keamanan dan ketertiban</p>
+            </div>
+          </div>
+          <div class="tugfung-item">
+            <div class="tugfung-icon">🚨</div>
+            <div>
+              <h4>Penegakan Hukum</h4>
+              <p>Menindak pelanggaran hukum di wilayah perairan dan jalur pelayaran</p>
+            </div>
+          </div>
+          <div class="tugfung-item">
+            <div class="tugfung-icon">🆘</div>
+            <div>
+              <h4>SAR Perairan</h4>
+              <p>Operasi pencarian dan penyelamatan korban kecelakaan di laut</p>
+            </div>
+          </div>
+          <div class="tugfung-item">
+            <div class="tugfung-icon">🎓</div>
+            <div>
+              <h4>Sosialisasi</h4>
+              <p>Edukasi keselamatan pelayaran kepada nelayan dan masyarakat pesisir</p>
+            </div>
+          </div>
+          <div class="tugfung-item">
+            <div class="tugfung-icon">🔍</div>
+            <div>
+              <h4>Penyelidikan</h4>
+              <p>Penyelidikan kasus kejahatan dan kecelakaan di wilayah perairan</p>
+            </div>
+          </div>
+          <div class="tugfung-item">
+            <div class="tugfung-icon">🤝</div>
+            <div>
+              <h4>Kemitraan</h4>
+              <p>Koordinasi lintas instansi: TNI AL, KPLP, Basarnas, dan Dishub</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Struktur Organisasi -->
+    <div class="org-chart reveal" style="margin-top:5rem;">
+      <p class="org-title">🏛️ Struktur Organisasi</p>
+      <div class="org-tree">
+        <!-- Kasat -->
+        <div class="org-node top">
+          <div class="org-node-title">Kepala Satuan</div>
+          <div class="org-node-name">Kasat POLAIR</div>
+          <div class="org-node-rank">AKBP / Kompol</div>
+        </div>
+        <div class="org-connector"></div>
+
+        <!-- Row 1 -->
+        <div class="org-row">
+          <div class="org-branch">
+            <div class="org-node">
+              <div class="org-node-title">Wakasat</div>
+              <div class="org-node-name">Wakil Kasatpolair</div>
+              <div class="org-node-rank">AKP</div>
+            </div>
+          </div>
+          <div class="org-branch">
+            <div class="org-node">
+              <div class="org-node-title">Bagren</div>
+              <div class="org-node-name">Bag. Perencanaan</div>
+              <div class="org-node-rank">Pama/Bintara</div>
+            </div>
+          </div>
+          <div class="org-branch">
+            <div class="org-node">
+              <div class="org-node-title">Bagsumda</div>
+              <div class="org-node-name">Bag. SDM & Anggaran</div>
+              <div class="org-node-rank">Pama/Bintara</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="org-connector"></div>
+
+        <!-- Row 2 -->
+        <div class="org-row">
+          <div class="org-branch">
+            <div class="org-node">
+              <div class="org-node-title">Satrol</div>
+              <div class="org-node-name">Satuan Patroli</div>
+              <div class="org-node-rank">Pama/Bintara</div>
+            </div>
+          </div>
+          <div class="org-branch">
+            <div class="org-node">
+              <div class="org-node-title">Satgakkum</div>
+              <div class="org-node-name">Sat. Gakkum</div>
+              <div class="org-node-rank">Pama/Bintara</div>
+            </div>
+          </div>
+          <div class="org-branch">
+            <div class="org-node">
+              <div class="org-node-title">SAR</div>
+              <div class="org-node-name">Tim SAR & Rescue</div>
+              <div class="org-node-rank">Pama/Bintara</div>
+            </div>
+          </div>
+          <div class="org-branch">
+            <div class="org-node">
+              <div class="org-node-title">Teknisi</div>
+              <div class="org-node-name">Tim Teknisi Kapal</div>
+              <div class="org-node-rank">Bintara</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════
+     3. ARMADA / KAPAL
+═══════════════════════════════════════════════════════ -->
+<section id="armada" class="section">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-badge">🚢 Armada Kami</div>
+      <h2 class="section-title">Kapal & Armada POLAIR</h2>
+      <p class="section-subtitle">Armada modern yang siap beroperasi 24/7 untuk menjaga keamanan perairan Indramayu.</p>
+    </div>
+
+    <div class="armada-grid">
+
+      <!-- Kapal 1 -->
+      <div class="kapal-card reveal">
+        <div class="kapal-visual" style="background:linear-gradient(135deg,#001a5e,#003087)">
+          <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" style="width:90%;height:90%">
+            <defs>
+              <linearGradient id="kh1" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" style="stop-color:#003087"/>
+                <stop offset="100%" style="stop-color:#001a5e"/>
+              </linearGradient>
+            </defs>
+            <rect x="20" y="120" width="280" height="45" rx="4" fill="url(#kh1)" stroke="rgba(0,180,216,0.5)" stroke-width="1.5"/>
+            <rect x="70" y="80" width="180" height="42" rx="3" fill="#002060" stroke="rgba(0,180,216,0.4)" stroke-width="1"/>
+            <rect x="100" y="45" width="120" height="37" rx="3" fill="#003087" stroke="rgba(0,180,216,0.6)" stroke-width="1.5"/>
+            <rect x="115" y="55" width="25" height="18" rx="2" fill="rgba(0,180,216,0.7)"/>
+            <rect x="148" y="55" width="25" height="18" rx="2" fill="rgba(0,180,216,0.6)"/>
+            <rect x="181" y="55" width="25" height="18" rx="2" fill="rgba(0,180,216,0.7)"/>
+            <line x1="160" y1="15" x2="160" y2="45" stroke="rgba(200,220,255,0.8)" stroke-width="2"/>
+            <rect x="163" y="22" width="18" height="6" rx="1" fill="#CE1126"/>
+            <rect x="163" y="28" width="18" height="6" rx="1" fill="#FFFFFF"/>
+            <text x="160" y="152" font-family="Arial" font-size="10" font-weight="bold" fill="rgba(255,255,255,0.7)" text-anchor="middle" letter-spacing="3">POLISI</text>
+            <path d="M20,130 L35,110 L35,130 Z" fill="rgba(0,180,216,0.2)"/>
+            <path d="M0,140 Q50,132 120,138 Q200,144 320,140" stroke="rgba(0,180,216,0.3)" stroke-width="1.5" fill="none"/>
+          </svg>
+          <div class="kapal-badge">Kapal Patroli</div>
+        </div>
+        <div class="kapal-info">
+          <div class="kapal-name">KP Indramayu — I</div>
+          <div class="kapal-type">Kapal Patroli Cepat</div>
+          <div class="kapal-specs">
+            <div class="spec-item"><div class="spec-label">Panjang</div><div class="spec-value">28 m</div></div>
+            <div class="spec-item"><div class="spec-label">Kecepatan</div><div class="spec-value">25 knot</div></div>
+            <div class="spec-item"><div class="spec-label">Mesin</div><div class="spec-value">2× Diesel</div></div>
+            <div class="spec-item"><div class="spec-label">ABK</div><div class="spec-value">12 orang</div></div>
+          </div>
+          <div class="kapal-divider"></div>
+          <p class="kapal-fungsi">Kapal patroli cepat untuk pengawasan dan penegakan hukum di wilayah perairan pantai utara Indramayu. Dilengkapi peralatan navigasi modern dan komunikasi radio.</p>
+        </div>
+      </div>
+
+      <!-- Kapal 2 -->
+      <div class="kapal-card reveal">
+        <div class="kapal-visual" style="background:linear-gradient(135deg,#001540,#002070)">
+          <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" style="width:90%;height:90%">
+            <rect x="10" y="115" width="300" height="50" rx="5" fill="#002060" stroke="rgba(0,180,216,0.5)" stroke-width="1.5"/>
+            <rect x="50" y="75" width="220" height="42" rx="3" fill="#001540" stroke="rgba(0,180,216,0.4)" stroke-width="1"/>
+            <rect x="90" y="40" width="140" height="37" rx="4" fill="#003087" stroke="rgba(0,180,216,0.6)" stroke-width="1.5"/>
+            <rect x="100" y="48" width="30" height="20" rx="2" fill="rgba(0,200,255,0.7)"/>
+            <rect x="138" y="48" width="30" height="20" rx="2" fill="rgba(0,200,255,0.6)"/>
+            <rect x="176" y="48" width="30" height="20" rx="2" fill="rgba(0,200,255,0.7)"/>
+            <line x1="160" y1="12" x2="160" y2="40" stroke="rgba(200,220,255,0.9)" stroke-width="2.5"/>
+            <circle cx="160" cy="12" r="8" fill="none" stroke="rgba(0,180,216,0.7)" stroke-width="1.5" stroke-dasharray="3,2"/>
+            <circle cx="160" cy="12" r="3" fill="rgba(0,180,216,0.9)"/>
+            <!-- SAR markings -->
+            <rect x="55" y="80" width="22" height="22" rx="2" fill="rgba(255,100,50,0.6)" stroke="rgba(255,150,100,0.5)" stroke-width="1"/>
+            <text x="66" y="95" font-family="Arial" font-size="9" fill="white" text-anchor="middle" font-weight="bold">SAR</text>
+            <text x="160" y="148" font-family="Arial" font-size="9" font-weight="bold" fill="rgba(255,255,255,0.7)" text-anchor="middle" letter-spacing="3">POLISI</text>
+            <path d="M0,135 Q80,128 160,133 Q240,138 320,135" stroke="rgba(0,180,216,0.3)" stroke-width="1.5" fill="none"/>
+          </svg>
+          <div class="kapal-badge">SAR</div>
+        </div>
+        <div class="kapal-info">
+          <div class="kapal-name">KP Rescue — II</div>
+          <div class="kapal-type">Kapal SAR & Penyelamatan</div>
+          <div class="kapal-specs">
+            <div class="spec-item"><div class="spec-label">Panjang</div><div class="spec-value">22 m</div></div>
+            <div class="spec-item"><div class="spec-label">Kecepatan</div><div class="spec-value">20 knot</div></div>
+            <div class="spec-item"><div class="spec-label">Kapasitas</div><div class="spec-value">30 orang</div></div>
+            <div class="spec-item"><div class="spec-label">Jangkauan</div><div class="spec-value">150 nm</div></div>
+          </div>
+          <div class="kapal-divider"></div>
+          <p class="kapal-fungsi">Kapal khusus operasi SAR dilengkapi peralatan penyelamatan, perahu karet, dan medis darurat. Siap merespons darurat di laut dalam 15 menit.</p>
+        </div>
+      </div>
+
+      <!-- Kapal 3 -->
+      <div class="kapal-card reveal">
+        <div class="kapal-visual" style="background:linear-gradient(135deg,#0a1830,#001a5e)">
+          <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" style="width:90%;height:90%">
+            <!-- Smaller, faster boat -->
+            <path d="M30,120 L290,120 L310,135 L270,148 L50,148 L15,133 Z" fill="#002060" stroke="rgba(0,180,216,0.5)" stroke-width="1.5"/>
+            <rect x="80" y="80" width="160" height="42" rx="3" fill="#001540" stroke="rgba(0,180,216,0.4)" stroke-width="1"/>
+            <rect x="110" y="50" width="100" height="32" rx="3" fill="#003087" stroke="rgba(0,180,216,0.7)" stroke-width="2"/>
+            <rect x="118" y="57" width="22" height="16" rx="2" fill="rgba(0,200,255,0.8)"/>
+            <rect x="148" y="57" width="22" height="16" rx="2" fill="rgba(0,200,255,0.7)"/>
+            <rect x="178" y="57" width="16" height="16" rx="2" fill="rgba(0,200,255,0.6)"/>
+            <!-- Fast hull lines -->
+            <path d="M15,135 Q5,135 0,140" stroke="rgba(255,255,255,0.3)" stroke-width="4" fill="none" stroke-linecap="round"/>
+            <path d="M15,142 Q2,143 0,148" stroke="rgba(255,255,255,0.15)" stroke-width="6" fill="none" stroke-linecap="round"/>
+            <line x1="160" y1="18" x2="160" y2="50" stroke="rgba(200,220,255,0.8)" stroke-width="2"/>
+            <!-- Police light bar -->
+            <rect x="110" y="45" width="100" height="6" rx="2" fill="rgba(0,0,255,0.5)"/>
+            <rect x="110" y="45" width="48" height="6" rx="2" fill="rgba(0,0,255,0.7)" class="police-light-blue"/>
+            <rect x="160" y="45" width="50" height="6" rx="2" fill="rgba(255,30,30,0.7)" class="police-light-red"/>
+            <text x="160" y="138" font-family="Arial" font-size="9" font-weight="bold" fill="rgba(255,255,255,0.7)" text-anchor="middle" letter-spacing="3">POLISI</text>
+            <path d="M0,128 Q80,122 160,126 Q240,130 320,128" stroke="rgba(0,180,216,0.3)" stroke-width="1.5" fill="none"/>
+          </svg>
+          <div class="kapal-badge">Rigit</div>
+        </div>
+        <div class="kapal-info">
+          <div class="kapal-name">RHIB Falcon — III</div>
+          <div class="kapal-type">Rigid Hull Inflatable Boat</div>
+          <div class="kapal-specs">
+            <div class="spec-item"><div class="spec-label">Panjang</div><div class="spec-value">8.5 m</div></div>
+            <div class="spec-item"><div class="spec-label">Kecepatan</div><div class="spec-value">45 knot</div></div>
+            <div class="spec-item"><div class="spec-label">Mesin</div><div class="spec-value">2× Yamaha</div></div>
+            <div class="spec-item"><div class="spec-label">ABK</div><div class="spec-value">6 orang</div></div>
+          </div>
+          <div class="kapal-divider"></div>
+          <p class="kapal-fungsi">Perahu cepat RHIB untuk respons darurat, pengejaran, dan operasi khusus di perairan dangkal. Mampu beroperasi dalam kondisi gelombang tinggi.</p>
+        </div>
+      </div>
+
+      <!-- Kapal 4 -->
+      <div class="kapal-card reveal">
+        <div class="kapal-visual" style="background:linear-gradient(135deg,#001030,#002060)">
+          <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" style="width:90%;height:90%">
+            <!-- Larger command vessel -->
+            <rect x="15" y="100" width="290" height="60" rx="5" fill="#001540" stroke="rgba(0,180,216,0.5)" stroke-width="2"/>
+            <rect x="40" y="62" width="240" height="40" rx="3" fill="#002060" stroke="rgba(0,180,216,0.4)" stroke-width="1"/>
+            <rect x="80" y="28" width="160" height="36" rx="4" fill="#003087" stroke="rgba(0,180,216,0.7)" stroke-width="1.5"/>
+            <!-- Multiple windows -->
+            <rect x="90" y="35" width="22" height="16" rx="2" fill="rgba(0,200,255,0.7)"/>
+            <rect x="120" y="35" width="22" height="16" rx="2" fill="rgba(0,200,255,0.6)"/>
+            <rect x="150" y="35" width="22" height="16" rx="2" fill="rgba(0,200,255,0.8)"/>
+            <rect x="180" y="35" width="22" height="16" rx="2" fill="rgba(0,200,255,0.6)"/>
+            <rect x="210" y="35" width="18" height="16" rx="2" fill="rgba(0,200,255,0.5)"/>
+            <!-- Antenna mast -->
+            <line x1="160" y1="5" x2="160" y2="28" stroke="rgba(200,220,255,0.9)" stroke-width="2.5"/>
+            <line x1="140" y1="12" x2="180" y2="12" stroke="rgba(200,220,255,0.6)" stroke-width="1"/>
+            <!-- Crane -->
+            <line x1="50" y1="62" x2="50" y2="100" stroke="rgba(150,180,255,0.7)" stroke-width="2"/>
+            <line x1="50" y1="75" x2="85" y2="85" stroke="rgba(150,180,255,0.5)" stroke-width="1.5"/>
+            <!-- Funnel -->
+            <rect x="255" y="68" width="25" height="35" rx="3" fill="#001020" stroke="rgba(0,180,216,0.3)" stroke-width="1"/>
+            <text x="160" y="145" font-family="Arial" font-size="10" font-weight="bold" fill="rgba(255,255,255,0.75)" text-anchor="middle" letter-spacing="3">POLISI</text>
+            <!-- Wake -->
+            <path d="M0,120 Q80,113 160,118 Q240,123 320,120" stroke="rgba(0,180,216,0.25)" stroke-width="2" fill="none"/>
+          </svg>
+          <div class="kapal-badge">Komando</div>
+        </div>
+        <div class="kapal-info">
+          <div class="kapal-name">KP Cirebon — IV</div>
+          <div class="kapal-type">Kapal Komando & Koordinasi</div>
+          <div class="kapal-specs">
+            <div class="spec-item"><div class="spec-label">Panjang</div><div class="spec-value">38 m</div></div>
+            <div class="spec-item"><div class="spec-label">Kecepatan</div><div class="spec-value">18 knot</div></div>
+            <div class="spec-item"><div class="spec-label">Endurance</div><div class="spec-value">7 hari</div></div>
+            <div class="spec-item"><div class="spec-label">ABK</div><div class="spec-value">20 orang</div></div>
+          </div>
+          <div class="kapal-divider"></div>
+          <p class="kapal-fungsi">Kapal utama komando dilengkapi ruang operasi, sistem komunikasi canggih, dan fasilitas akomodasi untuk operasi jangka panjang di laut lepas.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════
+     4. FASILITAS
+═══════════════════════════════════════════════════════ -->
+<section id="fasilitas" class="section">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-badge">🏗️ Sarana & Prasarana</div>
+      <h2 class="section-title">Fasilitas Pendukung</h2>
+      <p class="section-subtitle">Dilengkapi fasilitas modern untuk mendukung operasional POLAIR yang profesional dan efektif.</p>
+    </div>
+
+    <div class="fasilitas-grid">
+      <div class="fasilitas-card reveal">
+        <div class="fasilitas-icon-wrap">⚓</div>
+        <h3>Dermaga & Dok Kapal</h3>
+        <p>Dermaga khusus POLAIR dengan kapasitas sandar hingga 8 unit kapal patroli secara bersamaan.</p>
+      </div>
+      <div class="fasilitas-card reveal">
+        <div class="fasilitas-icon-wrap">📡</div>
+        <h3>Pusat Komunikasi</h3>
+        <p>Ruang komunikasi 24 jam dengan sistem radio VHF, HF, dan komunikasi satelit terintegrasi.</p>
+      </div>
+      <div class="fasilitas-card reveal">
+        <div class="fasilitas-icon-wrap">🔧</div>
+        <h3>Bengkel Kapal</h3>
+        <p>Fasilitas perawatan dan perbaikan kapal dengan teknisi berpengalaman dan peralatan lengkap.</p>
+      </div>
+      <div class="fasilitas-card reveal">
+        <div class="fasilitas-icon-wrap">🏊</div>
+        <h3>Kolam Latihan</h3>
+        <p>Kolam renang dan latihan selam untuk meningkatkan kemampuan menyelam dan SAR personel.</p>
+      </div>
+      <div class="fasilitas-card reveal">
+        <div class="fasilitas-icon-wrap">🏥</div>
+        <h3>Pos Medis</h3>
+        <p>Fasilitas medis darurat siap 24 jam untuk penanganan pertama korban kecelakaan laut.</p>
+      </div>
+      <div class="fasilitas-card reveal">
+        <div class="fasilitas-icon-wrap">🎯</div>
+        <h3>Lapangan Latihan</h3>
+        <p>Area latihan fisik dan taktis untuk menjaga kebugaran dan kesiapan tempur personel.</p>
+      </div>
+      <div class="fasilitas-card reveal">
+        <div class="fasilitas-icon-wrap">💻</div>
+        <h3>Ruang Operasi</h3>
+        <p>Command center dengan monitor multi-layar, sistem AIS pelacak kapal, dan radar maritim.</p>
+      </div>
+      <div class="fasilitas-card reveal">
+        <div class="fasilitas-icon-wrap">⛽</div>
+        <h3>SPBN (SPBU Nelayan)</h3>
+        <p>Stasiun pengisian bahan bakar kapal untuk mendukung operasi yang efisien dan berkelanjutan.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════
+     5. KEGIATAN
+═══════════════════════════════════════════════════════ -->
+<section id="kegiatan" class="section">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-badge">⚡ Aktivitas Operasional</div>
+      <h2 class="section-title">Kegiatan POLAIR</h2>
+      <p class="section-subtitle">Berbagai kegiatan operasional POLAIR Indramayu dalam menjaga keamanan dan melayani masyarakat.</p>
+    </div>
+
+    <div class="kegiatan-tabs">
+      <button class="kegiatan-tab active" data-filter="all">Semua</button>
+      <button class="kegiatan-tab" data-filter="patroli">🚢 Patroli</button>
+      <button class="kegiatan-tab" data-filter="sar">🆘 SAR</button>
+      <button class="kegiatan-tab" data-filter="sosial">🤝 Sosial</button>
+      <button class="kegiatan-tab" data-filter="gakkum">⚖️ Gakkum</button>
+    </div>
+
+    <div class="kegiatan-grid" id="kegiatanGrid">
+
+      <div class="kegiatan-card reveal" data-cat="patroli">
+        <div class="kegiatan-visual" style="background:linear-gradient(135deg,#001a5e,#003087)">
+          <svg viewBox="0 0 300 150" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%">
+            <rect x="10" y="85" width="280" height="50" rx="4" fill="#002060"/>
+            <rect x="40" y="50" width="220" height="37" rx="3" fill="#001540"/>
+            <rect x="80" y="22" width="140" height="30" rx="3" fill="#003087"/>
+            <rect x="90" y="28" width="22" height="16" rx="2" fill="rgba(0,200,255,0.7)"/>
+            <rect x="120" y="28" width="22" height="16" rx="2" fill="rgba(0,200,255,0.6)"/>
+            <rect x="150" y="28" width="22" height="16" rx="2" fill="rgba(0,200,255,0.7)"/>
+            <line x1="150" y1="5" x2="150" y2="22" stroke="rgba(200,220,255,0.8)" stroke-width="2"/>
+            <path d="M0,95 Q75,88 150,93 Q225,98 300,95" stroke="rgba(0,180,216,0.4)" stroke-width="1.5" fill="none"/>
+            <text x="150" y="122" font-family="Arial" font-size="9" font-weight="bold" fill="rgba(255,255,255,0.6)" text-anchor="middle" letter-spacing="3">POLISI</text>
+          </svg>
+        </div>
+        <div class="kegiatan-card-body">
+          <span class="kegiatan-cat">🚢 Patroli</span>
+          <h3>Patroli Rutin Perairan Pantai Utara</h3>
+          <p>Patroli harian di sepanjang pesisir pantai utara Indramayu untuk memantau aktivitas kapal nelayan dan keamanan umum.</p>
+          <div class="kegiatan-meta">
+            <span class="kegiatan-date">📅 Rutin Harian</span>
+            <span class="kegiatan-date">📍 Pantai Utara</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="kegiatan-card reveal" data-cat="sar">
+        <div class="kegiatan-visual" style="background:linear-gradient(135deg,#1a0a00,#4a1a00)">
+          <div style="font-size:5rem;display:flex;align-items:center;justify-content:center;height:100%;filter:drop-shadow(0 0 20px rgba(255,100,0,0.5))">🆘</div>
+        </div>
+        <div class="kegiatan-card-body">
+          <span class="kegiatan-cat">🆘 SAR</span>
+          <h3>Operasi SAR Kapal Nelayan Tenggelam</h3>
+          <p>Tim SAR POLAIR berhasil menyelamatkan 7 nelayan yang mengalami kecelakaan kapal di perairan 12 mil dari pesisir Indramayu.</p>
+          <div class="kegiatan-meta">
+            <span class="kegiatan-date">📅 Sep 2026</span>
+            <span class="kegiatan-date">📍 Perairan 12 mil</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="kegiatan-card reveal" data-cat="sosial">
+        <div class="kegiatan-visual" style="background:linear-gradient(135deg,#0a1a00,#1a3a00)">
+          <div style="font-size:5rem;display:flex;align-items:center;justify-content:center;height:100%;filter:drop-shadow(0 0 20px rgba(50,200,50,0.4))">🎓</div>
+        </div>
+        <div class="kegiatan-card-body">
+          <span class="kegiatan-cat">🤝 Sosial</span>
+          <h3>Sosialisasi Keselamatan Nelayan</h3>
+          <p>Program edukasi keselamatan pelayaran bagi 200 nelayan di Desa Karangsong — penggunaan jaket keselamatan dan prosedur darurat.</p>
+          <div class="kegiatan-meta">
+            <span class="kegiatan-date">📅 Agt 2026</span>
+            <span class="kegiatan-date">📍 Karangsong</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="kegiatan-card reveal" data-cat="gakkum">
+        <div class="kegiatan-visual" style="background:linear-gradient(135deg,#1a0010,#3a0030)">
+          <div style="font-size:5rem;display:flex;align-items:center;justify-content:center;height:100%;filter:drop-shadow(0 0 20px rgba(200,0,200,0.4))">⚖️</div>
+        </div>
+        <div class="kegiatan-card-body">
+          <span class="kegiatan-cat">⚖️ Gakkum</span>
+          <h3>Operasi Penertiban Kapal Ilegal</h3>
+          <p>Berhasil menertibkan 15 kapal tanpa dokumen lengkap dan menangkap 3 kapal asing yang melakukan illegal fishing di ZEE.</p>
+          <div class="kegiatan-meta">
+            <span class="kegiatan-date">📅 Jul 2026</span>
+            <span class="kegiatan-date">📍 ZEE Indramayu</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="kegiatan-card reveal" data-cat="sosial">
+        <div class="kegiatan-visual" style="background:linear-gradient(135deg,#001a10,#003020)">
+          <div style="font-size:5rem;display:flex;align-items:center;justify-content:center;height:100%;filter:drop-shadow(0 0 20px rgba(0,200,100,0.4))">🌊</div>
+        </div>
+        <div class="kegiatan-card-body">
+          <span class="kegiatan-cat">🤝 Sosial</span>
+          <h3>Bakti Sosial Pesisir Pantai</h3>
+          <p>Kegiatan bakti sosial bersih pantai dan pembagian sembako kepada keluarga nelayan kurang mampu di Pesisir Indramayu.</p>
+          <div class="kegiatan-meta">
+            <span class="kegiatan-date">📅 Jun 2026</span>
+            <span class="kegiatan-date">📍 Pesisir Indramayu</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="kegiatan-card reveal" data-cat="patroli">
+        <div class="kegiatan-visual" style="background:linear-gradient(135deg,#0a0010,#001a3a)">
+          <div style="font-size:5rem;display:flex;align-items:center;justify-content:center;height:100%;filter:drop-shadow(0 0 20px rgba(0,100,255,0.5))">🌙</div>
+        </div>
+        <div class="kegiatan-card-body">
+          <span class="kegiatan-cat">🚢 Patroli</span>
+          <h3>Patroli Malam Pengamanan Alur Pelayaran</h3>
+          <p>Patroli malam intensif di alur pelayaran utama untuk mencegah penyelundupan dan kejahatan laut pada malam hari.</p>
+          <div class="kegiatan-meta">
+            <span class="kegiatan-date">📅 Rutin Malam</span>
+            <span class="kegiatan-date">📍 Alur Pelayaran</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════
+     6. BERITA
+═══════════════════════════════════════════════════════ -->
+<section id="berita" class="section">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-badge">📰 Informasi Terkini</div>
+      <h2 class="section-title">Berita & Informasi</h2>
+      <p class="section-subtitle">Update terbaru seputar kegiatan, operasi, dan informasi dari POLAIR Indramayu.</p>
+    </div>
+
+    <div class="berita-grid reveal">
+      <!-- Featured -->
+      <div class="berita-featured">
+        <div class="berita-featured-img" style="background:linear-gradient(135deg,#001a5e,#003087,#004ab0)">
+          <svg viewBox="0 0 600 280" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%">
+            <rect width="600" height="280" fill="url(#bBg)"/>
+            <defs>
+              <linearGradient id="bBg" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#001a5e"/>
+                <stop offset="100%" style="stop-color:#003087"/>
+              </linearGradient>
+            </defs>
+            <ellipse cx="300" cy="140" rx="250" ry="150" fill="rgba(0,180,216,0.05)"/>
+            <!-- Fleet formation -->
+            <rect x="60" y="155" width="180" height="70" rx="5" fill="#002060" stroke="rgba(0,180,216,0.5)" stroke-width="1.5"/>
+            <rect x="90" y="118" width="120" height="39" rx="3" fill="#001540" stroke="rgba(0,180,216,0.4)" stroke-width="1"/>
+            <rect x="350" y="165" width="140" height="55" rx="4" fill="#002060" stroke="rgba(0,180,216,0.4)" stroke-width="1"/>
+            <rect x="370" y="132" width="100" height="35" rx="3" fill="#001540" stroke="rgba(0,180,216,0.3)" stroke-width="1"/>
+            <path d="M0,175 Q150,165 300,172 Q450,179 600,175" stroke="rgba(0,180,216,0.4)" stroke-width="2" fill="none"/>
+            <path d="M0,195 Q150,187 300,192 Q450,197 600,195" stroke="rgba(0,180,216,0.2)" stroke-width="2" fill="none"/>
+            <circle cx="490" cy="50" r="25" fill="none" stroke="rgba(0,180,216,0.3)" stroke-width="1.5" stroke-dasharray="5,3"/>
+            <circle cx="490" cy="50" r="8" fill="rgba(0,180,216,0.5)"/>
+            <text x="300" y="248" font-family="Arial" font-size="11" font-weight="bold" fill="rgba(255,255,255,0.5)" text-anchor="middle" letter-spacing="4">OPERASI BERSAMA POLRES INDRAMAYU</text>
+          </svg>
+        </div>
+        <div class="berita-featured-body">
+          <div class="berita-cat">🔴 BERITA UTAMA</div>
+          <h3><a href="pages/detail-berita.html" style="color:inherit;text-decoration:none;">POLAIR Indramayu Berhasil Gagalkan Penyelundupan BBM Subsidi di Perairan Utara</a></h3>
+          <p>Tim gabungan POLAIR Indramayu berhasil menggagalkan upaya penyelundupan Bahan Bakar Minyak (BBM) bersubsidi senilai lebih dari Rp 2 miliar yang rencananya akan diseludupkan melalui jalur laut menuju Cirebon. Tiga tersangka berhasil diamankan beserta satu kapal motor berisi ribuan liter BBM ilegal.</p>
+          <div class="berita-meta">
+            <span>📅 14 September 2026</span>
+            <span>👤 Tim Humas POLAIR</span>
+            <span>👁️ 1.240 views</span>
+            <a href="pages/detail-berita.html" style="color:var(--accent);font-weight:600;text-decoration:none;margin-left:auto;">Baca Selengkapnya →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sidebar berita -->
+      <div class="berita-sidebar">
+
+        <a href="pages/detail-berita.html" class="berita-item" style="text-decoration:none;">
+          <div class="berita-item-img" style="background:linear-gradient(135deg,#001a3a,#003087)">
+            <span style="font-size:2rem">🆘</span>
+          </div>
+          <div class="berita-item-body">
+            <div class="berita-item-cat">SAR</div>
+            <h4>Tim SAR POLAIR Selamatkan 7 Nelayan Korban Cuaca Buruk</h4>
+            <div class="berita-item-date">📅 10 Sep 2026</div>
+          </div>
+        </a>
+
+        <a href="pages/detail-berita.html" class="berita-item" style="text-decoration:none;">
+          <div class="berita-item-img" style="background:linear-gradient(135deg,#0a1a00,#1a4000)">
+            <span style="font-size:2rem">🤝</span>
+          </div>
+          <div class="berita-item-body">
+            <div class="berita-item-cat">Sosial</div>
+            <h4>POLAIR Gelar Sosialisasi Keselamatan Laut bagi 300 Nelayan</h4>
+            <div class="berita-item-date">📅 5 Sep 2026</div>
+          </div>
+        </a>
+
+        <a href="pages/detail-berita.html" class="berita-item" style="text-decoration:none;">
+          <div class="berita-item-img" style="background:linear-gradient(135deg,#1a0010,#400030)">
+            <span style="font-size:2rem">⚓</span>
+          </div>
+          <div class="berita-item-body">
+            <div class="berita-item-cat">Armada</div>
+            <h4>Dua Kapal Patroli Baru Perkuat Armada POLAIR Indramayu</h4>
+            <div class="berita-item-date">📅 1 Sep 2026</div>
+          </div>
+        </a>
+
+        <a href="pages/detail-berita.html" class="berita-item" style="text-decoration:none;">
+          <div class="berita-item-img" style="background:linear-gradient(135deg,#1a1000,#3a2000)">
+            <span style="font-size:2rem">🏅</span>
+          </div>
+          <div class="berita-item-body">
+            <div class="berita-item-cat">Prestasi</div>
+            <h4>POLAIR Indramayu Raih Penghargaan Satuan Berprestasi 2026</h4>
+            <div class="berita-item-date">📅 25 Agt 2026</div>
+          </div>
+        </a>
+
+      </div>
+    </div>
+
+    <!-- Tombol Lihat Semua Berita -->
+    <div class="text-center" style="margin-top:2.5rem;">
+      <a href="pages/berita.html" class="btn-outline" style="text-decoration:none;">
+        📰 Lihat Semua Siaran Pers & Berita Lengkap →
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════
+     7. GALERI
+═══════════════════════════════════════════════════════ -->
+<section id="galeri" class="section">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-badge">📸 Dokumentasi</div>
+      <h2 class="section-title">Galeri Foto & Video</h2>
+      <p class="section-subtitle">Dokumentasi kegiatan, armada, dan fasilitas POLAIR Indramayu.</p>
+    </div>
+
+    <div class="galeri-filter reveal">
+      <button class="filter-btn active" data-filter="all">Semua</button>
+      <button class="filter-btn" data-filter="kapal">🚢 Kapal</button>
+      <button class="filter-btn" data-filter="kegiatan">⚡ Kegiatan</button>
+      <button class="filter-btn" data-filter="fasilitas">🏗️ Fasilitas</button>
+      <button class="filter-btn" data-filter="personel">👮 Personel</button>
+    </div>
+
+    <div class="galeri-masonry" id="galeriGrid">
+
+      <!-- SVG-based gallery items -->
+      <div class="galeri-item" data-cat="kapal" onclick="openLightbox(this)">
+        <svg viewBox="0 0 280 200" xmlns="http://www.w3.org/2000/svg" class="galeri-thumb" style="width:100%;display:block">
+          <rect width="280" height="200" fill="#001a5e"/>
+          <rect x="30" y="120" width="220" height="60" rx="4" fill="#002060" stroke="rgba(0,180,216,0.5)" stroke-width="1.5"/>
+          <rect x="65" y="82" width="150" height="40" rx="3" fill="#001540" stroke="rgba(0,180,216,0.4)" stroke-width="1"/>
+          <rect x="100" y="48" width="80" height="36" rx="3" fill="#003087" stroke="rgba(0,180,216,0.7)" stroke-width="1.5"/>
+          <rect x="107" y="56" width="20" height="14" rx="2" fill="rgba(0,200,255,0.8)"/>
+          <rect x="133" y="56" width="20" height="14" rx="2" fill="rgba(0,200,255,0.7)"/>
+          <line x1="140" y1="20" x2="140" y2="48" stroke="rgba(200,220,255,0.8)" stroke-width="2"/>
+          <path d="M0,133 Q70,126 140,131 Q210,136 280,133" stroke="rgba(0,180,216,0.4)" stroke-width="1.5" fill="none"/>
+          <text x="140" y="165" font-family="Arial" font-size="8" fill="rgba(255,255,255,0.6)" text-anchor="middle" letter-spacing="3">POLISI</text>
+          <text x="140" y="185" font-family="Arial" font-size="9" fill="rgba(0,180,216,0.7)" text-anchor="middle">KP Indramayu I</text>
+        </svg>
+        <div class="galeri-overlay"><div class="galeri-overlay-icon">🔍</div></div>
+      </div>
+
+      <div class="galeri-item" data-cat="kegiatan" onclick="openLightbox(this)">
+        <svg viewBox="0 0 280 320" xmlns="http://www.w3.org/2000/svg" class="galeri-thumb" style="width:100%;display:block">
+          <rect width="280" height="320" fill="#001a10"/>
+          <ellipse cx="140" cy="160" rx="120" ry="130" fill="rgba(0,150,50,0.08)"/>
+          <text x="140" y="120" font-size="70" text-anchor="middle" dominant-baseline="middle">🆘</text>
+          <rect x="30" y="195" width="220" height="2" fill="rgba(0,200,100,0.3)"/>
+          <text x="140" y="235" font-family="Arial" font-size="12" fill="rgba(0,200,100,0.8)" text-anchor="middle" font-weight="bold">OPERASI SAR</text>
+          <text x="140" y="258" font-family="Arial" font-size="10" fill="rgba(255,255,255,0.5)" text-anchor="middle">Evakuasi Korban</text>
+          <text x="140" y="290" font-family="Arial" font-size="9" fill="rgba(255,255,255,0.3)" text-anchor="middle">Sep 2026</text>
+        </svg>
+        <div class="galeri-overlay"><div class="galeri-overlay-icon">🔍</div></div>
+      </div>
+
+      <div class="galeri-item" data-cat="fasilitas" onclick="openLightbox(this)">
+        <svg viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg" class="galeri-thumb" style="width:100%;display:block">
+          <rect width="280" height="180" fill="#0a0f20"/>
+          <rect x="20" y="80" width="240" height="70" rx="3" fill="#001540" stroke="rgba(0,180,216,0.3)" stroke-width="1"/>
+          <!-- Dermaga -->
+          <rect x="30" y="50" width="30" height="100" rx="2" fill="#002060" stroke="rgba(0,180,216,0.2)" stroke-width="1"/>
+          <rect x="220" y="50" width="30" height="100" rx="2" fill="#002060" stroke="rgba(0,180,216,0.2)" stroke-width="1"/>
+          <line x1="30" y1="100" x2="250" y2="100" stroke="rgba(0,180,216,0.5)" stroke-width="2"/>
+          <text x="140" y="95" font-family="Arial" font-size="10" fill="rgba(255,255,255,0.5)" text-anchor="middle">⚓ DERMAGA POLAIR</text>
+          <path d="M0,115 Q70,108 140,113 Q210,118 280,115" stroke="rgba(0,180,216,0.3)" stroke-width="1.5" fill="none"/>
+          <text x="140" y="160" font-family="Arial" font-size="10" fill="rgba(0,180,216,0.7)" text-anchor="middle">Dermaga Indramayu</text>
+        </svg>
+        <div class="galeri-overlay"><div class="galeri-overlay-icon">🔍</div></div>
+      </div>
+
+      <div class="galeri-item" data-cat="personel" onclick="openLightbox(this)">
+        <svg viewBox="0 0 280 240" xmlns="http://www.w3.org/2000/svg" class="galeri-thumb" style="width:100%;display:block">
+          <rect width="280" height="240" fill="#060c1a"/>
+          <text x="140" y="100" font-size="60" text-anchor="middle" dominant-baseline="middle">👮</text>
+          <rect x="40" y="148" width="200" height="2" fill="rgba(0,180,216,0.4)"/>
+          <text x="140" y="170" font-family="Arial" font-size="11" fill="rgba(255,255,255,0.7)" text-anchor="middle" font-weight="bold">PERSONEL SIAP TUGAS</text>
+          <text x="140" y="195" font-family="Arial" font-size="9" fill="rgba(0,180,216,0.6)" text-anchor="middle">POLAIR Indramayu</text>
+          <text x="140" y="220" font-family="Arial" font-size="8" fill="rgba(255,255,255,0.3)" text-anchor="middle">Apel Pagi</text>
+        </svg>
+        <div class="galeri-overlay"><div class="galeri-overlay-icon">🔍</div></div>
+      </div>
+
+      <div class="galeri-item" data-cat="kegiatan" onclick="openLightbox(this)">
+        <svg viewBox="0 0 280 190" xmlns="http://www.w3.org/2000/svg" class="galeri-thumb" style="width:100%;display:block">
+          <rect width="280" height="190" fill="#0a1a00"/>
+          <text x="140" y="90" font-size="50" text-anchor="middle" dominant-baseline="middle">🎓</text>
+          <text x="140" y="135" font-family="Arial" font-size="11" fill="rgba(100,255,100,0.8)" text-anchor="middle" font-weight="bold">SOSIALISASI NELAYAN</text>
+          <text x="140" y="158" font-family="Arial" font-size="9" fill="rgba(255,255,255,0.5)" text-anchor="middle">Keselamatan Pelayaran</text>
+          <text x="140" y="178" font-family="Arial" font-size="8" fill="rgba(255,255,255,0.3)" text-anchor="middle">Karangsong, Agt 2026</text>
+        </svg>
+        <div class="galeri-overlay"><div class="galeri-overlay-icon">🔍</div></div>
+      </div>
+
+      <div class="galeri-item" data-cat="kapal" onclick="openLightbox(this)">
+        <svg viewBox="0 0 280 280" xmlns="http://www.w3.org/2000/svg" class="galeri-thumb" style="width:100%;display:block">
+          <rect width="280" height="280" fill="#001030"/>
+          <rect x="15" y="180" width="250" height="75" rx="5" fill="#002060" stroke="rgba(0,180,216,0.5)" stroke-width="2"/>
+          <rect x="45" y="135" width="190" height="47" rx="3" fill="#001540" stroke="rgba(0,180,216,0.4)" stroke-width="1"/>
+          <rect x="75" y="95" width="130" height="42" rx="4" fill="#003087" stroke="rgba(0,180,216,0.7)" stroke-width="2"/>
+          <rect x="85" y="103" width="25" height="18" rx="2" fill="rgba(0,200,255,0.8)"/>
+          <rect x="118" y="103" width="25" height="18" rx="2" fill="rgba(0,200,255,0.7)"/>
+          <rect x="151" y="103" width="25" height="18" rx="2" fill="rgba(0,200,255,0.8)"/>
+          <rect x="184" y="103" width="12" height="18" rx="2" fill="rgba(0,200,255,0.6)"/>
+          <line x1="140" y1="40" x2="140" y2="95" stroke="rgba(200,220,255,0.9)" stroke-width="2.5"/>
+          <line x1="115" y1="55" x2="165" y2="55" stroke="rgba(200,220,255,0.6)" stroke-width="1"/>
+          <rect x="142" y="46" width="22" height="8" rx="1" fill="#CE1126"/>
+          <rect x="142" y="54" width="22" height="8" rx="1" fill="#FFFFFF"/>
+          <path d="M0,193 Q70,185 140,191 Q210,197 280,193" stroke="rgba(0,180,216,0.4)" stroke-width="1.5" fill="none"/>
+          <text x="140" y="245" font-family="Arial" font-size="9" fill="rgba(255,255,255,0.65)" text-anchor="middle" letter-spacing="3">POLISI</text>
+          <text x="140" y="268" font-family="Arial" font-size="9" fill="rgba(0,180,216,0.7)" text-anchor="middle">KP Cirebon IV</text>
+        </svg>
+        <div class="galeri-overlay"><div class="galeri-overlay-icon">🔍</div></div>
+      </div>
+
+      <div class="galeri-item" data-cat="kegiatan" onclick="openLightbox(this)">
+        <svg viewBox="0 0 280 160" xmlns="http://www.w3.org/2000/svg" class="galeri-thumb" style="width:100%;display:block">
+          <rect width="280" height="160" fill="#100010"/>
+          <text x="140" y="72" font-size="48" text-anchor="middle" dominant-baseline="middle">🌊</text>
+          <text x="140" y="108" font-family="Arial" font-size="11" fill="rgba(100,150,255,0.8)" text-anchor="middle" font-weight="bold">BAKTI SOSIAL PESISIR</text>
+          <text x="140" y="130" font-family="Arial" font-size="9" fill="rgba(255,255,255,0.4)" text-anchor="middle">Bersih Pantai & Bansos</text>
+          <text x="140" y="150" font-family="Arial" font-size="8" fill="rgba(255,255,255,0.3)" text-anchor="middle">Jun 2026</text>
+        </svg>
+        <div class="galeri-overlay"><div class="galeri-overlay-icon">🔍</div></div>
+      </div>
+
+      <div class="galeri-item" data-cat="fasilitas" onclick="openLightbox(this)">
+        <svg viewBox="0 0 280 220" xmlns="http://www.w3.org/2000/svg" class="galeri-thumb" style="width:100%;display:block">
+          <rect width="280" height="220" fill="#050a15"/>
+          <rect x="20" y="50" width="240" height="140" rx="5" fill="#001030" stroke="rgba(0,180,216,0.3)" stroke-width="1"/>
+          <!-- Monitor grid -->
+          <rect x="35" y="65" width="70" height="50" rx="3" fill="#002060" stroke="rgba(0,180,216,0.4)" stroke-width="1"/>
+          <rect x="115" y="65" width="70" height="50" rx="3" fill="#002060" stroke="rgba(0,180,216,0.4)" stroke-width="1"/>
+          <rect x="195" y="65" width="50" height="50" rx="3" fill="#002060" stroke="rgba(0,180,216,0.4)" stroke-width="1"/>
+          <rect x="35" y="125" width="210" height="50" rx="3" fill="#001540" stroke="rgba(0,180,216,0.3)" stroke-width="1"/>
+          <!-- Radar blip -->
+          <circle cx="70" cy="90" r="18" fill="none" stroke="rgba(0,180,216,0.4)" stroke-width="1" stroke-dasharray="3,2"/>
+          <circle cx="70" cy="90" r="6" fill="rgba(0,220,180,0.7)"/>
+          <text x="140" y="205" font-family="Arial" font-size="9" fill="rgba(0,180,216,0.7)" text-anchor="middle">Ruang Operasi</text>
+        </svg>
+        <div class="galeri-overlay"><div class="galeri-overlay-icon">🔍</div></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════
+     8. WILAYAH KERJA
+═══════════════════════════════════════════════════════ -->
+<section id="wilayah" class="section">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-badge">🗺️ Zona Operasi</div>
+      <h2 class="section-title">Wilayah Kerja</h2>
+      <p class="section-subtitle">POLAIR Indramayu beroperasi di wilayah perairan seluas ±4.800 km² di Laut Jawa bagian utara Jawa Barat.</p>
+    </div>
+
+    <!-- Interactive Map -->
+    <div id="map" class="reveal"></div>
+
+    <!-- Wilayah Info Cards -->
+    <div class="wilayah-info reveal">
+      <div class="wilayah-card">
+        <div class="wi">🏖️</div>
+        <h3>Pesisir Pantai Utara</h3>
+        <p>Sepanjang ±147 km garis pantai utara Kabupaten Indramayu dari Kecamatan Sukra hingga Kecamatan Patrol.</p>
+      </div>
+      <div class="wilayah-card">
+        <div class="wi">🌊</div>
+        <h3>Laut Jawa</h3>
+        <p>Perairan Laut Jawa hingga radius 60 mil laut dari garis pantai, mencakup jalur pelayaran internasional.</p>
+      </div>
+      <div class="wilayah-card">
+        <div class="wi">🏝️</div>
+        <h3>Perairan Terluar</h3>
+        <p>Pengawasan kawasan kepulauan kecil dan perairan terluar yurisdiksi Polres Indramayu di Laut Jawa.</p>
+      </div>
+    </div>
+
+    <!-- Koordinat dan stats -->
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:2rem;" class="reveal">
+      <div style="text-align:center;padding:1.5rem;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg)">
+        <div style="font-family:'Orbitron',sans-serif;font-size:1.5rem;color:var(--accent);font-weight:900">±147 km</div>
+        <div style="font-size:0.8rem;color:var(--text-muted);margin-top:0.3rem">Garis Pantai</div>
+      </div>
+      <div style="text-align:center;padding:1.5rem;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg)">
+        <div style="font-family:'Orbitron',sans-serif;font-size:1.5rem;color:var(--accent);font-weight:900">±4.800 km²</div>
+        <div style="font-size:0.8rem;color:var(--text-muted);margin-top:0.3rem">Luas Wilayah</div>
+      </div>
+      <div style="text-align:center;padding:1.5rem;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg)">
+        <div style="font-family:'Orbitron',sans-serif;font-size:1.5rem;color:var(--accent);font-weight:900">60 nm</div>
+        <div style="font-size:0.8rem;color:var(--text-muted);margin-top:0.3rem">Radius Operasi</div>
+      </div>
+      <div style="text-align:center;padding:1.5rem;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg)">
+        <div style="font-family:'Orbitron',sans-serif;font-size:1.5rem;color:var(--accent);font-weight:900">24 Jam</div>
+        <div style="font-size:0.8rem;color:var(--text-muted);margin-top:0.3rem">Jam Operasional</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════
+     9. EDUKASI
+═══════════════════════════════════════════════════════ -->
+<section id="edukasi" class="section">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-badge">🛟 Keselamatan Perairan</div>
+      <h2 class="section-title">Edukasi Masyarakat</h2>
+      <p class="section-subtitle">Informasi dan edukasi keselamatan bagi masyarakat yang beraktivitas di wilayah perairan.</p>
+    </div>
+
+    <!-- Hero edukasi -->
+    <div class="edukasi-hero reveal">
+      <div>
+        <div class="edukasi-badge-row">
+          <span class="edu-badge">🚨 Penting</span>
+          <span class="edu-badge">📋 Regulasi</span>
+          <span class="edu-badge">🎓 Edukasi</span>
+        </div>
+        <h2>Keselamatan di Laut adalah Prioritas Utama</h2>
+        <p>Setiap pelaut dan nelayan wajib memahami prosedur keselamatan dasar sebelum berlayar. POLAIR Indramayu berkomitmen untuk terus mengedukasi masyarakat demi menekan angka kecelakaan laut.</p>
+        <br/>
+        <a href="#kontak" class="btn-primary" style="display:inline-flex">📞 Hubungi Kami untuk Sosialisasi</a>
+      </div>
+      <div class="edu-visual">🛟</div>
+    </div>
+
+    <!-- Tips keselamatan -->
+    <div class="section-badge" style="margin-bottom:1.5rem;">⛵ Tips Keselamatan Berlayar</div>
+    <div class="edukasi-cards">
+
+      <div class="edu-card reveal">
+        <span class="edu-card-icon">🦺</span>
+        <div class="edu-num">01</div>
+        <h3>Selalu Gunakan Jaket Pelampung</h3>
+        <p>Jaket pelampung wajib dipakai oleh semua penumpang saat berlayar. Pastikan jaket dalam kondisi baik dan sesuai ukuran tubuh Anda.</p>
+      </div>
+
+      <div class="edu-card reveal">
+        <span class="edu-card-icon">🌤️</span>
+        <div class="edu-num">02</div>
+        <h3>Periksa Cuaca Sebelum Berlayar</h3>
+        <p>Selalu cek prakiraan cuaca BMKG sebelum melaut. Hindari berlayar saat peringatan gelombang tinggi atau cuaca ekstrem dikeluarkan.</p>
+      </div>
+
+      <div class="edu-card reveal">
+        <span class="edu-card-icon">📡</span>
+        <div class="edu-num">03</div>
+        <h3>Bawa Alat Komunikasi</h3>
+        <p>Bawa radio VHF atau telepon satelit. Pastikan baterai terisi penuh dan Anda tahu cara menggunakannya dalam keadaan darurat.</p>
+      </div>
+
+      <div class="edu-card reveal">
+        <span class="edu-card-icon">🗺️</span>
+        <div class="edu-num">04</div>
+        <h3>Laporkan Rencana Pelayaran</h3>
+        <p>Beritahu POLAIR atau keluarga tentang rute dan perkiraan waktu kembali sebelum berlayar. Ini memudahkan SAR jika terjadi kecelakaan.</p>
+      </div>
+
+      <div class="edu-card reveal">
+        <span class="edu-card-icon">⛽</span>
+        <div class="edu-num">05</div>
+        <h3>Pastikan Bahan Bakar Cukup</h3>
+        <p>Siapkan bahan bakar lebih dari perkiraan. Kelebihan BBM adalah jaminan keselamatan agar tidak terkatung-katung di tengah laut.</p>
+      </div>
+
+      <div class="edu-card reveal">
+        <span class="edu-card-icon">🏥</span>
+        <div class="edu-num">06</div>
+        <h3>Bawa Kotak P3K Lengkap</h3>
+        <p>Kotak P3K wajib dibawa setiap kali berlayar. Pelajari cara penanganan pertama luka, dehidrasi, dan hipotermia di laut.</p>
+      </div>
+
+    </div>
+
+    <!-- Regulasi -->
+    <div style="margin-top:4rem;" class="reveal">
+      <div class="section-badge" style="margin-bottom:1.5rem;">📋 Regulasi Perairan</div>
+      <ul class="regulasi-list">
+        <li>
+          <span class="reg-icon">📜</span>
+          <div class="reg-text">
+            <strong>UU No. 17 Tahun 2008 tentang Pelayaran</strong>
+            <span>Mengatur keselamatan pelayaran, pembangunan pelabuhan, dan perlindungan lingkungan maritim.</span>
+          </div>
+        </li>
+        <li>
+          <span class="reg-icon">⚓</span>
+          <div class="reg-text">
+            <strong>PP No. 51 Tahun 2002 tentang Perkapalan</strong>
+            <span>Persyaratan teknis kapal, kelaiklautan, dan keselamatan awak kapal di perairan Indonesia.</span>
+          </div>
+        </li>
+        <li>
+          <span class="reg-icon">🐟</span>
+          <div class="reg-text">
+            <strong>UU No. 45 Tahun 2009 tentang Perikanan</strong>
+            <span>Larangan penangkapan ikan ilegal (IUU fishing) dan ketentuan pengelolaan sumber daya ikan.</span>
+          </div>
+        </li>
+        <li>
+          <span class="reg-icon">🌊</span>
+          <div class="reg-text">
+            <strong>Perpres No. 178 Tahun 2014 tentang Badan Keamanan Laut</strong>
+            <span>Koordinasi pengamanan laut lintas instansi untuk menjaga kedaulatan dan keselamatan perairan nasional.</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════
+     10. KONTAK
+═══════════════════════════════════════════════════════ -->
+<section id="kontak" class="section">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-badge">📞 Hubungi Kami</div>
+      <h2 class="section-title">Kontak & Informasi</h2>
+      <p class="section-subtitle">Jangan ragu menghubungi kami untuk laporan darurat, informasi, atau kemitraan.</p>
+    </div>
+
+    <div class="kontak-grid">
+      <!-- Info -->
+      <div class="reveal-left">
+        <h3>Satuan Polisi Air Polres Indramayu</h3>
+        <p>Siap melayani 24 jam untuk kebutuhan keamanan dan kedaruratan di wilayah perairan Indramayu.</p>
+
+        <div class="kontak-items">
+          <a class="kontak-item" href="tel:+62234201234">
+            <div class="kontak-icon">📞</div>
+            <div class="kontak-item-text">
+              <strong>Telepon Darurat</strong>
+              <span>(0234) 201234 — Siaga 24 Jam</span>
+            </div>
+          </a>
+          <a class="kontak-item" href="tel:+62234205678">
+            <div class="kontak-icon">📟</div>
+            <div class="kontak-item-text">
+              <strong>Telepon Kantor</strong>
+              <span>(0234) 205678</span>
+            </div>
+          </a>
+          <a class="kontak-item" href="mailto:polair.indramayu@polri.go.id">
+            <div class="kontak-icon">📧</div>
+            <div class="kontak-item-text">
+              <strong>Email Resmi</strong>
+              <span>polair.indramayu@polri.go.id</span>
+            </div>
+          </a>
+          <div class="kontak-item" style="cursor:default">
+            <div class="kontak-icon">📍</div>
+            <div class="kontak-item-text">
+              <strong>Alamat</strong>
+              <span>Jl. Raya Pantai Karangsong, Indramayu, Jawa Barat 45214</span>
+            </div>
+          </div>
+          <div class="kontak-item" style="cursor:default">
+            <div class="kontak-icon">🕐</div>
+            <div class="kontak-item-text">
+              <strong>Jam Operasional</strong>
+              <span>24 Jam — 7 Hari Seminggu (Siaga Penuh)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Nomor Darurat highlight -->
+        <div style="background:linear-gradient(135deg,rgba(239,68,68,0.15),rgba(239,68,68,0.05));border:1px solid rgba(239,68,68,0.3);border-radius:var(--radius-lg);padding:1.5rem;margin-top:1.5rem;">
+          <div style="color:#ef4444;font-weight:700;font-size:0.85rem;letter-spacing:0.1em;margin-bottom:0.5rem;">🚨 DARURAT LAUT</div>
+          <div style="font-family:'Orbitron',sans-serif;font-size:2rem;font-weight:900;color:white;">110</div>
+          <div style="font-size:0.82rem;color:var(--text-muted);margin-top:0.25rem;">Nomor Panggilan Darurat Polisi</div>
+        </div>
+
+        <!-- Sosmed -->
+        <div style="margin-top:1.5rem;">
+          <div style="font-size:0.82rem;color:var(--text-muted);margin-bottom:0.75rem;font-weight:600;">IKUTI KAMI DI:</div>
+          <div class="sosmed-row">
+            <a href="#" class="sosmed-btn ig">📸 Instagram</a>
+            <a href="#" class="sosmed-btn fb">👥 Facebook</a>
+            <a href="#" class="sosmed-btn yt">▶️ YouTube</a>
+            <a href="#" class="sosmed-btn tw">🐦 Twitter</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Form -->
+      <div class="kontak-form reveal-right">
+        <h3>Kirim Pesan</h3>
+        <p>Untuk informasi, pengaduan, atau kerjasama. Kami akan merespons dalam 1×24 jam.</p>
+
+        <form id="kontakForm" onsubmit="submitForm(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="nama">Nama Lengkap *</label>
+              <input type="text" id="nama" name="nama" placeholder="Masukkan nama Anda" required />
+            </div>
+            <div class="form-group">
+              <label for="telepon">No. Telepon</label>
+              <input type="tel" id="telepon" name="telepon" placeholder="08xx-xxxx-xxxx" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email *</label>
+            <input type="email" id="email" name="email" placeholder="email@anda.com" required />
+          </div>
+
+          <div class="form-group">
+            <label for="kategori">Kategori Pesan</label>
+            <select id="kategori" name="kategori">
+              <option value="">Pilih kategori...</option>
+              <option value="laporan">🚨 Laporan Kejadian</option>
+              <option value="informasi">ℹ️ Permintaan Informasi</option>
+              <option value="pengaduan">📢 Pengaduan</option>
+              <option value="kerjasama">🤝 Kerjasama / Kemitraan</option>
+              <option value="lainnya">📝 Lainnya</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="pesan">Pesan *</label>
+            <textarea id="pesan" name="pesan" placeholder="Tulis pesan Anda di sini..." required></textarea>
+          </div>
+
+          <button type="submit" class="btn-primary" style="width:100%;justify-content:center;">
+            📤 Kirim Pesan
+          </button>
+        </form>
+
+        <div id="formSuccess" style="display:none;text-align:center;padding:2rem;">
+          <div style="font-size:3rem">✅</div>
+          <h3 style="margin:1rem 0 0.5rem;color:var(--success)">Pesan Terkirim!</h3>
+          <p style="color:var(--text-muted);font-size:0.9rem">Terima kasih. Kami akan merespons dalam 1×24 jam.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════════════════════ -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="nav-logo" style="margin-bottom:0.5rem">
+          <div class="nav-logo-icon">⚓</div>
+          <div class="nav-logo-text">
+            <span class="brand">POLAIR</span>
+            <span class="sub">Indramayu</span>
+          </div>
+        </div>
+        <p>Satuan Polisi Air Polres Indramayu — Melayani, Melindungi, dan Mengayomi Masyarakat Perairan Indramayu demi Kejayaan Bangsa.</p>
+        <div class="sosmed-row" style="margin-top:1rem">
+          <a href="#" class="sosmed-btn ig" style="font-size:1.2rem;padding:0.6rem 0.8rem">📸</a>
+          <a href="#" class="sosmed-btn fb" style="font-size:1.2rem;padding:0.6rem 0.8rem">👥</a>
+          <a href="#" class="sosmed-btn yt" style="font-size:1.2rem;padding:0.6rem 0.8rem">▶️</a>
+          <a href="#" class="sosmed-btn tw" style="font-size:1.2rem;padding:0.6rem 0.8rem">🐦</a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Navigasi</h4>
+        <ul class="footer-links">
+          <li><a href="#beranda">Beranda</a></li>
+          <li><a href="#profil">Profil</a></li>
+          <li><a href="#armada">Armada</a></li>
+          <li><a href="#fasilitas">Fasilitas</a></li>
+          <li><a href="#kegiatan">Kegiatan</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Informasi</h4>
+        <ul class="footer-links">
+          <li><a href="pages/pengaduan.html" style="color:#f87171;font-weight:600;">🚨 Lapor Darurat</a></li>
+          <li><a href="#berita">Berita</a></li>
+          <li><a href="#galeri">Galeri</a></li>
+          <li><a href="#wilayah">Wilayah Kerja</a></li>
+          <li><a href="#edukasi">Edukasi</a></li>
+          <li><a href="#kontak">Kontak</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Kontak Cepat</h4>
+        <ul class="footer-links">
+          <li><a href="tel:110">🚨 Darurat: 110</a></li>
+          <li><a href="tel:+62234201234">📞 (0234) 201234</a></li>
+          <li><a href="mailto:polair.indramayu@polri.go.id">📧 Email Kami</a></li>
+          <li style="color:var(--text-muted);padding:0.3rem 0;font-size:0.85rem">📍 Karangsong, Indramayu</li>
+          <li style="color:var(--text-muted);padding:0.3rem 0;font-size:0.85rem">🕐 24 Jam Siaga</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2026 POLAIR Polres Indramayu. Hak cipta dilindungi. | Satuan Polisi Air — <a href="https://www.polri.go.id" target="_blank">Polri.go.id</a></p>
+      <p>🔒 Website Resmi Pemerintah | <a href="#beranda">Kembali ke atas ↑</a></p>
+    </div>
+  </div>
+</footer>
+
+
+<!-- ── Lightbox ─────────────────────────────── -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <div class="lightbox-inner" id="lightboxInner" onclick="event.stopPropagation()">
+    <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+  </div>
+</div>
+
+
+<!-- ── Back to Top ──────────────────────────── -->
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Kembali ke atas">↑</button>
+
+
+<script src="assets/js/script.js"></script>
+</body>
+</html>

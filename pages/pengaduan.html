@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Formulir Laporan Darurat dan Pengaduan Satuan Polisi Air (POLAIR) Polres Indramayu. Layanan tanggap cepat 24 jam untuk kecelakaan laut, SAR, dan tindak pidana perairan." />
+  <meta name="keywords" content="Laporan Darurat Polair, Pengaduan Polisi Air, SAR Indramayu, Kecelakaan Laut, Polair Polres Indramayu" />
+  <meta property="og:title" content="Formulir Laporan Darurat — POLAIR Indramayu" />
+  <meta property="og:description" content="Sistem Pelaporan Cepat Situasi Darurat dan Kejahatan Perairan Satuan Polisi Air Polres Indramayu." />
+  <meta property="og:type" content="website" />
+  <title>Formulir Laporan Darurat — POLAIR Indramayu</title>
+  
+  <!-- Relative path to CSS as requested -->
+  <link rel="stylesheet" href="../assets/css/style.css" />
+</head>
+
+<body>
+
+<!-- ══════════════════════════════════════════════════════
+     NAVBAR
+═══════════════════════════════════════════════════════ -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-logo">
+      <div class="nav-logo-icon">⚓</div>
+      <div class="nav-logo-text">
+        <span class="brand">POLAIR</span>
+        <span class="sub">Indramayu</span>
+      </div>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="../index.html#beranda">Beranda</a></li>
+      <li><a href="../index.html#profil">Profil</a></li>
+      <li><a href="../index.html#armada">Armada</a></li>
+      <li><a href="../index.html#fasilitas">Fasilitas</a></li>
+      <li><a href="../index.html#kegiatan">Kegiatan</a></li>
+      <li><a href="../index.html#berita">Berita</a></li>
+      <li><a href="../index.html#galeri">Galeri</a></li>
+      <li><a href="../index.html#wilayah">Wilayah</a></li>
+      <li><a href="../index.html#edukasi">Edukasi</a></li>
+      <li><a href="../index.html#kontak">Kontak</a></li>
+      <li><a href="#formPengaduan" class="nav-cta" style="background:linear-gradient(135deg,#dc2626,#ef4444)!important;">🚨 Lapor Darurat</a></li>
+    </ul>
+
+    <button class="hamburger" id="hamburger" aria-label="Buka Menu Navigasi">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="../index.html#beranda">🏠 Beranda</a>
+  <a href="../index.html#profil">📋 Profil</a>
+  <a href="../index.html#armada">🚢 Armada</a>
+  <a href="../index.html#fasilitas">🏗️ Fasilitas</a>
+  <a href="../index.html#kegiatan">⚡ Kegiatan</a>
+  <a href="../index.html#berita">📰 Berita</a>
+  <a href="../index.html#galeri">📸 Galeri</a>
+  <a href="../index.html#wilayah">🗺️ Wilayah Kerja</a>
+  <a href="../index.html#edukasi">🛟 Edukasi</a>
+  <a href="../index.html#kontak">📞 Kontak</a>
+  <a href="#formPengaduan" style="color:#f87171;font-weight:700;">🚨 Formulir Laporan Darurat</a>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════
+     MAIN CONTENT — FORMULIR LAPORAN DARURAT
+═══════════════════════════════════════════════════════ -->
+<main class="pengaduan-page">
+  <div class="container">
+
+    <!-- Top Emergency Call Strip -->
+    <div class="emergency-strip">
+      <div class="emergency-strip-text">
+        <span style="font-size:1.4rem;">🚨</span>
+        <div>
+          <span>KONDISI DARURAT KRITIS DI LAUT?</span>
+          <div style="font-size:0.8rem;color:var(--text-secondary);font-weight:400;">
+            Segera hubungi Call Center Bebas Pulsa Polri atau Hotline Markas POLAIR.
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;gap:0.6rem;flex-wrap:wrap;">
+        <a href="tel:110" class="emergency-strip-btn">📞 Hubungi 110</a>
+        <a href="tel:+62234201234" class="emergency-strip-btn" style="background:var(--primary-light);">⚓ (0234) 201234</a>
+      </div>
+    </div>
+
+    <!-- Header Section -->
+    <div class="text-center" style="margin-bottom:2.5rem;">
+      <div class="section-badge" style="border-color:rgba(239,68,68,0.4);background:rgba(239,68,68,0.12);color:#fca5a5;">
+        🚨 SISTEM SIAGA PENGADUAN PERAIRAN (SPP)
+      </div>
+      <h1 class="section-title" style="font-size:clamp(2rem,3.8vw,3.2rem);">
+        Formulir Laporan Darurat Polair
+      </h1>
+      <p class="section-subtitle" style="max-width:700px;margin-bottom:1rem;">
+        Gunakan formulir resmi ini untuk melaporkan situasi darurat, kecelakaan kapal, orang tenggelam, atau aktivitas ilegal di perairan Kabupaten Indramayu. Petugas piket siaga akan segera merespons.
+      </p>
+    </div>
+
+    <!-- Layout Grid: Form on Left, Direct Contact / SOP on Right -->
+    <div class="pengaduan-grid" id="formPengaduan">
+      
+      <!-- Form Card -->
+      <div class="form-card">
+        
+        <!-- Form Container -->
+        <form id="laporanForm" onsubmit="handleEmergencySubmit(event)">
+
+          <!-- Section 1: Identitas Pelapor -->
+          <div class="form-section-title">
+            <span>👤</span> Identitas Pelapor
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="namaPelapor">Nama Lengkap Pelapor <span style="color:var(--danger)">*</span></label>
+              <input 
+                type="text" 
+                id="namaPelapor" 
+                name="namaPelapor" 
+                placeholder="Contoh: Budi Santoso" 
+                required 
+                autocomplete="name"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="teleponPelapor">Nomor HP / WhatsApp Aktif <span style="color:var(--danger)">*</span></label>
+              <input 
+                type="tel" 
+                id="teleponPelapor" 
+                name="teleponPelapor" 
+                placeholder="Contoh: 081234567890" 
+                required 
+                autocomplete="tel"
+              />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="identitasTambahan">Pekerjaan / Hubungan dengan Korban (Opsional)</label>
+            <input 
+              type="text" 
+              id="identitasTambahan" 
+              name="identitasTambahan" 
+              placeholder="Contoh: Nelayan Karangsong / Keluarga Nahkoda / Saksi Mata" 
+            />
+          </div>
+
+          <!-- Section 2: Data Kejadian -->
+          <div class="form-section-title">
+            <span>⚓</span> Data & Titik Lokasi Kejadian
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="kategoriKejadian">Jenis / Kategori Kejadian <span style="color:var(--danger)">*</span></label>
+              <select id="kategoriKejadian" name="kategoriKejadian" required>
+                <option value="" disabled selected>-- Pilih Kategori Kejadian --</option>
+                <option value="Kecelakaan Kapal / Tabrakan">🚢 Kecelakaan Kapal / Tabrakan Laut</option>
+                <option value="Kapal Tenggelam / Karang">🌊 Kapal Tenggelam / Karam / Bocor</option>
+                <option value="Orang Tenggelam / Jatuh ke Laut (SAR)">🛟 Orang Tenggelam / Jatuh ke Laut (SAR)</option>
+                <option value="Kerusakan Mesin / Hanyut">⚙️ Mesin Mati / Kapal Hanyut Terbawa Arus</option>
+                <option value="Tindak Pidana / Illegal Fishing">⚡ Tindak Pidana / Pencurian / Illegal Fishing</option>
+                <option value="Pencemaran Perairan / Tumpahan Minyak">🛢️ Pencemaran Lingkungan / Tumpahan Minyak</option>
+                <option value="Situasi Darurat Lainnya">⚠️ Situasi Darurat Lainnya</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="waktuKejadian">Waktu Kejadian (Perkiraan) <span style="color:var(--danger)">*</span></label>
+              <input 
+                type="datetime-local" 
+                id="waktuKejadian" 
+                name="waktuKejadian" 
+                required 
+              />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="lokasiKejadian">Titik Lokasi Kejadian <span style="color:var(--danger)">*</span></label>
+            <div class="input-with-action">
+              <input 
+                type="text" 
+                id="lokasiKejadian" 
+                name="lokasiKejadian" 
+                placeholder="Contoh: Perairan Karangsong, ±3 mil utara muara / Koordinat GPS" 
+                required 
+              />
+              <button type="button" class="btn-gps" id="btnGps" onclick="ambilLokasiGPS()" title="Gunakan GPS perangkat Anda">
+                <span id="gpsIcon">📍</span> <span id="gpsText">Deteksi GPS</span>
+              </button>
+            </div>
+            <small id="gpsStatus" style="font-size:0.75rem;color:var(--text-muted);margin-top:0.25rem;display:block;">
+              Klik tombol "Deteksi GPS" jika Anda sedang berada di lokasi untuk mengisi titik koordinat secara otomatis.
+            </small>
+          </div>
+
+          <!-- Section 3: Kronologi -->
+          <div class="form-section-title">
+            <span>📝</span> Kronologi Kejadian
+          </div>
+
+          <div class="form-group">
+            <label for="kronologi">Kronologi & Keterangan Lengkap <span style="color:var(--danger)">*</span></label>
+            <textarea 
+              id="kronologi" 
+              name="kronologi" 
+              rows="5" 
+              placeholder="Ceritakan kronologi kejadian secara rinci:&#10;1. Bagaimana awal mula kejadian?&#10;2. Nama dan jenis kapal yang terlibat?&#10;3. Jumlah korban / kru kapal (ABK)?&#10;4. Kondisi cuaca, tinggi ombak, atau tanda khusus lainnya..." 
+              required
+            ></textarea>
+          </div>
+
+          <!-- Section 4: Unggah Bukti Foto -->
+          <div class="form-section-title">
+            <span>📸</span> Unggah Bukti Foto
+          </div>
+
+          <div class="form-group">
+            <label>Lampirkan Foto Kejadian / Kapal / Lokasi (Maks. 5 Foto)</label>
+            <div class="upload-area" id="dropArea">
+              <input 
+                type="file" 
+                id="fotoBukti" 
+                name="fotoBukti" 
+                accept="image/*" 
+                multiple 
+                onchange="handleFiles(this.files)" 
+              />
+              <span class="upload-icon">📷</span>
+              <strong style="color:var(--accent);display:block;font-size:0.95rem;">
+                Klik untuk Pilih Foto atau Tarik Foto ke Sini
+              </strong>
+              <div class="upload-hint">
+                Format yang didukung: JPG, JPEG, PNG, WEBP (Bisa langsung ambil dari kamera ponsel)
+              </div>
+            </div>
+
+            <!-- Preview thumbnails -->
+            <div class="preview-container" id="previewContainer"></div>
+          </div>
+
+          <!-- Pernyataan Tanggung Jawab -->
+          <label class="checkbox-label">
+            <input type="checkbox" id="persetujuan" required />
+            <span>
+              Saya menyatakan bahwa laporan ini dibuat dengan data yang sebenar-benarnya dan dapat dipertanggungjawabkan untuk penanganan darurat perairan oleh POLAIR Indramayu.
+            </span>
+          </label>
+
+          <!-- Submit Button -->
+          <button type="submit" class="btn-submit-emergency" id="btnSubmit">
+            <span>🚨</span>
+            <span id="btnSubmitText">KIRIM LAPORAN DARURAT SEKARANG</span>
+          </button>
+
+        </form>
+
+        <!-- Official Ticket Result Modal (Shown after submission) -->
+        <div class="ticket-modal" id="ticketModal">
+          <div style="font-size:3.5rem;margin-bottom:0.5rem;line-height:1;">✅</div>
+          <div class="section-badge" style="border-color:var(--success);background:rgba(34,197,94,0.15);color:var(--success);margin-bottom:0.75rem;">
+            LAPORAN DARURAT RESMI DITERIMA
+          </div>
+          <h2 style="font-size:1.8rem;color:var(--white);margin-bottom:0.5rem;">
+            Piket Siaga POLAIR Sedang Memproses
+          </h2>
+          <p style="color:var(--text-secondary);font-size:0.9rem;max-width:500px;margin:0 auto 1.5rem;">
+            Laporan Anda telah berhasil dicatat ke sistem respon cepat Markas Komando POLAIR Polres Indramayu. Petugas piket siaga akan segera menghubungi nomor Anda.
+          </p>
+
+          <div style="background:var(--dark-3);border:1px dashed var(--accent);border-radius:var(--radius-md);padding:1.25rem;max-width:440px;margin:0 auto 1.5rem;text-align:left;">
+            <div style="display:flex;justify-content:space-between;margin-bottom:0.5rem;border-bottom:1px solid var(--border);padding-bottom:0.5rem;">
+              <span style="color:var(--text-muted);font-size:0.8rem;">NOMOR TIKET:</span>
+              <strong style="color:var(--gold);font-family:Orbitron,monospace;" id="nomorTiket">PLR-IND/2026/09/0000</strong>
+            </div>
+            <div style="display:flex;justify-content:space-between;margin-bottom:0.35rem;font-size:0.85rem;">
+              <span style="color:var(--text-muted);">Pelapor:</span>
+              <span style="color:var(--white);font-weight:600;" id="tiketNama">-</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;margin-bottom:0.35rem;font-size:0.85rem;">
+              <span style="color:var(--text-muted);">Kategori:</span>
+              <span style="color:var(--accent);" id="tiketKategori">-</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;margin-bottom:0.35rem;font-size:0.85rem;">
+              <span style="color:var(--text-muted);">Waktu Input:</span>
+              <span style="color:var(--text-primary);" id="tiketWaktu">-</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;font-size:0.85rem;">
+              <span style="color:var(--text-muted);">Status:</span>
+              <span style="color:#22c55e;font-weight:700;">Diteruskan ke Tim Reaksi Cepat</span>
+            </div>
+          </div>
+
+          <div style="display:flex;gap:0.75rem;justify-content:center;flex-wrap:wrap;">
+            <a href="tel:+62234201234" class="btn-primary" style="text-decoration:none;">
+              📞 Konfirmasi via Telepon
+            </a>
+            <button type="button" class="btn-outline" onclick="resetLaporanForm()">
+              📝 Buat Laporan Baru
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Right Sidebar: Emergency Callouts & SOP -->
+      <aside>
+        
+        <!-- Card 1: Kontak Siaga Cepat -->
+        <div class="side-card" style="border-color:rgba(239,68,68,0.35);">
+          <h4 style="color:#fca5a5;">
+            <span>🚨</span> Kontak Siaga Cepat
+          </h4>
+          <p style="font-size:0.82rem;color:var(--text-muted);margin-bottom:1rem;">
+            Akses langsung operator siaga POLAIR Indramayu 24 jam nonstop:
+          </p>
+
+          <a href="tel:110" class="quick-contact-btn police">
+            <span>🚨 Panggilan Darurat Polri</span>
+            <strong>110</strong>
+          </a>
+
+          <a href="tel:+62234201234" class="quick-contact-btn hotline">
+            <span>⚓ Markas POLAIR Karangsong</span>
+            <strong>(0234) 201234</strong>
+          </a>
+
+          <a href="https://wa.me/6281234567890?text=Halo%20POLAIR%20Indramayu,%20saya%20ingin%20melaporkan%20keadaan%20darurat%20di%20perairan" target="_blank" class="quick-contact-btn wa">
+            <span>💬 WhatsApp Siaga Darurat</span>
+            <strong>0812-3456-7890</strong>
+          </a>
+
+          <div style="margin-top:1rem;padding-top:0.75rem;border-top:1px solid var(--border);font-size:0.8rem;color:var(--text-secondary);">
+            <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.35rem;">
+              <span>📻</span>
+              <strong>Radio Maritim VHF:</strong> Channel 16 (156.800 MHz)
+            </div>
+            <div style="display:flex;align-items:center;gap:0.5rem;">
+              <span>📍</span>
+              <strong>Posko Utama:</strong> Karangsong, Indramayu
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2: Alur Penanganan Laporan -->
+        <div class="side-card">
+          <h4 style="color:var(--accent);">
+            <span>⚡</span> Alur Penanganan Laporan
+          </h4>
+          <ol class="alur-list">
+            <li class="alur-item">
+              <strong style="color:var(--text-primary);display:block;">1. Penerimaan Laporan</strong>
+              Laporan masuk ke sistem piket Markas POLAIR Indramayu dalam hitungan detik.
+            </li>
+            <li class="alur-item">
+              <strong style="color:var(--text-primary);display:block;">2. Verifikasi & Analisis Titik</strong>
+              Petugas melakukan plotting koordinat lokasi kejadian dan menghubungi pelapor.
+            </li>
+            <li class="alur-item">
+              <strong style="color:var(--text-primary);display:block;">3. Pengerahan Kapal Patroli</strong>
+              Armada kapal patroli (KP Gagak, RHIB Falcon, atau Pos terdekat) segera meluncur ke koordinat.
+            </li>
+            <li class="alur-item">
+              <strong style="color:var(--text-primary);display:block;">4. Koordinasi SAR Terpadu</strong>
+              Bila dibutuhkan, POLAIR berkoordinasi langsung dengan Basarnas, TNI AL, dan Syahbandar.
+            </li>
+          </ol>
+        </div>
+
+        <!-- Card 3: Tips Darurat Nelayan -->
+        <div class="side-card">
+          <h4 style="color:var(--gold);">
+            <span>🛟</span> Panduan Darurat Nelayan
+          </h4>
+          <ul style="padding-left:1.2rem;font-size:0.82rem;color:var(--text-secondary);line-height:1.7;">
+            <li>Segera kenakan <strong>Life Jacket (Pelampung)</strong> pada seluruh ABK.</li>
+            <li>Jika kapal bocor atau mati mesin, <strong>turunkan jangkar</strong> untuk memperlambat arus.</li>
+            <li>Nyalakan lampu navigasi atau <strong>sinyal suar (flare)</strong> bila malam hari.</li>
+            <li>Jaga daya baterai ponsel untuk komunikasi darurat dengan tim penyelamat.</li>
+          </ul>
+        </div>
+
+      </aside>
+
+    </div>
+
+  </div>
+</main>
+
+
+<!-- ══════════════════════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════════════════════ -->
+<footer id="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="nav-logo" style="margin-bottom:1rem">
+          <div class="nav-logo-icon">⚓</div>
+          <div class="nav-logo-text">
+            <span class="brand">POLAIR</span>
+            <span class="sub">Indramayu</span>
+          </div>
+        </div>
+        <p>Satuan Polisi Air Polres Indramayu — Menjaga kedaulatan, keamanan, dan ketertiban hukum di wilayah perairan Laut Jawa Kabupaten Indramayu.</p>
+        <div class="footer-badge">🛡️ Melayani · Melindungi · Mengayomi</div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Navigasi</h4>
+        <ul class="footer-links">
+          <li><a href="../index.html#beranda">Beranda</a></li>
+          <li><a href="../index.html#profil">Profil</a></li>
+          <li><a href="../index.html#armada">Armada</a></li>
+          <li><a href="../index.html#fasilitas">Fasilitas</a></li>
+          <li><a href="../index.html#kegiatan">Kegiatan</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Layanan & Info</h4>
+        <ul class="footer-links">
+          <li><a href="pengaduan.html" style="color:var(--accent);font-weight:600;">🚨 Laporan Darurat</a></li>
+          <li><a href="../index.html#berita">Berita</a></li>
+          <li><a href="../index.html#galeri">Galeri</a></li>
+          <li><a href="../index.html#wilayah">Wilayah Kerja</a></li>
+          <li><a href="../index.html#edukasi">Edukasi</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Kontak Cepat</h4>
+        <ul class="footer-links">
+          <li><a href="tel:110">🚨 Darurat: 110</a></li>
+          <li><a href="tel:+62234201234">📞 (0234) 201234</a></li>
+          <li><a href="mailto:polair.indramayu@polri.go.id">📧 Email Kami</a></li>
+          <li style="color:var(--text-muted);padding:0.3rem 0;font-size:0.85rem">📍 Karangsong, Indramayu</li>
+          <li style="color:var(--text-muted);padding:0.3rem 0;font-size:0.85rem">🕐 24 Jam Siaga</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2026 POLAIR Polres Indramayu. Hak cipta dilindungi. | Satuan Polisi Air — <a href="https://www.polri.go.id" target="_blank">Polri.go.id</a></p>
+      <p>🔒 Website Resmi Pemerintah | <a href="#navbar">Kembali ke atas ↑</a></p>
+    </div>
+  </div>
+</footer>
+
+<!-- ── Back to Top ──────────────────────────── -->
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Kembali ke atas">↑</button>
+
+<!-- Relative path to JS as requested -->
+<script src="../assets/js/script.js"></script>
+
+<!-- Dedicated interactive script for Pengaduan form -->
+<script>
+  // Set default datetime to now
+  (function setDefaultDatetime() {
+    const input = document.getElementById('waktuKejadian');
+    if (input) {
+      const now = new Date();
+      now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+      input.value = now.toISOString().slice(0, 16);
+    }
+  })();
+
+  // Geolocation API helper
+  function ambilLokasiGPS() {
+    const gpsBtn = document.getElementById('btnGps');
+    const gpsIcon = document.getElementById('gpsIcon');
+    const gpsText = document.getElementById('gpsText');
+    const gpsStatus = document.getElementById('gpsStatus');
+    const lokasiInput = document.getElementById('lokasiKejadian');
+
+    if (!navigator.geolocation) {
+      alert('Perangkat atau browser Anda tidak mendukung deteksi lokasi otomatis (Geolocation). Silakan ketik lokasi manual.');
+      return;
+    }
+
+    gpsBtn.disabled = true;
+    gpsIcon.textContent = '⏳';
+    gpsText.textContent = 'Mencari...';
+    gpsStatus.textContent = 'Sedang membaca sinyal satelit GPS...';
+    gpsStatus.style.color = 'var(--accent)';
+
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const lat = position.coords.latitude.toFixed(6);
+        const lon = position.coords.longitude.toFixed(6);
+        const akurasi = Math.round(position.coords.accuracy);
+
+        lokasiInput.value = `Koordinat: ${lat}, ${lon} (Akurasi: ±${akurasi}m)`;
+        gpsIcon.textContent = '✅';
+        gpsText.textContent = 'GPS Terkunci';
+        gpsStatus.textContent = `Lokasi berhasil dideteksi: ${lat}, ${lon} (Akurasi ±${akurasi} meter). Anda dapat menambahkan patokan nama perairan.`;
+        gpsStatus.style.color = 'var(--success)';
+        gpsBtn.disabled = false;
+      },
+      (error) => {
+        let msg = 'Gagal mendeteksi lokasi otomatis.';
+        if (error.code === 1) msg = 'Izin akses lokasi ditolak oleh pengguna.';
+        else if (error.code === 2) msg = 'Sinyal lokasi tidak tersedia.';
+        else if (error.code === 3) msg = 'Waktu permintaan lokasi habis (timeout).';
+
+        gpsIcon.textContent = '⚠️';
+        gpsText.textContent = 'Coba Lagi';
+        gpsStatus.textContent = `${msg} Silakan ketik nama perairan / patokan secara manual.`;
+        gpsStatus.style.color = 'var(--danger)';
+        gpsBtn.disabled = false;
+      },
+      {
+        enableHighAccuracy: true,
+        timeout: 10000,
+        maximumAge: 0
+      }
+    );
+  }
+
+  // File Upload Preview Handler
+  let uploadedFiles = [];
+
+  function handleFiles(files) {
+    const container = document.getElementById('previewContainer');
+    const fileArray = Array.from(files);
+
+    if (uploadedFiles.length + fileArray.length > 5) {
+      alert('Maksimal lampiran adalah 5 foto.');
+      return;
+    }
+
+    fileArray.forEach(file => {
+      if (!file.type.startsWith('image/')) {
+        alert(`File ${file.name} bukan merupakan gambar.`);
+        return;
+      }
+
+      uploadedFiles.push(file);
+
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const div = document.createElement('div');
+        div.className = 'preview-item';
+        div.innerHTML = `
+          <img src="${e.target.result}" alt="Preview Foto" />
+          <button type="button" class="preview-remove" title="Hapus foto" onclick="removeFile(this, '${file.name}')">✕</button>
+        `;
+        container.appendChild(div);
+      };
+      reader.readAsDataURL(file);
+    });
+  }
+
+  function removeFile(btn, fileName) {
+    const item = btn.closest('.preview-item');
+    if (item) item.remove();
+    uploadedFiles = uploadedFiles.filter(f => f.name !== fileName);
+  }
+
+  // Drag & drop support
+  const dropArea = document.getElementById('dropArea');
+  if (dropArea) {
+    ['dragenter', 'dragover'].forEach(eventName => {
+      dropArea.addEventListener(eventName, (e) => {
+        e.preventDefault();
+        dropArea.classList.add('dragover');
+      });
+    });
+
+    ['dragleave', 'drop'].forEach(eventName => {
+      dropArea.addEventListener(eventName, (e) => {
+        e.preventDefault();
+        dropArea.classList.remove('dragover');
+      });
+    });
+
+    dropArea.addEventListener('drop', (e) => {
+      const dt = e.dataTransfer;
+      if (dt && dt.files) {
+        handleFiles(dt.files);
+      }
+    });
+  }
+
+  // Emergency Form Submit Handler
+  function handleEmergencySubmit(e) {
+    e.preventDefault();
+
+    const form = document.getElementById('laporanForm');
+    const modal = document.getElementById('ticketModal');
+    const btnSubmit = document.getElementById('btnSubmit');
+    const btnSubmitText = document.getElementById('btnSubmitText');
+
+    // Button loading state
+    btnSubmit.disabled = true;
+    btnSubmitText.textContent = 'MENGIRIM LAPORAN KE PIKET SIAGA...';
+
+    // Generate Official Ticket Number
+    const randomDigits = Math.floor(1000 + Math.random() * 9000);
+    const dateCode = new Date().toISOString().slice(0, 7).replace('-', '/');
+    const ticketId = `PLR-IND/${dateCode}/${randomDigits}`;
+
+    const nama = document.getElementById('namaPelapor').value;
+    const kategori = document.getElementById('kategoriKejadian').value;
+    const nowStr = new Date().toLocaleString('id-ID', {
+      day: 'numeric',
+      month: 'short',
+      year: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit'
+    });
+
+    setTimeout(() => {
+      // Fill modal details
+      document.getElementById('nomorTiket').textContent = ticketId;
+      document.getElementById('tiketNama').textContent = nama;
+      document.getElementById('tiketKategori').textContent = kategori;
+      document.getElementById('tiketWaktu').textContent = nowStr + ' WIB';
+
+      // Hide form, show ticket
+      form.style.display = 'none';
+      modal.style.display = 'block';
+
+      // Scroll smoothly to ticket
+      modal.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 1200);
+  }
+
+  function resetLaporanForm() {
+    const form = document.getElementById('laporanForm');
+    const modal = document.getElementById('ticketModal');
+    const btnSubmit = document.getElementById('btnSubmit');
+    const btnSubmitText = document.getElementById('btnSubmitText');
+    const previewContainer = document.getElementById('previewContainer');
+
+    form.reset();
+    uploadedFiles = [];
+    previewContainer.innerHTML = '';
+
+    btnSubmit.disabled = false;
+    btnSubmitText.textContent = 'KIRIM LAPORAN DARURAT SEKARANG';
+
+    modal.style.display = 'none';
+    form.style.display = 'block';
+
+    form.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+</script>
+
+</body>
+</html>
