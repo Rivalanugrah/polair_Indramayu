@@ -458,7 +458,10 @@
 <button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Kembali ke atas">↑</button>
 
 <!-- Relative path to JS as requested -->
+<<<<<<< HEAD
 <script src="../assets/js/db.js"></script>
+=======
+>>>>>>> 506b8546327d85654ea5078ffb37e48809175be4
 <script src="../assets/js/script.js"></script>
 
 <!-- Dedicated interactive script for Pengaduan form -->
@@ -603,6 +606,7 @@
     btnSubmit.disabled = true;
     btnSubmitText.textContent = 'MENGIRIM LAPORAN KE PIKET SIAGA...';
 
+<<<<<<< HEAD
     const nama = document.getElementById('namaPelapor').value;
     const telepon = document.getElementById('teleponPelapor').value;
     const pekerjaan = document.getElementById('identitasTambahan').value;
@@ -625,6 +629,15 @@
       foto: uploadedFiles.map(f => f.name || 'foto')
     });
 
+=======
+    // Generate Official Ticket Number
+    const randomDigits = Math.floor(1000 + Math.random() * 9000);
+    const dateCode = new Date().toISOString().slice(0, 7).replace('-', '/');
+    const ticketId = `PLR-IND/${dateCode}/${randomDigits}`;
+
+    const nama = document.getElementById('namaPelapor').value;
+    const kategori = document.getElementById('kategoriKejadian').value;
+>>>>>>> 506b8546327d85654ea5078ffb37e48809175be4
     const nowStr = new Date().toLocaleString('id-ID', {
       day: 'numeric',
       month: 'short',
@@ -634,8 +647,13 @@
     });
 
     setTimeout(() => {
+<<<<<<< HEAD
       // Fill modal details (nomor tiket resmi dari data yang benar-benar tersimpan)
       document.getElementById('nomorTiket').textContent = saved.ticketId;
+=======
+      // Fill modal details
+      document.getElementById('nomorTiket').textContent = ticketId;
+>>>>>>> 506b8546327d85654ea5078ffb37e48809175be4
       document.getElementById('tiketNama').textContent = nama;
       document.getElementById('tiketKategori').textContent = kategori;
       document.getElementById('tiketWaktu').textContent = nowStr + ' WIB';

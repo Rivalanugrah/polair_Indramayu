@@ -372,10 +372,15 @@ function submitForm(e) {
   const form = document.getElementById('kontakForm');
   const success = document.getElementById('formSuccess');
 
+<<<<<<< HEAD
+=======
+  // Simulate submit
+>>>>>>> 506b8546327d85654ea5078ffb37e48809175be4
   const btn = form.querySelector('button[type="submit"]');
   btn.textContent = '⏳ Mengirim...';
   btn.disabled = true;
 
+<<<<<<< HEAD
   // Simpan pesan ke penyimpanan bersama agar muncul di Admin > Pesan Masuk
   if (typeof PesanStore !== 'undefined') {
     PesanStore.add({
@@ -387,6 +392,8 @@ function submitForm(e) {
     });
   }
 
+=======
+>>>>>>> 506b8546327d85654ea5078ffb37e48809175be4
   setTimeout(() => {
     form.style.display = 'none';
     success.style.display = 'block';
