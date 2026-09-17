@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - Admin POLAIR</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/admin.css">
+</head>
+
+<body data-page="dashboard" data-title="Dashboard Utama">
+
+  <div class="admin-container">
+    <div id="admin-sidebar-mount"></div>
+
+    <main class="admin-main">
+      <div id="admin-topbar-mount"></div>
+
+      <section class="admin-content">
+
+        <div class="admin-card" style="margin-bottom:24px;">
+          <h4 style="color:var(--accent); margin-top:0; font-size:1.2rem;">Selamat Datang, <span id="welcomeName">Admin</span>!</h4>
+          <p style="color:var(--text-secondary); line-height:1.6; margin-bottom:0;">
+            Silakan pilih menu di sebelah kiri untuk mengelola konten website POLAIR Indramayu.
+            Semua perubahan yang Anda simpan akan langsung tampil di halaman publik.
+          </p>
+        </div>
+
+        <div class="stat-grid" id="statGrid">
+          <!-- diisi oleh JS -->
+        </div>
+
+        <div class="admin-card">
+          <div class="card-header">
+            <h4><i class="fas fa-bolt"></i> Laporan Darurat Terbaru</h4>
+            <a href="admin-lapor.html" class="btn-action"><i class="fas fa-list"></i> Lihat Semua</a>
+          </div>
+          <div class="table-responsive">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Waktu</th>
+                  <th>Pelapor</th>
+                  <th>Kategori</th>
+                  <th>Status</th>
+                  <th>Aksi</th>
+                </tr>
+              </thead>
+              <tbody id="recentLaporanBody"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- ============ PENGATURAN AKUN ============ -->
+        <div class="admin-card" id="settings-section">
+          <div class="card-header">
+            <h4><i class="fas fa-gear"></i> Pengaturan Akun</h4>
+          </div>
+          <p style="color:var(--text-secondary); font-size:0.88rem; margin-top:-8px;">
+            Ganti username dan password login Admin Panel. Anda perlu memasukkan password saat ini untuk konfirmasi.
+          </p>
+
+          <div class="admin-alert success" id="settingsSuccess" style="display:none;">
+            <i class="fas fa-circle-check"></i> <span id="settingsSuccessText"></span>
+          </div>
+          <div class="admin-alert error" id="settingsError" style="display:none;">
+            <i class="fas fa-circle-exclamation"></i> <span id="settingsErrorText"></span>
+          </div>
+
+          <form id="settingsForm">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="newUsername">Username Baru</label>
+                <input type="text" id="newUsername" placeholder="Minimal 3 karakter" required>
+              </div>
+              <div class="form-group">
+                <label for="newPassword">Password Baru</label>
+                <input type="password" id="newPassword" placeholder="Minimal 6 karakter" required>
+              </div>
+            </div>
+            <div class="form-group" style="max-width:340px;">
+              <label for="currentPassword">Password Saat Ini (konfirmasi)</label>
+              <input type="password" id="currentPassword" placeholder="Wajib diisi" required>
+            </div>
+            <div class="form-actions" style="justify-content:flex-start;">
+              <button type="submit" class="btn-save"><i class="fas fa-floppy-disk"></i> Simpan Perubahan</button>
+            </div>
+          </form>
+        </div>
+
+      </section>
+    </main>
+  </div>
+
+  <script src="../assets/js/db.js"></script>
+  <script src="../assets/js/auth.js"></script>
+  <script src="../assets/js/admin-shell.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const user = authCurrentUser();
+      document.getElementById('welcomeName').textContent = user ? user.username : 'Admin';
+
+      renderStats();
+      renderRecentLaporan();
+
+      // Buka & scroll ke bagian settings jika diakses lewat #settings-section
+      if (window.location.hash === '#settings-section') {
+        setTimeout(function () {
+          document.getElementById('settings-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 200);
+      }
+    });
+
+    function renderStats() {
+      const laporan = LaporanStore.all();
+      const menunggu = laporan.filter(l => l.status === 'menunggu').length;
+      const proses = laporan.filter(l => l.status === 'proses').length;
+      const armadaSiap = ArmadaStore.all().filter(a => a.status === 'siap').length;
+      const pesanBaru = PesanStore.all().filter(p => !p.dibaca).length;
+
+      const stats = [
+        { icon: 'blue', fa: 'fa-inbox', num: laporan.length, label: 'Total Laporan Masuk' },
+        { icon: 'red', fa: 'fa-triangle-exclamation', num: menunggu, label: 'Menunggu Tindakan' },
+        { icon: 'amber', fa: 'fa-spinner', num: proses, label: 'Sedang Diproses' },
+        { icon: 'green', fa: 'fa-ship', num: armadaSiap, label: 'Armada Siap Operasi' },
+        { icon: 'blue', fa: 'fa-envelope', num: pesanBaru, label: 'Pesan Belum Dibaca' }
+      ];
+
+      document.getElementById('statGrid').innerHTML = stats.map(s => `
+        <div class="stat-card">
+          <div class="stat-icon ${s.icon}"><i class="fas ${s.fa}"></i></div>
+          <div>
+            <div class="stat-num">${s.num}</div>
+            <div class="stat-label">${s.label}</div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function renderRecentLaporan() {
+      const laporan = LaporanStore.all().slice(0, 5);
+      const tbody = document.getElementById('recentLaporanBody');
+
+      if (laporan.length === 0) {
+        tbody.innerHTML = '<tr class="empty-row"><td colspan="5">Belum ada laporan masuk.</td></tr>';
+        return;
+      }
+
+      tbody.innerHTML = laporan.map(l => {
+        const meta = LaporanStore.statusMeta(l.status);
+        return `
+          <tr>
+            <td>${formatTanggalID(l.createdAt)}</td>
+            <td>${l.nama}</td>
+            <td>${l.kategori}</td>
+            <td><span class="badge ${meta.badgeClass}"><i class="fas ${meta.icon}"></i> ${meta.label}</span></td>
+            <td><a href="admin-lapor-detail.html?id=${l.id}" class="btn-view"><i class="fas fa-search"></i> Detail</a></td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    // ── Form Pengaturan Akun ──
+    document.getElementById('settingsForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const currentPassword = document.getElementById('currentPassword').value;
+      const newUsername = document.getElementById('newUsername').value;
+      const newPassword = document.getElementById('newPassword').value;
+
+      const result = authChangeCredentials(currentPassword, newUsername, newPassword);
+      const successBox = document.getElementById('settingsSuccess');
+      const errorBox = document.getElementById('settingsError');
+
+      if (result.ok) {
+        document.getElementById('settingsSuccessText').textContent = result.message + ' Gunakan kredensial baru saat login berikutnya.';
+        successBox.style.display = 'flex';
+        errorBox.style.display = 'none';
+        document.getElementById('settingsForm').reset();
+        document.getElementById('welcomeName').textContent = newUsername;
+      } else {
+        document.getElementById('settingsErrorText').textContent = result.message;
+        errorBox.style.display = 'flex';
+        successBox.style.display = 'none';
+      }
+    });
+  </script>
+</body>
+
+</html>

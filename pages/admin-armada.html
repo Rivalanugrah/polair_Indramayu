@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kelola Armada - Admin POLAIR</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/admin.css">
+</head>
+
+<body data-page="armada" data-title="Pangkalan Data Armada">
+
+  <div class="admin-container">
+    <div id="admin-sidebar-mount"></div>
+
+    <main class="admin-main">
+      <div id="admin-topbar-mount"></div>
+
+      <section class="admin-content">
+        <div class="admin-card">
+          <div class="card-header">
+            <h4><i class="fas fa-ship"></i> Daftar Kapal Patroli & Speedboat</h4>
+            <button class="btn-add" onclick="openArmadaModal()"><i class="fas fa-plus"></i> Tambah Data Armada</button>
+          </div>
+
+          <div class="table-responsive">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>No</th>
+                  <th>Nama / Kode Kapal</th>
+                  <th>Jenis / Tipe</th>
+                  <th>Kapasitas</th>
+                  <th>Status</th>
+                  <th>Aksi</th>
+                </tr>
+              </thead>
+              <tbody id="armadaBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Modal Tambah / Edit Armada -->
+  <div class="admin-modal-overlay" id="armadaModalOverlay">
+    <div class="admin-modal">
+      <div class="admin-modal-header">
+        <h4 id="armadaModalTitle">Tambah Data Armada</h4>
+        <button class="admin-modal-close" onclick="closeArmadaModal()"><i class="fas fa-xmark"></i></button>
+      </div>
+      <form id="armadaForm">
+        <input type="hidden" id="armadaId">
+        <div class="form-group">
+          <label for="armadaKode">Nama / Kode Kapal</label>
+          <input type="text" id="armadaKode" placeholder="Contoh: KP. VIII-1001" required>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="armadaJenis">Jenis / Tipe</label>
+            <input type="text" id="armadaJenis" placeholder="Contoh: Kapal Patroli C3" required>
+          </div>
+          <div class="form-group">
+            <label for="armadaKapasitas">Kapasitas</label>
+            <input type="text" id="armadaKapasitas" placeholder="Contoh: 6 Personel" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="armadaStatus">Status Operasional</label>
+          <select id="armadaStatus">
+            <option value="siap">Siap Operasi</option>
+            <option value="perbaikan">Dalam Perbaikan</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="armadaDeskripsi">Deskripsi / Fungsi (opsional)</label>
+          <textarea id="armadaDeskripsi" placeholder="Deskripsi singkat fungsi kapal ini..."></textarea>
+        </div>
+        <div class="form-actions">
+          <button type="button" class="btn-cancel" onclick="closeArmadaModal()">Batal</button>
+          <button type="submit" class="btn-save"><i class="fas fa-floppy-disk"></i> Simpan</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="../assets/js/db.js"></script>
+  <script src="../assets/js/auth.js"></script>
+  <script src="../assets/js/admin-shell.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', renderArmada);
+
+    function renderArmada() {
+      const data = ArmadaStore.all();
+      const tbody = document.getElementById('armadaBody');
+
+      if (data.length === 0) {
+        tbody.innerHTML = '<tr class="empty-row"><td colspan="6">Belum ada data armada. Klik "Tambah Data Armada" untuk mulai.</td></tr>';
+        return;
+      }
+
+      tbody.innerHTML = data.map((a, i) => {
+        const meta = ArmadaStore.statusMeta(a.status);
+        return `
+          <tr>
+            <td>${i + 1}</td>
+            <td>${a.kode}</td>
+            <td>${a.jenis}</td>
+            <td>${a.kapasitas}</td>
+            <td><span class="badge ${meta.badgeClass}">${meta.label}</span></td>
+            <td>
+              <button class="btn-edit" onclick='openArmadaModal(${JSON.stringify(a)})'><i class="fas fa-edit"></i></button>
+              <button class="btn-delete" onclick="hapusArmada('${a.id}', '${a.kode.replace(/'/g, "\\'")}')"><i class="fas fa-trash"></i></button>
+            </td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    function openArmadaModal(data) {
+      document.getElementById('armadaForm').reset();
+      document.getElementById('armadaId').value = '';
+      document.getElementById('armadaModalTitle').textContent = data ? 'Edit Data Armada' : 'Tambah Data Armada';
+
+      if (data) {
+        document.getElementById('armadaId').value = data.id;
+        document.getElementById('armadaKode').value = data.kode;
+        document.getElementById('armadaJenis').value = data.jenis;
+        document.getElementById('armadaKapasitas').value = data.kapasitas;
+        document.getElementById('armadaStatus').value = data.status;
+        document.getElementById('armadaDeskripsi').value = data.deskripsi || '';
+      }
+
+      document.getElementById('armadaModalOverlay').classList.add('open');
+    }
+
+    function closeArmadaModal() {
+      document.getElementById('armadaModalOverlay').classList.remove('open');
+    }
+
+    document.getElementById('armadaForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const id = document.getElementById('armadaId').value;
+      const payload = {
+        kode: document.getElementById('armadaKode').value,
+        jenis: document.getElementById('armadaJenis').value,
+        kapasitas: document.getElementById('armadaKapasitas').value,
+        status: document.getElementById('armadaStatus').value,
+        deskripsi: document.getElementById('armadaDeskripsi').value
+      };
+
+      if (id) {
+        ArmadaStore.update(id, payload);
+      } else {
+        ArmadaStore.add(payload);
+      }
+
+      closeArmadaModal();
+      renderArmada();
+    });
+
+    function hapusArmada(id, kode) {
+      if (confirm(`Hapus data armada "${kode}"?`)) {
+        ArmadaStore.remove(id);
+        renderArmada();
+      }
+    }
+  </script>
+</body>
+
+</html>

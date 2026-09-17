@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Internal - POLAIR Indramayu</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+  <style>
+    /* Halaman login memakai variable dari style.css agar warnanya
+       selalu sinkron dengan situs publik & panel admin lainnya. */
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-image: radial-gradient(circle at center, rgba(0, 48, 135, 0.25) 0%, var(--dark) 70%);
+      padding: 20px;
+    }
+
+    .login-container { width: 100%; max-width: 440px; }
+
+    .login-card {
+      background: var(--surface);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 40px 32px;
+      box-shadow: var(--shadow-lg), var(--glow-blue);
+    }
+
+    .login-header { text-align: center; margin-bottom: 24px; }
+    .login-header i { font-size: 2.6rem; color: var(--accent); text-shadow: var(--glow-blue); margin-bottom: 12px; display: block; }
+    .login-header h2 { font-family: 'Orbitron', sans-serif; margin: 0; font-size: 1.3rem; letter-spacing: 2px; color: var(--white); }
+    .login-header p { color: var(--text-secondary); font-size: 0.85rem; margin-top: 8px; }
+
+    .alert-warning {
+      background: rgba(239, 68, 68, 0.12);
+      border-left: 3px solid var(--danger);
+      padding: 12px 14px;
+      border-radius: var(--radius-sm);
+      margin-bottom: 22px;
+      font-size: 0.8rem;
+      line-height: 1.5;
+      color: #fca5a5;
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+
+    .form-group { margin-bottom: 18px; }
+    .form-group label { display: block; font-size: 0.8rem; font-weight: 600; color: var(--text-secondary); margin-bottom: 6px; }
+    .form-group .input-wrap { position: relative; }
+    .form-group i.field-icon { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--text-muted); }
+
+    .form-group input {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 12px 14px 12px 40px;
+      color: var(--text-primary);
+      font-family: inherit;
+      font-size: 0.92rem;
+      transition: var(--transition);
+    }
+    .form-group input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(0,180,216,0.15); }
+
+    .btn-login {
+      width: 100%;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: #fff;
+      border: none;
+      border-radius: var(--radius-md);
+      padding: 13px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      letter-spacing: 0.03em;
+      cursor: pointer;
+      transition: var(--transition);
+      margin-top: 6px;
+    }
+    .btn-login:hover { box-shadow: var(--glow-blue); filter: brightness(1.08); }
+    .btn-login:disabled { opacity: 0.6; cursor: not-allowed; }
+
+    .login-error {
+      display: none;
+      background: rgba(239, 68, 68, 0.12);
+      border: 1px solid var(--danger);
+      color: #fca5a5;
+      padding: 10px 14px;
+      border-radius: var(--radius-sm);
+      font-size: 0.82rem;
+      margin-bottom: 16px;
+      align-items: center;
+      gap: 8px;
+    }
+    .login-error.show { display: flex; }
+
+    .back-home { text-align: center; margin-top: 20px; }
+    .back-home a { color: var(--text-muted); font-size: 0.82rem; text-decoration: none; }
+    .back-home a:hover { color: var(--accent); }
+  </style>
+</head>
+
+<body>
+  <div class="login-container">
+    <div class="login-card">
+      <div class="login-header">
+        <i class="fas fa-shield-halved"></i>
+        <h2>AKSES INTERNAL</h2>
+        <p>Panel Admin POLAIR Indramayu</p>
+      </div>
+
+      <div class="alert-warning">
+        <i class="fas fa-circle-info"></i>
+        <span>Halaman ini khusus untuk anggota internal POLAIR Indramayu. Akun tidak dapat didaftarkan sendiri — hubungi penanggung jawab sistem untuk mendapatkan akses.</span>
+      </div>
+
+      <div class="login-error" id="loginError">
+        <i class="fas fa-circle-exclamation"></i>
+        <span id="loginErrorText">Username atau password salah.</span>
+      </div>
+
+      <form id="loginForm">
+        <div class="form-group">
+          <label for="username">Username</label>
+          <div class="input-wrap">
+            <i class="fas fa-user field-icon"></i>
+            <input type="text" id="username" name="username" placeholder="Masukkan username" required autocomplete="username">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <div class="input-wrap">
+            <i class="fas fa-lock field-icon"></i>
+            <input type="password" id="password" name="password" placeholder="Masukkan password" required autocomplete="current-password">
+          </div>
+        </div>
+        <button type="submit" class="btn-login" id="btnLogin">
+          <i class="fas fa-right-to-bracket"></i> Masuk ke Panel Admin
+        </button>
+      </form>
+
+      <div class="back-home">
+        <a href="../index.html"><i class="fas fa-arrow-left"></i> Kembali ke Website</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="../assets/js/db.js"></script>
+  <script src="../assets/js/auth.js"></script>
+  <script>
+    // Jika sudah login, langsung lempar ke dashboard (tidak perlu login ulang)
+    if (authIsLoggedIn()) {
+      window.location.href = 'admin-dashboard.html';
+    }
+
+    const form = document.getElementById('loginForm');
+    const errorBox = document.getElementById('loginError');
+    const errorText = document.getElementById('loginErrorText');
+    const btnLogin = document.getElementById('btnLogin');
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+
+      btnLogin.disabled = true;
+      btnLogin.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Memeriksa...';
+
+      setTimeout(function () {
+        if (authLogin(username, password)) {
+          window.location.href = 'admin-dashboard.html';
+        } else {
+          errorText.textContent = 'Username atau password salah. Silakan coba lagi.';
+          errorBox.classList.add('show');
+          btnLogin.disabled = false;
+          btnLogin.innerHTML = '<i class="fas fa-right-to-bracket"></i> Masuk ke Panel Admin';
+        }
+      }, 500);
+    });
+  </script>
+</body>
+
+</html>

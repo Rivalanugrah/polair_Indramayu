@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pesan Masuk - Admin POLAIR</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/admin.css">
+</head>
+
+<body data-page="pesan" data-title="Pesan Masuk dari Warga">
+
+  <div class="admin-container">
+    <div id="admin-sidebar-mount"></div>
+
+    <main class="admin-main">
+      <div id="admin-topbar-mount"></div>
+
+      <section class="admin-content">
+        <div class="admin-card">
+          <div class="card-header">
+            <h4><i class="fas fa-envelope"></i> Pesan Masuk (Formulir Kontak)</h4>
+          </div>
+          <div class="table-responsive">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Waktu</th>
+                  <th>Nama</th>
+                  <th>Kontak</th>
+                  <th>Kategori</th>
+                  <th>Pesan</th>
+                  <th>Status</th>
+                  <th>Aksi</th>
+                </tr>
+              </thead>
+              <tbody id="pesanBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="../assets/js/db.js"></script>
+  <script src="../assets/js/auth.js"></script>
+  <script src="../assets/js/admin-shell.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', renderPesan);
+
+    const kategoriLabel = {
+      laporan: 'Laporan Kejadian',
+      informasi: 'Permintaan Informasi',
+      pengaduan: 'Pengaduan',
+      kerjasama: 'Kerjasama',
+      lainnya: 'Lainnya'
+    };
+
+    function renderPesan() {
+      const data = PesanStore.all();
+      const tbody = document.getElementById('pesanBody');
+
+      if (data.length === 0) {
+        tbody.innerHTML = '<tr class="empty-row"><td colspan="7"><i class="fas fa-inbox" style="font-size:1.6rem;display:block;margin-bottom:8px;"></i>Belum ada pesan masuk.</td></tr>';
+        return;
+      }
+
+      tbody.innerHTML = data.map(p => `
+        <tr>
+          <td>${formatTanggalID(p.createdAt)}</td>
+          <td>${p.nama}</td>
+          <td>${p.email}${p.telepon ? '<br><span style="color:var(--text-muted);font-size:0.8rem;">' + p.telepon + '</span>' : ''}</td>
+          <td>${kategoriLabel[p.kategori] || p.kategori || '-'}</td>
+          <td style="max-width:280px; white-space:normal;">${p.pesan}</td>
+          <td>${p.dibaca ? '<span class="badge badge-success">Dibaca</span>' : '<span class="badge badge-info">Baru</span>'}</td>
+          <td>
+            ${!p.dibaca ? `<button class="btn-view" onclick="tandaiDibaca('${p.id}')"><i class="fas fa-check"></i> Tandai Dibaca</button>` : ''}
+            <button class="btn-delete" onclick="hapusPesan('${p.id}')"><i class="fas fa-trash"></i></button>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    function tandaiDibaca(id) {
+      PesanStore.markRead(id);
+      renderPesan();
+    }
+
+    function hapusPesan(id) {
+      if (confirm('Hapus pesan ini?')) {
+        PesanStore.remove(id);
+        renderPesan();
+      }
+    }
+  </script>
+</body>
+
+</html>

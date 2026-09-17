@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detail Laporan - Admin POLAIR</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/admin.css">
+  <style>
+    .btn-back {
+      display: inline-flex; align-items: center; gap: 8px;
+      color: var(--accent); text-decoration: none; font-size: 0.88rem; font-weight: 600;
+      margin-bottom: 18px;
+    }
+    .btn-back:hover { text-decoration: underline; }
+
+    .detail-header {
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+      margin-bottom: 22px; padding-bottom: 18px; border-bottom: 1px solid var(--border);
+    }
+    .detail-header h4 { font-family: 'Rajdhani', sans-serif; font-size: 1.3rem; color: var(--white); margin: 0; }
+
+    .detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
+    @media (max-width: 700px) { .detail-grid { grid-template-columns: 1fr; } }
+
+    .info-box {
+      background: rgba(255,255,255,0.02); border: 1px solid var(--border);
+      border-radius: var(--radius-md); padding: 18px;
+    }
+    .info-box h5 { font-size: 0.85rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-secondary); margin: 0 0 14px; display: flex; align-items: center; gap: 8px; }
+    .info-row { display: flex; justify-content: space-between; gap: 10px; padding: 8px 0; border-bottom: 1px dashed rgba(255,255,255,0.06); font-size: 0.9rem; }
+    .info-row:last-child { border-bottom: none; }
+    .info-label { color: var(--text-muted); }
+    .info-value { color: var(--text-primary); font-weight: 600; text-align: right; }
+
+    .info-value-box { background: rgba(255,255,255,0.03); border-radius: var(--radius-sm); padding: 14px; color: var(--text-secondary); line-height: 1.7; font-size: 0.9rem; }
+
+    .photo-gallery { display: flex; gap: 12px; margin-top: 12px; flex-wrap: wrap; }
+    .photo-item {
+      width: 110px; height: 110px; background: rgba(255,255,255,0.04); border-radius: var(--radius-sm);
+      border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; color: var(--text-muted);
+    }
+
+    .status-update-box { background: rgba(0,180,216,0.05); border: 1px solid var(--border); padding: 20px; border-radius: var(--radius-md); }
+    .status-actions { display: flex; gap: 12px; margin-top: 15px; flex-wrap: wrap; }
+    .btn-status {
+      padding: 10px 18px; border: none; border-radius: 6px; font-weight: 600; cursor: pointer;
+      transition: var(--transition); color: #fff; display: flex; align-items: center; gap: 8px; font-size: 0.86rem;
+      opacity: 0.55;
+    }
+    .btn-status.current { opacity: 1; box-shadow: 0 0 0 2px rgba(255,255,255,0.25) inset; }
+    .btn-status:hover { filter: brightness(1.1); opacity: 1; }
+    .btn-menunggu { background: var(--danger); }
+    .btn-proses { background: var(--warning); }
+    .btn-selesai { background: var(--success); }
+  </style>
+</head>
+
+<body data-page="lapor" data-title="Berkas Laporan Masuk">
+
+  <div class="admin-container">
+    <div id="admin-sidebar-mount"></div>
+
+    <main class="admin-main">
+      <div id="admin-topbar-mount"></div>
+
+      <section class="admin-content">
+        <a href="admin-lapor.html" class="btn-back"><i class="fas fa-arrow-left"></i> Kembali ke Daftar Laporan</a>
+
+        <div id="detailContainer">
+          <!-- diisi oleh JS -->
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="../assets/js/db.js"></script>
+  <script src="../assets/js/auth.js"></script>
+  <script src="../assets/js/admin-shell.js"></script>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const reportId = params.get('id');
+
+    document.addEventListener('DOMContentLoaded', renderDetail);
+
+    function renderDetail() {
+      const container = document.getElementById('detailContainer');
+      const laporan = reportId ? LaporanStore.getById(reportId) : null;
+
+      if (!laporan) {
+        container.innerHTML = `
+          <div class="admin-card" style="text-align:center; padding:50px 20px;">
+            <i class="fas fa-circle-question" style="font-size:2.4rem;color:var(--text-muted);display:block;margin-bottom:14px;"></i>
+            <h4 style="color:var(--white);">Laporan tidak ditemukan</h4>
+            <p style="color:var(--text-secondary);">Laporan mungkin sudah dihapus, atau tautan yang dibuka tidak valid.</p>
+            <a href="admin-lapor.html" class="btn-action" style="margin-top:10px;display:inline-flex;"><i class="fas fa-list"></i> Kembali ke Daftar</a>
+          </div>`;
+        return;
+      }
+
+      const meta = LaporanStore.statusMeta(laporan.status);
+      const fotoHtml = (laporan.foto && laporan.foto.length > 0)
+        ? laporan.foto.map(() => `<div class="photo-item"><i class="fas fa-image"></i></div>`).join('')
+        : `<p style="color:var(--text-muted); font-size:0.85rem;">Tidak ada foto bukti dilampirkan.</p>`;
+
+      container.innerHTML = `
+        <div class="admin-card">
+          <div class="detail-header">
+            <h4>KODE: #${laporan.ticketId}</h4>
+            <span class="badge ${meta.badgeClass}" id="detailStatusBadge"><i class="fas ${meta.icon}"></i> Status Saat Ini: ${meta.label}</span>
+          </div>
+
+          <div class="detail-grid">
+            <div class="info-box">
+              <h5><i class="fas fa-user" style="color:#c084fc;"></i> Identitas Pelapor</h5>
+              <div class="info-row"><span class="info-label">Nama Lengkap</span><span class="info-value">${laporan.nama}</span></div>
+              <div class="info-row"><span class="info-label">Nomor HP / WhatsApp</span><span class="info-value">${laporan.telepon || '-'}</span></div>
+              <div class="info-row"><span class="info-label">Pekerjaan / Identitas</span><span class="info-value">${laporan.pekerjaan || '-'}</span></div>
+            </div>
+            <div class="info-box">
+              <h5><i class="fas fa-anchor" style="color:var(--accent);"></i> Data & Titik Lokasi</h5>
+              <div class="info-row"><span class="info-label">Kategori</span><span class="info-value" style="color:var(--danger);">${laporan.kategori}</span></div>
+              <div class="info-row"><span class="info-label">Waktu Kejadian</span><span class="info-value">${formatTanggalID(laporan.waktuKejadian || laporan.createdAt)}</span></div>
+              <div class="info-row"><span class="info-label">Lokasi</span><span class="info-value">${laporan.lokasi || '-'}</span></div>
+            </div>
+          </div>
+
+          <div class="info-box" style="margin-bottom:20px;">
+            <h5><i class="fas fa-file-alt" style="color:#fcd34d;"></i> Kronologi Kejadian</h5>
+            <div class="info-value-box">${laporan.kronologi || '-'}</div>
+            <div class="photo-gallery">${fotoHtml}</div>
+          </div>
+
+          <div class="status-update-box">
+            <h5 style="margin:0 0 4px;color:#fff;">Tindak Lanjut Laporan</h5>
+            <p style="font-size:0.83rem;color:var(--text-secondary);margin:0 0 6px;">Klik salah satu status di bawah untuk memperbarui progres laporan ini. Warga penelepon dapat dihubungi melalui nomor di atas.</p>
+            <div class="status-actions" id="statusActions"></div>
+          </div>
+        </div>
+      `;
+
+      renderStatusButtons(laporan.status);
+    }
+
+    function renderStatusButtons(currentStatus) {
+      const options = [
+        { key: 'menunggu', label: 'Menunggu Tim', cls: 'btn-menunggu', icon: 'fa-triangle-exclamation' },
+        { key: 'proses', label: 'Sedang Diproses', cls: 'btn-proses', icon: 'fa-spinner' },
+        { key: 'selesai', label: 'Selesai & Tutup Laporan', cls: 'btn-selesai', icon: 'fa-check-circle' }
+      ];
+      document.getElementById('statusActions').innerHTML = options.map(o => `
+        <button onclick="ubahStatus('${o.key}')" class="btn-status ${o.cls} ${o.key === currentStatus ? 'current' : ''}">
+          <i class="fas ${o.icon}"></i> ${o.label}
+        </button>
+      `).join('');
+    }
+
+    function ubahStatus(status) {
+      if (!reportId) return;
+      LaporanStore.updateStatus(reportId, status);
+      renderDetail(); // refresh badge & tombol tanpa reload halaman
+    }
+  </script>
+</body>
+
+</html>

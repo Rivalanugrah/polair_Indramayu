@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Spesifikasi Teknis Kapal Patroli POLAIR Indramayu. Data lengkap dimensi kapal, tipe mesin, alat navigasi, dan kapasitas personel armada Satpolairud Polres Indramayu." />
+  <meta name="keywords" content="Spesifikasi Kapal Polair, KP Gagak, Armada Polisi Air Indramayu, Kapal Patroli Laut, Mesin Kapal Polair" />
+  <meta property="og:title" content="Spesifikasi Teknis Armada — POLAIR Indramayu" />
+  <meta property="og:description" content="Spesifikasi teknis resmi kapal patroli Satuan Polisi Air Polres Indramayu." />
+  <meta property="og:type" content="website" />
+  <title>Spesifikasi Teknis Armada — POLAIR Indramayu</title>
+  
+  <!-- Relative path to CSS as requested -->
+  <link rel="stylesheet" href="../assets/css/style.css" />
+</head>
+
+<body>
+
+<!-- ══════════════════════════════════════════════════════
+     NAVBAR
+═══════════════════════════════════════════════════════ -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-logo">
+      <div class="nav-logo-icon">⚓</div>
+      <div class="nav-logo-text">
+        <span class="brand">POLAIR</span>
+        <span class="sub">Indramayu</span>
+      </div>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="../index.html#beranda">Beranda</a></li>
+      <li><a href="../index.html#profil">Profil</a></li>
+      <li><a href="detail-armada.html" class="active">Armada</a></li>
+      <li><a href="../index.html#fasilitas">Fasilitas</a></li>
+      <li><a href="../index.html#kegiatan">Kegiatan</a></li>
+      <li><a href="berita.html">Berita</a></li>
+      <li><a href="galeri.html">Galeri</a></li>
+      <li><a href="../index.html#wilayah">Wilayah</a></li>
+      <li><a href="../index.html#edukasi">Edukasi</a></li>
+      <li><a href="../index.html#kontak">Kontak</a></li>
+      <li><a href="pengaduan.html" class="nav-cta" style="background:linear-gradient(135deg,#dc2626,#ef4444)!important;">🚨 Lapor Darurat</a></li>
+    </ul>
+
+    <button class="hamburger" id="hamburger" aria-label="Buka Menu Navigasi">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="../index.html#beranda">🏠 Beranda</a>
+  <a href="../index.html#profil">📋 Profil</a>
+  <a href="detail-armada.html" style="color:var(--accent);font-weight:700;">🚢 Detail Armada</a>
+  <a href="../index.html#fasilitas">🏗️ Fasilitas</a>
+  <a href="../index.html#kegiatan">⚡ Kegiatan</a>
+  <a href="berita.html">📰 Berita</a>
+  <a href="galeri.html">📸 Galeri</a>
+  <a href="../index.html#wilayah">🗺️ Wilayah Kerja</a>
+  <a href="../index.html#edukasi">🛟 Edukasi</a>
+  <a href="../index.html#kontak">📞 Kontak</a>
+  <a href="pengaduan.html" style="color:#f87171;font-weight:700;">🚨 Formulir Laporan Darurat</a>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════
+     MAIN CONTENT — DETAIL ARMADA (SPESIFIKASI KAPAL)
+═══════════════════════════════════════════════════════ -->
+<main class="armada-page">
+  <div class="container">
+
+    <!-- Breadcrumb & Back to Home Button -->
+    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;margin-bottom:1.5rem;">
+      <div class="article-breadcrumbs">
+        <a href="../index.html">Beranda</a>
+        <span>›</span>
+        <a href="../index.html#armada">Armada Unggulan</a>
+        <span>›</span>
+        <span style="color:var(--accent-light);">Spesifikasi Teknis Kapal Patroli</span>
+      </div>
+
+      <a href="../index.html" class="btn-kembali">
+        <span>←</span> Kembali ke Beranda
+      </a>
+    </div>
+
+    <!-- Title Section -->
+    <div class="text-center" style="margin-bottom:2.5rem;">
+      <div class="section-badge">🚢 Data Teknis & Alutsista Laut</div>
+      <h1 class="section-title">Spesifikasi Teknis Kapal Patroli</h1>
+      <p class="section-subtitle">
+        Lembar data teknis resmi kelaiklautan, sistem propulsi mesin, instrumentasi navigasi digital, dan kapabilitas operasional armada laut Satuan Polisi Air Polres Indramayu.
+      </p>
+
+      <!-- Ship Selector Tabs -->
+      <div class="armada-switcher" style="justify-content:center;">
+        <button class="armada-switch-btn active" onclick="switchArmada('kp301', this)">🚢 KP Gagak — 301 (Patroli Utama)</button>
+        <button class="armada-switch-btn" onclick="switchArmada('rhib', this)">⚡ RHIB Falcon — III (Pemburu Cepat)</button>
+        <button class="armada-switch-btn" onclick="switchArmada('sar', this)">🛟 KP Rescue — II (SAR & Medis)</button>
+      </div>
+    </div>
+
+    <!-- 2-Column Split Layout: Large Photo on Left, Specs Table on Right -->
+    <div class="armada-spec-layout">
+      
+      <!-- LEFT COLUMN: FOTO KAPAL BESAR -->
+      <div class="armada-visual-column">
+        <div class="armada-large-card">
+          
+          <div class="armada-large-img" id="shipVisualBox">
+            <!-- Large SVG Patrol Boat Graphic -->
+            <svg viewBox="0 0 540 380" xmlns="http://www.w3.org/2000/svg" id="shipSvg">
+              <defs>
+                <linearGradient id="shipHull" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" style="stop-color:#003087"/>
+                  <stop offset="100%" style="stop-color:#001540"/>
+                </linearGradient>
+                <linearGradient id="shipSea" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" style="stop-color:#004080;stop-opacity:0.7"/>
+                  <stop offset="100%" style="stop-color:#020b18;stop-opacity:1"/>
+                </linearGradient>
+                <filter id="shipGlow">
+                  <feGaussianBlur stdDeviation="4" result="glow"/>
+                  <feMerge><feMergeNode in="glow"/><feMergeNode in="SourceGraphic"/></feMerge>
+                </filter>
+              </defs>
+
+              <!-- Water Base -->
+              <rect x="0" y="240" width="540" height="140" fill="url(#shipSea)"/>
+              <!-- Wave wakes -->
+              <path d="M0,250 Q135,240 270,250 Q405,260 540,250" stroke="rgba(0,180,216,0.5)" stroke-width="2" fill="none"/>
+              <path d="M20,265 Q145,255 270,265 Q395,275 520,265" stroke="rgba(0,180,216,0.3)" stroke-width="2" fill="none"/>
+
+              <!-- Wake bow spray -->
+              <path d="M60,250 Q20,265 0,290" stroke="rgba(255,255,255,0.3)" stroke-width="8" fill="none" stroke-linecap="round"/>
+
+              <!-- Main Hull (Deep-V Monohull) -->
+              <path d="M80,225 L460,225 L500,245 L450,270 L90,270 L40,250 Z" fill="url(#shipHull)" stroke="rgba(0,180,216,0.8)" stroke-width="2"/>
+              <!-- White & Light Blue Accent Stripe -->
+              <path d="M85,230 L455,230 L490,245 L450,250 L95,250 L55,240 Z" fill="rgba(0,180,216,0.2)"/>
+              <line x1="90" y1="234" x2="450" y2="234" stroke="#00B4D8" stroke-width="1.5"/>
+
+              <!-- Main Deck -->
+              <rect x="100" y="185" width="340" height="42" rx="3" fill="#002060" stroke="rgba(0,180,216,0.5)" stroke-width="1.5"/>
+
+              <!-- Command Bridge / Cabin -->
+              <rect x="180" y="130" width="180" height="57" rx="4" fill="#003087" stroke="rgba(0,180,216,0.7)" stroke-width="2"/>
+              <!-- Bridge Windows -->
+              <rect x="195" y="142" width="35" height="25" rx="3" fill="rgba(0,210,255,0.7)"/>
+              <rect x="240" y="142" width="35" height="25" rx="3" fill="rgba(0,210,255,0.8)"/>
+              <rect x="285" y="142" width="35" height="25" rx="3" fill="rgba(0,210,255,0.7)"/>
+              <rect x="330" y="142" width="20" height="25" rx="3" fill="rgba(0,210,255,0.5)"/>
+
+              <!-- Mast & Radar System -->
+              <line x1="270" y1="55" x2="270" y2="130" stroke="rgba(220,235,255,0.9)" stroke-width="3"/>
+              <!-- Radar Antenna scanner -->
+              <circle cx="270" cy="55" r="18" fill="none" stroke="#00B4D8" stroke-width="2" stroke-dasharray="4,2"/>
+              <circle cx="270" cy="55" r="5" fill="#00B4D8" filter="url(#shipGlow)"/>
+
+              <!-- Indonesian Flag -->
+              <rect x="274" y="70" width="32" height="10" fill="#CE1126"/>
+              <rect x="274" y="80" width="32" height="10" fill="#FFFFFF"/>
+
+              <!-- Strobe Police Light Bar -->
+              <rect x="245" y="122" width="22" height="8" rx="2" fill="#2563eb" filter="url(#shipGlow)"/>
+              <rect x="275" y="122" width="22" height="8" rx="2" fill="#dc2626" filter="url(#shipGlow)"/>
+
+              <!-- Bow Searchlight -->
+              <circle cx="160" cy="180" r="7" fill="#00ffff" filter="url(#shipGlow)"/>
+
+              <!-- Anchor on bow -->
+              <text x="140" y="252" font-size="16" fill="rgba(0,180,216,0.8)" text-anchor="middle">⚓</text>
+
+              <!-- Ship Identity text on hull -->
+              <text x="270" y="255" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="white" letter-spacing="4" text-anchor="middle">POLISI AIR</text>
+              <text x="390" y="254" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#00B4D8">KP GAGAK-301</text>
+            </svg>
+          </div>
+
+          <div class="armada-large-body">
+            <div class="armada-status-strip">
+              <div class="boat-badge-status" id="statusBadge">Siaga Operasi 24 Jam</div>
+              <span style="font-size:0.8rem;color:var(--text-muted);">Pangkalan: Dermaga Karangsong</span>
+            </div>
+
+            <h2 class="armada-boat-title" id="boatName">KP Gagak — 301</h2>
+            <div class="armada-boat-sub" id="boatType">Kapal Patroli Cepat Kelas C1 (Fast Patrol Boat)</div>
+            <p class="armada-boat-desc" id="boatDesc">
+              Kapal patroli utama yang dirancang khusus untuk operasi penyekatan, pencegahan penyelundupan BBM/narkoba, pengawasan kelaiklautan perikanan, serta tanggap darurat di seluruh perairan Laut Jawa Kabupaten Indramayu.
+            </p>
+
+            <div style="margin-top:1.5rem;padding-top:1.25rem;border-top:1px solid var(--border);display:flex;gap:0.75rem;flex-wrap:wrap;">
+              <a href="pengaduan.html" class="btn-primary" style="text-decoration:none;font-size:0.88rem;padding:0.7rem 1.5rem;">
+                🚨 Lapor Kejadian ke Patroli
+              </a>
+              <a href="tel:+62234201234" class="btn-outline" style="text-decoration:none;font-size:0.88rem;padding:0.7rem 1.5rem;">
+                📞 Hubungi Radio / Pangkalan
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- RIGHT COLUMN: TABEL SPESIFIKASI TEKNIS -->
+      <div class="armada-specs-column">
+
+        <!-- Kategori 1: Dimensi -->
+        <div class="spec-category-box">
+          <div class="spec-category-header">
+            <h3><span class="spec-category-icon">📐</span> Dimensi & Karakteristik Lambung</h3>
+            <span style="font-size:0.75rem;color:var(--accent);font-weight:700;">HULL SPECS</span>
+          </div>
+          <table class="spec-table-styled">
+            <tbody>
+              <tr>
+                <th>Panjang Total (LOA)</th>
+                <td><strong id="specPanjang">18.50 Meter</strong></td>
+              </tr>
+              <tr>
+                <th>Lebar Kapal (Beam)</th>
+                <td><strong id="specLebar">4.20 Meter</strong></td>
+              </tr>
+              <tr>
+                <th>Sarat Air (Draft)</th>
+                <td><strong id="specDraft">1.15 Meter</strong> (Aman alur dangkal)</td>
+              </tr>
+              <tr>
+                <th>Bobot Kotor (Tonnage)</th>
+                <td><strong id="specBobot">28 Gross Tonnage (GT)</strong></td>
+              </tr>
+              <tr>
+                <th>Material Lambung</th>
+                <td>Aluminium Marine Grade 5083 (Tahan Korosi Air Laut)</td>
+              </tr>
+              <tr>
+                <th>Bentuk Dasar Lambung</th>
+                <td>Deep-V Monohull (Pemecah Ombak & Stabilitas Tinggi)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Kategori 2: Tipe Mesin & Propulsi -->
+        <div class="spec-category-box">
+          <div class="spec-category-header">
+            <h3><span class="spec-category-icon">⚙️</span> Tipe Mesin & Performa Propulsi</h3>
+            <span style="font-size:0.75rem;color:var(--accent);font-weight:700;">POWER & SPEED</span>
+          </div>
+          <table class="spec-table-styled">
+            <tbody>
+              <tr>
+                <th>Tipe Mesin Utama</th>
+                <td><strong id="specMesin">2× Marine Diesel Turbocharged Caterpillar C18</strong></td>
+              </tr>
+              <tr>
+                <th>Total Tenaga (Output)</th>
+                <td><strong id="specTenaga">2× 800 HP (Total 1.600 Horsepower)</strong></td>
+              </tr>
+              <tr>
+                <th>Sistem Propulsi</th>
+                <td>Twin Fixed Pitch Propeller dengan Poros Stainless Bronze</td>
+              </tr>
+              <tr>
+                <th>Kecepatan Maksimum</th>
+                <td><strong id="specSpeedMax" style="color:#22c55e;">32 Knot (± 59.2 km/jam)</strong></td>
+              </tr>
+              <tr>
+                <th>Kecepatan Jelajah</th>
+                <td><strong id="specSpeedCruising">22 Knot (± 40.7 km/jam)</strong></td>
+              </tr>
+              <tr>
+                <th>Kapasitas Tangki BBM</th>
+                <td>3.500 Liter Solar Industri (High Quality MDO)</td>
+              </tr>
+              <tr>
+                <th>Jangkauan Operasi</th>
+                <td>450 Mil Laut (Endurance 36 Jam Operasi Nonstop)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Kategori 3: Alat Navigasi & Komunikasi -->
+        <div class="spec-category-box">
+          <div class="spec-category-header">
+            <h3><span class="spec-category-icon">📡</span> Alat Navigasi & Komunikasi Maritim</h3>
+            <span style="font-size:0.75rem;color:var(--accent);font-weight:700;">ELECTRONICS</span>
+          </div>
+          <table class="spec-table-styled">
+            <tbody>
+              <tr>
+                <th>Radar Maritim Digital</th>
+                <td>Marine Radar X-Band 36 NM High Resolution (Furuno)</td>
+              </tr>
+              <tr>
+                <th>GPS & Chartplotter</th>
+                <td>Multi-Function Display GPS 12 Inci dengan Peta Laut Resmi Dishidros</td>
+              </tr>
+              <tr>
+                <th>Transponder AIS</th>
+                <td>Class-A Automatic Identification System (Pelacakan Kapal Real-Time)</td>
+              </tr>
+              <tr>
+                <th>Radio Komunikasi Laut</th>
+                <td>Marine VHF Transceiver Channel 16 (156.800 MHz) & SSB Radio HF</td>
+              </tr>
+              <tr>
+                <th>Deteksi Bawah Air</th>
+                <td>Dual-Frequency Digital Echo Sounder (Sonar Kedalaman Laut)</td>
+              </tr>
+              <tr>
+                <th>Penerangan Taktis</th>
+                <td>Lampu Sorot Halogen 1.000 Watt 360° + Night Vision Camera FLIR</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Kategori 4: Kapasitas Personel & SAR -->
+        <div class="spec-category-box">
+          <div class="spec-category-header">
+            <h3><span class="spec-category-icon">🛟</span> Kapasitas Personel & Perlengkapan SAR</h3>
+            <span style="font-size:0.75rem;color:var(--accent);font-weight:700;">CAPACITY & SAFETY</span>
+          </div>
+          <table class="spec-table-styled">
+            <tbody>
+              <tr>
+                <th>Kru Standar Kapal</th>
+                <td><strong id="specKru">6 Orang</strong> (1 Komandan Kapal + 5 Personel Taktis)</td>
+              </tr>
+              <tr>
+                <th>Kapasitas Angkut Evakuasi</th>
+                <td><strong id="specEvakuasi">Hingga 20 Penumpang Darurat / Korban Selamat</strong></td>
+              </tr>
+              <tr>
+                <th>Perlengkapan Keselamatan</th>
+                <td>2 Unit Inflatable Life Raft (2×12 Orang), 25 Life Jacket, 4 Ring Buoy</td>
+              </tr>
+              <tr>
+                <th>Fasilitas Medis Darurat</th>
+                <td>Medical First Aid Oxygen Kit, Tandu SAR Lipat Khusus Laut</td>
+              </tr>
+              <tr>
+                <th>Penanggulangan Bahaya</th>
+                <td>Pompa Pemadam Air Laut Bertekanan Tinggi & 4 Tabung APAR Foam</td>
+              </tr>
+              <tr>
+                <th>Perlengkapan Khusus</th>
+                <td>Loudhailer / Public Address Megaphone Maritim, Kacamata Selam SAR</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</main>
+
+
+<!-- ══════════════════════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════════════════════ -->
+<footer id="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="nav-logo" style="margin-bottom:1rem">
+          <div class="nav-logo-icon">⚓</div>
+          <div class="nav-logo-text">
+            <span class="brand">POLAIR</span>
+            <span class="sub">Indramayu</span>
+          </div>
+        </div>
+        <p>Satuan Polisi Air Polres Indramayu — Menjaga kedaulatan, keamanan, dan ketertiban hukum di wilayah perairan Laut Jawa Kabupaten Indramayu.</p>
+        <div class="footer-badge">🛡️ Melayani · Melindungi · Mengayomi</div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Navigasi</h4>
+        <ul class="footer-links">
+          <li><a href="../index.html#beranda">Beranda</a></li>
+          <li><a href="../index.html#profil">Profil</a></li>
+          <li><a href="detail-armada.html">Armada</a></li>
+          <li><a href="../index.html#fasilitas">Fasilitas</a></li>
+          <li><a href="../index.html#kegiatan">Kegiatan</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Layanan & Info</h4>
+        <ul class="footer-links">
+          <li><a href="pengaduan.html" style="color:#f87171;font-weight:600;">🚨 Laporan Darurat</a></li>
+          <li><a href="berita.html">Berita Resmi</a></li>
+          <li><a href="galeri.html">Galeri Foto</a></li>
+          <li><a href="../index.html#wilayah">Wilayah Kerja</a></li>
+          <li><a href="../index.html#edukasi">Edukasi</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Kontak Cepat</h4>
+        <ul class="footer-links">
+          <li><a href="tel:110">🚨 Darurat: 110</a></li>
+          <li><a href="tel:+62234201234">📞 (0234) 201234</a></li>
+          <li><a href="mailto:polair.indramayu@polri.go.id">📧 Email Kami</a></li>
+          <li style="color:var(--text-muted);padding:0.3rem 0;font-size:0.85rem">📍 Karangsong, Indramayu</li>
+          <li style="color:var(--text-muted);padding:0.3rem 0;font-size:0.85rem">🕐 24 Jam Siaga</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2026 POLAIR Polres Indramayu. Hak cipta dilindungi. | Satuan Polisi Air — <a href="https://www.polri.go.id" target="_blank">Polri.go.id</a></p>
+      <p>🔒 Website Resmi Pemerintah | <a href="#navbar">Kembali ke atas ↑</a></p>
+    </div>
+  </div>
+</footer>
+
+<!-- ── Back to Top ──────────────────────────── -->
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Kembali ke atas">↑</button>
+
+<!-- Relative path to JS as requested -->
+<script src="../assets/js/script.js"></script>
+
+<!-- Interactive Ship Switcher Script -->
+<script>
+  const shipData = {
+    kp301: {
+      name: "KP Gagak — 301",
+      type: "Kapal Patroli Cepat Kelas C1 (Fast Patrol Boat)",
+      desc: "Kapal patroli utama yang dirancang khusus untuk operasi penyekatan, pencegahan penyelundupan BBM/narkoba, pengawasan kelaiklautan perikanan, serta tanggap darurat di seluruh perairan Laut Jawa Kabupaten Indramayu.",
+      panjang: "18.50 Meter",
+      lebar: "4.20 Meter",
+      draft: "1.15 Meter",
+      bobot: "28 Gross Tonnage (GT)",
+      mesin: "2× Marine Diesel Turbocharged Caterpillar C18",
+      tenaga: "2× 800 HP (Total 1.600 Horsepower)",
+      speedMax: "32 Knot (± 59.2 km/jam)",
+      speedCruising: "22 Knot (± 40.7 km/jam)",
+      kru: "6 Orang",
+      evakuasi: "Hingga 20 Penumpang Darurat / Korban Selamat"
+    },
+    rhib: {
+      name: "RHIB Falcon — III",
+      type: "Rigid Hull Inflatable Boat (High-Speed Tactical Interceptor)",
+      desc: "Perahu cepat taktis berkecepatan tinggi dengan tabung karet apung (inflatable collar) dan lambung aluminium V-Shape. Dioptimalkan untuk manuver agresif di muara sungai dan pengejaran di perairan dangkal.",
+      panjang: "8.50 Meter",
+      lebar: "2.85 Meter",
+      draft: "0.60 Meter",
+      bobot: "4.5 Gross Tonnage (GT)",
+      mesin: "2× Mesin Tempel Yamaha V8 Four-Stroke 300 HP",
+      tenaga: "2× 300 HP (Total 600 Horsepower)",
+      speedMax: "45 Knot (± 83.3 km/jam)",
+      speedCruising: "30 Knot (± 55.5 km/jam)",
+      kru: "4 Orang Taktis",
+      evakuasi: "Hingga 8 Korban / Penumpang Tambahan"
+    },
+    sar: {
+      name: "KP Rescue — II",
+      type: "Kapal SAR & Penyelamatan Medis Bahari",
+      desc: "Kapal spesialisasi pertolongan maritim yang dilengkapi peralatan penyelaman, tabung oksigen darurat, platform penurunan perahu karet, serta ruang perawatan stabilisasi korban tenggelam di laut.",
+      panjang: "15.20 Meter",
+      lebar: "3.90 Meter",
+      draft: "1.05 Meter",
+      bobot: "22 Gross Tonnage (GT)",
+      mesin: "2× Marine Diesel Cummins QSB 6.7",
+      tenaga: "2× 480 HP (Total 960 Horsepower)",
+      speedMax: "26 Knot (± 48.1 km/jam)",
+      speedCruising: "18 Knot (± 33.3 km/jam)",
+      kru: "5 Personel SAR & Medis",
+      evakuasi: "Hingga 15 Korban Selamat (Dilengkapi 2 Tandu Medis)"
+    }
+  };
+
+  function switchArmada(key, btn) {
+    document.querySelectorAll('.armada-switch-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    const data = shipData[key];
+    if (!data) return;
+
+    document.getElementById('boatName').textContent = data.name;
+    document.getElementById('boatType').textContent = data.type;
+    document.getElementById('boatDesc').textContent = data.desc;
+    document.getElementById('specPanjang').textContent = data.panjang;
+    document.getElementById('specLebar').textContent = data.lebar;
+    document.getElementById('specDraft').textContent = data.draft;
+    document.getElementById('specBobot').textContent = data.bobot;
+    document.getElementById('specMesin').textContent = data.mesin;
+    document.getElementById('specTenaga').textContent = data.tenaga;
+    document.getElementById('specSpeedMax').textContent = data.speedMax;
+    document.getElementById('specSpeedCruising').textContent = data.speedCruising;
+    document.getElementById('specKru').textContent = data.kru;
+    document.getElementById('specEvakuasi').textContent = data.evakuasi;
+  }
+</script>
+
+</body>
+</html>
