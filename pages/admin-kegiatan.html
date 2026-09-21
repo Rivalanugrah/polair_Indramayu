@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +7,318 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="../assets/css/style.css">
   <link rel="stylesheet" href="../assets/css/admin.css">
+  <style>
+    body { background: var(--dark); }
+    body.modal-open { overflow: hidden; }
+
+    /* Filter Tabs */
+    .filter-tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+    .filter-tab {
+      padding: 8px 18px;
+      border-radius: var(--radius-full);
+      font-size: 0.85rem;
+      font-weight: 600;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: var(--transition);
+      font-family: inherit;
+    }
+    .filter-tab.active, .filter-tab:hover {
+      border-color: var(--accent);
+      color: var(--white);
+      background: rgba(0,180,216,0.15);
+    }
+
+    /* Table Thumbnails */
+    .thumb-img {
+      width: 60px;
+      height: 40px;
+      border-radius: var(--radius-sm);
+      object-fit: cover;
+      border: 1px solid var(--border);
+    }
+    .thumb-placeholder {
+      width: 60px;
+      height: 40px;
+      border-radius: var(--radius-sm);
+      background: rgba(255,255,255,0.05);
+      border: 1px dashed var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      font-size: 0.7rem;
+    }
+
+    /* Category Badges */
+    .kat-badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+    .kat-semua { background: rgba(148,163,184,0.15); color: #94a3b8; border: 1px solid #64748b; }
+    .kat-patroli { background: rgba(59,130,246,0.15); color: #93c5fd; border: 1px solid #3b82f6; }
+    .kat-sar { background: rgba(249,115,22,0.15); color: #fdba74; border: 1px solid #f97316; }
+    .kat-sosial { background: rgba(34,197,94,0.15); color: #86efac; border: 1px solid #22c55e; }
+    .kat-gakkum { background: rgba(168,85,247,0.15); color: #d8b4fe; border: 1px solid #a855f7; }
+
+    /* Modal Overlay */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(6,12,26,0.88);
+      backdrop-filter: blur(6px);
+      z-index: 99999;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .modal-overlay.active { display: flex; }
+
+    /* Modal Box */
+    .modal-box {
+      background: var(--dark-3);
+      border: 1px solid var(--border-hover);
+      border-radius: var(--radius-xl);
+      width: 100%;
+      max-width: 580px;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.6);
+    }
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--border);
+      background: rgba(0,48,135,0.2);
+      border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+    }
+    .modal-header h4 {
+      font-family: 'Rajdhani', sans-serif;
+      color: var(--text-primary);
+      font-size: 1.15rem;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .modal-header h4 i { color: var(--accent); }
+    .modal-close {
+      background: transparent;
+      border: none;
+      color: var(--text-secondary);
+      font-size: 1.2rem;
+      cursor: pointer;
+      padding: 6px 10px;
+      border-radius: var(--radius-sm);
+      transition: var(--transition);
+    }
+    .modal-close:hover {
+      color: var(--white);
+      background: rgba(255,255,255,0.1);
+    }
+
+    /* Modal Body */
+    .modal-body { padding: 24px; }
+    .form-group { margin-bottom: 18px; }
+    .form-group label {
+      display: block;
+      font-size: 0.84rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      margin-bottom: 8px;
+      letter-spacing: 0.02em;
+    }
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 12px 14px;
+      color: var(--text-primary);
+      font-size: 0.9rem;
+      font-family: inherit;
+      transition: var(--transition);
+    }
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(0,180,216,0.15);
+    }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: var(--text-muted); }
+    .form-group textarea {
+      resize: vertical;
+      min-height: 90px;
+    }
+
+    /* Dark Select Styling */
+    .form-group select {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2394a3b8' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 40px;
+      cursor: pointer;
+    }
+    .form-group select option {
+      background: #0f1d3e;
+      color: var(--text-primary);
+      padding: 8px;
+    }
+    .form-group select option:hover {
+      background: var(--primary);
+    }
+
+    /* Form Row */
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    @media (max-width: 600px) { .form-row { grid-template-columns: 1fr; } }
+
+    /* Modal Footer */
+    .modal-footer {
+      display: flex;
+      gap: 12px;
+      padding: 18px 24px;
+      border-top: 1px solid var(--border);
+      justify-content: flex-end;
+      background: rgba(0,0,0,0.2);
+      border-radius: 0 0 var(--radius-xl) var(--radius-xl);
+    }
+
+    /* Image Preview */
+    .img-preview {
+      width: 100%;
+      max-width: 200px;
+      height: 120px;
+      border-radius: var(--radius-md);
+      object-fit: cover;
+      margin-top: 12px;
+      border: 1px solid var(--border);
+    }
+    .img-placeholder {
+      width: 100%;
+      max-width: 200px;
+      height: 120px;
+      border-radius: var(--radius-md);
+      border: 2px dashed var(--border);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      margin-top: 12px;
+      background: rgba(255,255,255,0.02);
+    }
+    .img-placeholder i {
+      font-size: 1.8rem;
+      margin-bottom: 8px;
+      display: block;
+      color: var(--text-muted);
+    }
+
+    /* URL/Upload Toggle */
+    .input-toggle {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+    .toggle-btn {
+      padding: 6px 14px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--text-secondary);
+      border-radius: var(--radius-sm);
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .toggle-btn.active {
+      background: rgba(0,180,216,0.15);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* Upload Area */
+    .upload-area {
+      border: 2px dashed var(--border);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      text-align: center;
+      background: rgba(255,255,255,0.02);
+      cursor: pointer;
+      transition: var(--transition);
+      margin-top: 8px;
+    }
+    .upload-area:hover {
+      border-color: var(--accent);
+      background: rgba(0,180,216,0.05);
+    }
+    .upload-area input[type="file"] {
+      display: none;
+    }
+    .upload-area i {
+      font-size: 2rem;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+      display: block;
+    }
+    .upload-area p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin: 0;
+    }
+
+    /* Stats Bar */
+    .stats-bar {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    .stat-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .stat-item i { color: var(--accent); font-size: 1.1rem; }
+    .stat-item .stat-num {
+      font-weight: 700;
+      color: var(--white);
+      font-size: 1.1rem;
+    }
+    .stat-item .stat-label {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+  </style>
 </head>
 
 <body data-page="kegiatan" data-title="Kelola Kegiatan">
@@ -20,19 +331,412 @@
 
       <section class="admin-content">
         <div class="admin-card">
-          <div class="coming-soon">
-            <i class="fas fa-calendar-days"></i>
-            <h4>Kelola Kegiatan — Segera Hadir</h4>
-            <p>Modul ini sedang dalam tahap pengembangan lanjutan (Fase berikutnya) dan akan segera bisa mengelola data yang langsung tampil di halaman publik.</p>
+          <div class="card-header">
+            <h4><i class="fas fa-calendar-days"></i> Kelola Kegiatan POLAIR</h4>
+            <button class="btn-add" onclick="openModal()">
+              <i class="fas fa-plus"></i> Tambah Kegiatan Baru
+            </button>
+          </div>
+
+          <!-- Stats Bar -->
+          <div class="stats-bar">
+            <div class="stat-item">
+              <i class="fas fa-list"></i>
+              <span class="stat-num" id="totalKeg">0</span>
+              <span class="stat-label">Total</span>
+            </div>
+            <div class="stat-item">
+              <i class="fas fa-ship"></i>
+              <span class="stat-num" id="countPatroli">0</span>
+              <span class="stat-label">Patroli</span>
+            </div>
+            <div class="stat-item">
+              <i class="fas fa-kit-medical"></i>
+              <span class="stat-num" id="countSar">0</span>
+              <span class="stat-label">SAR</span>
+            </div>
+            <div class="stat-item">
+              <i class="fas fa-hands-holding-child"></i>
+              <span class="stat-num" id="countSosial">0</span>
+              <span class="stat-label">Sosial</span>
+            </div>
+            <div class="stat-item">
+              <i class="fas fa-gavel"></i>
+              <span class="stat-num" id="countGakkum">0</span>
+              <span class="stat-label">Gakkum</span>
+            </div>
+          </div>
+
+          <!-- Filter Tabs -->
+          <div class="filter-tabs" id="filterTabs">
+            <button class="filter-tab active" data-filter="semua" onclick="setFilter('semua')">Semua</button>
+            <button class="filter-tab" data-filter="patroli" onclick="setFilter('patroli')">🚢 Patroli</button>
+            <button class="filter-tab" data-filter="sar" onclick="setFilter('sar')">🆘 SAR</button>
+            <button class="filter-tab" data-filter="sosial" onclick="setFilter('sosial')">🤝 Sosial</button>
+            <button class="filter-tab" data-filter="gakkum" onclick="setFilter('gakkum')">⚖️ Gakkum</button>
+          </div>
+
+          <!-- Table -->
+          <div class="table-responsive">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th style="width:50px; text-align:center;">No</th>
+                  <th style="width:75px;">Gambar</th>
+                  <th>Judul Kegiatan</th>
+                  <th style="width:130px;">Kategori</th>
+                  <th style="width:130px;">Waktu</th>
+                  <th style="width:150px;">Lokasi</th>
+                  <th style="width:110px;">Aksi</th>
+                </tr>
+              </thead>
+              <tbody id="kegBody"></tbody>
+            </table>
           </div>
         </div>
       </section>
     </main>
   </div>
 
-  <script src="../assets/js/db.js"></script>
-  <script src="../assets/js/auth.js"></script>
-  <script src="../assets/js/admin-shell.js"></script>
-</body>
+  <!-- Modal Tambah/Edit -->
+  <div class="modal-overlay" id="kegModal" onclick="if(event.target===this) closeModal()">
+    <div class="modal-box" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <h4 id="modalTitle"><i class="fas fa-plus-circle"></i> Tambah Kegiatan Baru</h4>
+        <button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button>
+      </div>
+      <form id="kegForm" onsubmit="simpanKeg(event)">
+        <div class="modal-body">
+          <input type="hidden" id="kegId">
 
+          <!-- Judul -->
+          <div class="form-group">
+            <label for="kegJudul"><i class="fas fa-heading"></i> Judul Kegiatan *</label>
+            <input type="text" id="kegJudul" placeholder="Contoh: Patroli Rutin Pantai Utara Indramayu" required>
+          </div>
+
+          <!-- Kategori & Waktu -->
+          <div class="form-row">
+            <div class="form-group">
+              <label for="kegKategori"><i class="fas fa-tag"></i> Kategori *</label>
+              <select id="kegKategori" required>
+                <option value="">-- Pilih Kategori --</option>
+                <option value="patroli">🚢 Patroli</option>
+                <option value="sar">🆘 SAR</option>
+                <option value="sosial">🤝 Sosial</option>
+                <option value="gakkum">⚖️ Gakkum</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="kegWaktu"><i class="fas fa-clock"></i> Waktu / Tanggal</label>
+              <input type="text" id="kegWaktu" placeholder="Contoh: Rutin Harian, Sep 2026">
+            </div>
+          </div>
+
+          <!-- Lokasi -->
+          <div class="form-group">
+            <label for="kegLokasi"><i class="fas fa-map-marker-alt"></i> Lokasi</label>
+            <input type="text" id="kegLokasi" placeholder="Contoh: Pantai Utara, Karangsong, Perairan 12 mil">
+          </div>
+
+          <!-- Deskripsi -->
+          <div class="form-group">
+            <label for="kegDesk"><i class="fas fa-align-left"></i> Deskripsi Kegiatan</label>
+            <textarea id="kegDesk" placeholder="Jelaskan kegiatan secara singkat..."></textarea>
+          </div>
+
+          <!-- Gambar dengan Toggle -->
+          <div class="form-group">
+            <label><i class="fas fa-image"></i> Gambar Kegiatan</label>
+            <div class="input-toggle">
+              <button type="button" class="toggle-btn active" id="toggleUrl" onclick="switchImgInput('url')">
+                <i class="fas fa-link"></i> URL Gambar
+              </button>
+              <button type="button" class="toggle-btn" id="toggleUpload" onclick="switchImgInput('upload')">
+                <i class="fas fa-upload"></i> Upload File
+              </button>
+            </div>
+
+            <!-- URL Input -->
+            <div id="urlInputContainer">
+              <input type="url" id="kegGambar" placeholder="https://contoh.com/gambar.jpg" oninput="previewImg()">
+            </div>
+
+            <!-- Upload Input (Hidden by default) -->
+            <div id="uploadInputContainer" style="display:none;">
+              <div class="upload-area" onclick="document.getElementById('kegGambarFile').click()">
+                <input type="file" id="kegGambarFile" accept="image/*" onchange="handleFileUpload(event)">
+                <i class="fas fa-cloud-upload-alt"></i>
+                <p>Klik untuk upload gambar atau drag & drop</p>
+                <p style="font-size:0.75rem;color:var(--text-muted);margin-top:4px;">Format: JPG, PNG, WEBP (Maks. 2MB)</p>
+              </div>
+            </div>
+
+            <!-- Image Preview -->
+            <div id="imgPrev">
+              <div class="img-placeholder">
+                <i class="fas fa-image"></i>
+                Preview gambar
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn-cancel" onclick="closeModal()">
+            <i class="fas fa-times"></i> Batal
+          </button>
+          <button type="submit" class="btn-save">
+            <i class="fas fa-check"></i> Simpan
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="../assets/js/db.js?v=20260920"></script>
+  <script src="../assets/js/auth.js?v=20260920"></script>
+  <script src="../assets/js/admin-shell.js?v=20260920"></script>
+  <script>
+    var curFilter = 'semua';
+    var currentImgMode = 'url';
+
+    document.addEventListener('DOMContentLoaded', function() {
+      renderStats();
+      renderKeg();
+    });
+
+    // Render Statistics
+    function renderStats() {
+      var all = typeof KegiatankStore !== 'undefined' ? KegiatankStore.all() : [];
+      document.getElementById('totalKeg').textContent = all.length;
+      document.getElementById('countPatroli').textContent = all.filter(function(k) { return k.kategori === 'patroli'; }).length;
+      document.getElementById('countSar').textContent = all.filter(function(k) { return k.kategori === 'sar'; }).length;
+      document.getElementById('countSosial').textContent = all.filter(function(k) { return k.kategori === 'sosial'; }).length;
+      document.getElementById('countGakkum').textContent = all.filter(function(k) { return k.kategori === 'gakkum'; }).length;
+    }
+
+    // Filter Functions
+    function setFilter(f) {
+      curFilter = f;
+      document.querySelectorAll('.filter-tab').forEach(function(b) {
+        b.classList.toggle('active', b.dataset.filter === f);
+      });
+      renderKeg();
+    }
+
+    // Render Table
+    function renderKeg() {
+      var tb = document.getElementById('kegBody');
+      var all = typeof KegiatankStore !== 'undefined' ? KegiatankStore.all() : [];
+      var data = curFilter === 'semua' ? all : all.filter(function(k) { return k.kategori === curFilter; });
+
+      if (!data.length) {
+        var emptyMsg = 'Belum ada kegiatan' + (curFilter !== 'semua' ? ' di kategori "' + curFilter + '"' : '') + '.';
+        tb.innerHTML = '<tr><td colspan="7" style="text-align:center;color:var(--text-muted);padding:50px 15px;"><i class="fas fa-calendar-times" style="font-size:2rem;display:block;margin-bottom:12px;opacity:0.5;"></i>' + emptyMsg + '</td></tr>';
+        return;
+      }
+
+      var kat = { patroli:'Patroli', sar:'SAR', sosial:'Sosial', gakkum:'Gakkum' };
+      tb.innerHTML = data.map(function(k, i) {
+        var img = k.gambar && k.gambar.trim()
+          ? '<img src="' + k.gambar + '" class="thumb-img" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\';">' +
+            '<div class="thumb-placeholder" style="display:none;"><i class="fas fa-image"></i></div>'
+          : '<div class="thumb-placeholder"><i class="fas fa-image"></i></div>';
+        return '<tr>' +
+          '<td style="text-align:center;"><span style="background:rgba(0,180,216,0.1);color:var(--accent);padding:4px 10px;border-radius:20px;font-size:0.8rem;font-weight:600;">' + (i + 1) + '</span></td>' +
+          '<td>' + img + '</td>' +
+          '<td><strong style="color:var(--text-primary);">' + escapeHtml(k.judul) + '</strong></td>' +
+          '<td><span class="kat-badge kat-' + k.kategori + '">' + (kat[k.kategori]||k.kategori) + '</span></td>' +
+          '<td><span style="color:var(--text-secondary);font-size:0.85rem;">' + (k.waktu||'-') + '</span></td>' +
+          '<td><span style="color:var(--text-secondary);font-size:0.85rem;">' + (k.lokasi||'-') + '</span></td>' +
+          '<td>' +
+            '<button class="btn-edit" onclick="openModal(\'' + k.id + '\')" title="Edit"><i class="fas fa-pen"></i></button>' +
+            '<button class="btn-delete" onclick="hapusKeg(\'' + k.id + '\')" title="Hapus"><i class="fas fa-trash"></i></button>' +
+          '</td>' +
+          '</tr>';
+      }).join('');
+    }
+
+    // Escape HTML
+    function escapeHtml(text) {
+      var div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    }
+
+    // Open Modal
+    function openModal(id) {
+      document.getElementById('kegModal').classList.add('active');
+      document.body.classList.add('modal-open');
+      document.getElementById('kegForm').reset();
+      document.getElementById('imgPrev').innerHTML = '<div class="img-placeholder"><i class="fas fa-image"></i>Preview gambar</div>';
+
+      // Reset image mode
+      switchImgInput('url');
+
+      if (id) {
+        var k = KegiatankStore ? KegiatankStore.getById(id) : null;
+        if (!k) return;
+        document.getElementById('modalTitle').innerHTML = '<i class="fas fa-pen"></i> Edit Kegiatan';
+        document.getElementById('kegId').value = k.id;
+        document.getElementById('kegJudul').value = k.judul || '';
+        document.getElementById('kegKategori').value = k.kategori || '';
+        document.getElementById('kegWaktu').value = k.waktu || '';
+        document.getElementById('kegLokasi').value = k.lokasi || '';
+        document.getElementById('kegDesk').value = k.deskripsi || '';
+        document.getElementById('kegGambar').value = k.gambar || '';
+        if (k.gambar) previewImg();
+      } else {
+        document.getElementById('modalTitle').innerHTML = '<i class="fas fa-plus-circle"></i> Tambah Kegiatan Baru';
+        document.getElementById('kegId').value = '';
+      }
+    }
+
+    // Close Modal
+    function closeModal() {
+      document.getElementById('kegModal').classList.remove('active');
+      document.body.classList.remove('modal-open');
+    }
+
+    // Switch Image Input Mode
+    function switchImgInput(mode) {
+      currentImgMode = mode;
+      var urlContainer = document.getElementById('urlInputContainer');
+      var uploadContainer = document.getElementById('uploadInputContainer');
+      var toggleUrl = document.getElementById('toggleUrl');
+      var toggleUpload = document.getElementById('toggleUpload');
+
+      if (mode === 'url') {
+        urlContainer.style.display = 'block';
+        uploadContainer.style.display = 'none';
+        toggleUrl.classList.add('active');
+        toggleUpload.classList.remove('active');
+      } else {
+        urlContainer.style.display = 'none';
+        uploadContainer.style.display = 'block';
+        toggleUrl.classList.remove('active');
+        toggleUpload.classList.add('active');
+      }
+    }
+
+    // Preview Image from URL
+    function previewImg() {
+      var url = document.getElementById('kegGambar').value;
+      var el = document.getElementById('imgPrev');
+      if (url && /^https?:\/\/.+\..+/.test(url)) {
+        el.innerHTML = '<img src="' + url + '" class="img-preview" onerror="document.getElementById(\'imgPrev\').innerHTML=\'<div class=img-placeholder><i class=fas fa-exclamation-triangle></i>Gambar tidak dapat dimuat</div>\'">';
+      } else {
+        el.innerHTML = '<div class="img-placeholder"><i class="fas fa-image"></i>Preview gambar</div>';
+      }
+    }
+
+    // Handle File Upload
+    function handleFileUpload(event) {
+      var file = event.target.files[0];
+      if (!file) return;
+
+      if (file.size > 2 * 1024 * 1024) {
+        alert('Ukuran file terlalu besar. Maksimal 2MB.');
+        return;
+      }
+
+      var reader = new FileReader();
+      reader.onload = function(e) {
+        var base64 = e.target.result;
+        document.getElementById('kegGambar').value = base64;
+        document.getElementById('imgPrev').innerHTML = '<img src="' + base64 + '" class="img-preview">';
+      };
+      reader.readAsDataURL(file);
+    }
+
+    // Save Kegiatan
+    function simpanKeg(e) {
+      e.preventDefault();
+      var id = document.getElementById('kegId').value;
+      var p = {
+        judul: document.getElementById('kegJudul').value.trim(),
+        kategori: document.getElementById('kegKategori').value,
+        waktu: document.getElementById('kegWaktu').value.trim(),
+        lokasi: document.getElementById('kegLokasi').value.trim(),
+        deskripsi: document.getElementById('kegDesk').value.trim(),
+        gambar: document.getElementById('kegGambar').value.trim()
+      };
+
+      if (!p.judul) {
+        alert('Judul kegiatan wajib diisi!');
+        document.getElementById('kegJudul').focus();
+        return;
+      }
+      if (!p.kategori) {
+        alert('Kategori kegiatan wajib dipilih!');
+        document.getElementById('kegKategori').focus();
+        return;
+      }
+
+      if (id) {
+        if (KegiatankStore) {
+          KegiatankStore.update(id, p);
+          notifyOtherTabs();
+        }
+        showToast('success', 'Berhasil!', 'Kegiatan berhasil diperbarui.');
+      } else {
+        if (KegiatankStore) {
+          KegiatankStore.add(p);
+          notifyOtherTabs();
+        }
+        showToast('success', 'Berhasil!', 'Kegiatan baru berhasil ditambahkan.');
+      }
+
+      closeModal();
+      renderStats();
+      renderKeg();
+    }
+
+    // Delete Kegiatan
+    function hapusKeg(id) {
+      if (confirm('Yakin ingin menghapus kegiatan ini?\n\nTindakan ini tidak dapat dibatalkan.')) {
+        if (KegiatankStore) {
+          KegiatankStore.remove(id);
+          notifyOtherTabs();
+        }
+        renderStats();
+        renderKeg();
+        showToast('info', 'Dihapus', 'Kegiatan berhasil dihapus.');
+      }
+    }
+
+    // Notify other tabs/pages to refresh
+    function notifyOtherTabs() {
+      if (typeof BroadcastChannel !== 'undefined') {
+        var channel = new BroadcastChannel('polair_kegiatan_sync');
+        channel.postMessage({ type: 'kegiatan_updated' });
+        channel.close();
+      }
+    }
+
+    // Toast Notification
+    function showToast(type, title, message) {
+      var toast = document.createElement('div');
+      toast.style.cssText = 'position:fixed;bottom:24px;right:24px;z-index:999999;background:var(--dark-3);border:1px solid var(--border);border-radius:var(--radius-md);padding:16px 20px;display:flex;align-items:center;gap:12px;box-shadow:var(--shadow-lg);animation:slideInRight 0.3s ease;';
+      toast.innerHTML = '<i class="fas fa-' + (type === 'success' ? 'check-circle' : 'info-circle') + '" style="color:' + (type === 'success' ? 'var(--success)' : 'var(--accent)') + ';font-size:1.2rem;"></i><div><strong style="color:var(--text-primary);">' + title + '</strong><p style="margin:0;font-size:0.85rem;color:var(--text-secondary);">' + message + '</p></div>';
+      document.body.appendChild(toast);
+
+      setTimeout(function() {
+        toast.style.animation = 'fadeOut 0.3s ease forwards';
+        setTimeout(function() { toast.remove(); }, 300);
+      }, 2500);
+    }
+
+    // Add animations
+    var style = document.createElement('style');
+    style.textContent = '@keyframes slideInRight{from{transform:translateX(100%);opacity:0;}to{transform:translateX(0);opacity:1;}}@keyframes fadeOut{from{opacity:1;}to{opacity:0;}}';
+    document.head.appendChild(style);
+
+    // Close modal on ESC key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeModal();
+    });
+  </script>
+</body>
 </html>

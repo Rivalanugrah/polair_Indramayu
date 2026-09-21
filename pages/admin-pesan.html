@@ -8,6 +8,210 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="../assets/css/style.css">
   <link rel="stylesheet" href="../assets/css/admin.css">
+  <style>
+    body { background: var(--dark); }
+    body.modal-open { overflow: hidden; }
+
+    /* Fix for pesan column text wrapping - SINGLE LINE with ellipsis */
+    .pesan-cell {
+      max-width: 250px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      cursor: default;
+    }
+
+    /* Action buttons container */
+    .action-btns {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    /* Detail button style */
+    .btn-detail {
+      background: rgba(0, 180, 216, 0.15);
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      padding: 6px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: var(--transition);
+      font-size: 0.85rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .btn-detail:hover {
+      background: var(--accent);
+      color: var(--dark);
+    }
+
+    /* Modal Overlay */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(6, 12, 26, 0.88);
+      backdrop-filter: blur(6px);
+      z-index: 99999;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .modal-overlay.active { display: flex; }
+
+    /* Modal Box */
+    .modal-box {
+      background: var(--dark-3);
+      border: 1px solid var(--border-hover);
+      border-radius: var(--radius-xl);
+      width: 100%;
+      max-width: 560px;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+    }
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--border);
+      background: rgba(0, 48, 135, 0.2);
+      border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+    }
+    .modal-header h4 {
+      font-family: 'Rajdhani', sans-serif;
+      color: var(--text-primary);
+      font-size: 1.15rem;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .modal-header h4 i { color: var(--accent); }
+    .modal-close {
+      background: transparent;
+      border: none;
+      color: var(--text-secondary);
+      font-size: 1.2rem;
+      cursor: pointer;
+      padding: 6px 10px;
+      border-radius: var(--radius-sm);
+      transition: var(--transition);
+    }
+    .modal-close:hover {
+      color: var(--white);
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    /* Modal Body */
+    .modal-body { padding: 24px; }
+
+    /* Info Grid */
+    .info-grid {
+      display: grid;
+      gap: 16px;
+    }
+    .info-item {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 14px 16px;
+    }
+    .info-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .info-label i { color: var(--accent); }
+    .info-value {
+      font-size: 0.9rem;
+      color: var(--text-primary);
+      line-height: 1.5;
+    }
+    .info-value a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .info-value a:hover { text-decoration: underline; }
+
+    /* Pesan Content Box */
+    .pesan-content {
+      background: rgba(0, 48, 135, 0.15);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      font-size: 0.9rem;
+      line-height: 1.7;
+      color: var(--text-primary);
+      white-space: pre-wrap;
+      word-break: break-word;
+      max-height: 200px;
+      overflow-y: auto;
+    }
+
+    /* Modal Footer */
+    .modal-footer {
+      display: flex;
+      gap: 12px;
+      padding: 18px 24px;
+      border-top: 1px solid var(--border);
+      justify-content: flex-end;
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: 0 0 var(--radius-xl) var(--radius-xl);
+    }
+
+    /* Badge styling for modal */
+    .badge-modal {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+    .badge-modal.success {
+      background: rgba(34, 197, 94, 0.15);
+      color: #86efac;
+      border: 1px solid rgba(34, 197, 94, 0.4);
+    }
+    .badge-modal.info {
+      background: rgba(0, 180, 216, 0.15);
+      color: var(--accent-light);
+      border: 1px solid rgba(0, 180, 216, 0.4);
+    }
+
+    /* Kategori color badges - SINGLE LINE */
+    .kat-badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .kat-laporan { background: rgba(239, 68, 68, 0.15); color: #fca5a5; border: 1px solid rgba(239, 68, 68, 0.4); }
+    .kat-informasi { background: rgba(59, 130, 246, 0.15); color: #93c5fd; border: 1px solid rgba(59, 130, 246, 0.4); }
+    .kat-pengaduan { background: rgba(168, 85, 247, 0.15); color: #d8b4fe; border: 1px solid rgba(168, 85, 247, 0.4); }
+    .kat-kerjasama { background: rgba(34, 197, 94, 0.15); color: #86efac; border: 1px solid rgba(34, 197, 94, 0.4); }
+    .kat-lainnya { background: rgba(148, 163, 184, 0.15); color: #94a3b8; border: 1px solid rgba(148, 163, 184, 0.4); }
+    .kat-informasi { background: rgba(59, 130, 246, 0.15); color: #93c5fd; border: 1px solid rgba(59, 130, 246, 0.4); }
+  </style>
 </head>
 
 <body data-page="pesan" data-title="Pesan Masuk dari Warga">
@@ -27,13 +231,13 @@
             <table class="admin-table">
               <thead>
                 <tr>
-                  <th>Waktu</th>
-                  <th>Nama</th>
-                  <th>Kontak</th>
-                  <th>Kategori</th>
-                  <th>Pesan</th>
-                  <th>Status</th>
-                  <th>Aksi</th>
+                  <th style="width:160px;">Waktu</th>
+                  <th style="width:130px;">Nama</th>
+                  <th style="width:150px;">Kontak</th>
+                  <th style="width:130px;">Kategori</th>
+                  <th style="width:220px;">Pesan</th>
+                  <th style="width:90px;">Status</th>
+                  <th style="width:140px;">Aksi</th>
                 </tr>
               </thead>
               <tbody id="pesanBody"></tbody>
@@ -44,19 +248,79 @@
     </main>
   </div>
 
-  <script src="../assets/js/db.js"></script>
-  <script src="../assets/js/auth.js"></script>
-  <script src="../assets/js/admin-shell.js"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', renderPesan);
+  <!-- Modal Detail Pesan -->
+  <div class="modal-overlay" id="detailModal" onclick="if(event.target===this) closeDetailModal()">
+    <div class="modal-box" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <h4><i class="fas fa-search-plus"></i> Detail Pesan</h4>
+        <button class="modal-close" onclick="closeDetailModal()"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="info-grid">
+          <!-- Waktu & Status -->
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+            <div class="info-item">
+              <div class="info-label"><i class="fas fa-clock"></i> Waktu Kirim</div>
+              <div class="info-value" id="detailWaktu">-</div>
+            </div>
+            <div class="info-item">
+              <div class="info-label"><i class="fas fa-flag"></i> Status</div>
+              <div class="info-value" id="detailStatus">-</div>
+            </div>
+          </div>
 
+          <!-- Nama -->
+          <div class="info-item">
+            <div class="info-label"><i class="fas fa-user"></i> Nama Pengirim</div>
+            <div class="info-value" id="detailNama">-</div>
+          </div>
+
+          <!-- Kontak -->
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+            <div class="info-item">
+              <div class="info-label"><i class="fas fa-envelope"></i> Email</div>
+              <div class="info-value" id="detailEmail">-</div>
+            </div>
+            <div class="info-item">
+              <div class="info-label"><i class="fas fa-phone"></i> Telepon</div>
+              <div class="info-value" id="detailTelepon">-</div>
+            </div>
+          </div>
+
+          <!-- Kategori -->
+          <div class="info-item">
+            <div class="info-label"><i class="fas fa-tag"></i> Kategori</div>
+            <div class="info-value" id="detailKategori">-</div>
+          </div>
+
+          <!-- Isi Pesan -->
+          <div class="info-item">
+            <div class="info-label"><i class="fas fa-comment-alt"></i> Isi Pesan</div>
+            <div class="pesan-content" id="detailPesan">-</div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-cancel" onclick="closeDetailModal()">
+          <i class="fas fa-times"></i> Tutup
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../assets/js/db.js?v=20260920"></script>
+  <script src="../assets/js/auth.js?v=20260920"></script>
+  <script src="../assets/js/admin-shell.js?v=20260920"></script>
+  <script>
     const kategoriLabel = {
       laporan: 'Laporan Kejadian',
       informasi: 'Permintaan Informasi',
       pengaduan: 'Pengaduan',
-      kerjasama: 'Kerjasama',
+      Kerjasama: 'Kerjasama',
       lainnya: 'Lainnya'
     };
+
+    document.addEventListener('DOMContentLoaded', renderPesan);
 
     function renderPesan() {
       const data = PesanStore.all();
@@ -67,20 +331,103 @@
         return;
       }
 
-      tbody.innerHTML = data.map(p => `
-        <tr>
-          <td>${formatTanggalID(p.createdAt)}</td>
-          <td>${p.nama}</td>
-          <td>${p.email}${p.telepon ? '<br><span style="color:var(--text-muted);font-size:0.8rem;">' + p.telepon + '</span>' : ''}</td>
-          <td>${kategoriLabel[p.kategori] || p.kategori || '-'}</td>
-          <td style="max-width:280px; white-space:normal;">${p.pesan}</td>
-          <td>${p.dibaca ? '<span class="badge badge-success">Dibaca</span>' : '<span class="badge badge-info">Baru</span>'}</td>
+      tbody.innerHTML = data.map(p => {
+        const kontakHtml = p.email
+          ? `<a href="mailto:${p.email}" style="color:var(--accent);text-decoration:none;">${p.email}</a>${p.telepon ? '<br>' : ''}`
+          : '-';
+        const teleponHtml = p.telepon && p.telepon !== '-'
+          ? `<a href="tel:${p.telepon}" style="color:var(--text-muted);font-size:0.8rem;text-decoration:none;">${p.telepon}</a>`
+          : '';
+
+        return `<tr>
+          <td><span style="font-size:0.82rem;color:var(--text-secondary);">${formatTanggalID(p.createdAt)}</span></td>
+          <td><strong style="color:var(--text-primary);font-size:0.9rem;">${escapeHtml(p.nama || 'Anonim')}</strong></td>
           <td>
-            ${!p.dibaca ? `<button class="btn-view" onclick="tandaiDibaca('${p.id}')"><i class="fas fa-check"></i> Tandai Dibaca</button>` : ''}
-            <button class="btn-delete" onclick="hapusPesan('${p.id}')"><i class="fas fa-trash"></i></button>
+            <div style="font-size:0.82rem;">${kontakHtml}</div>
+            ${teleponHtml ? `<div style="margin-top:2px;">${teleponHtml}</div>` : ''}
           </td>
-        </tr>
-      `).join('');
+          <td><span class="kat-badge kat-${p.kategori || 'lainnya'}">${kategoriLabel[p.kategori] || p.kategori || '-'}</span></td>
+          <td class="pesan-cell">${escapeHtml(p.pesan || '-')}</td>
+          <td>${p.dibaca
+            ? '<span class="badge badge-success"><i class="fas fa-check"></i> Dibaca</span>'
+            : '<span class="badge badge-info"><i class="fas fa-circle" style="font-size:0.5rem;"></i> Baru</span>'}</td>
+          <td>
+            <div class="action-btns">
+              <button class="btn-detail" onclick="bukaDetail('${p.id}')" title="Lihat Detail">
+                <i class="fas fa-search"></i>
+              </button>
+              ${!p.dibaca ? `<button class="btn-view" onclick="tandaiDibaca('${p.id}')" title="Tandai Dibaca">
+                <i class="fas fa-check"></i>
+              </button>` : ''}
+              <button class="btn-delete" onclick="hapusPesan('${p.id}')" title="Hapus">
+                <i class="fas fa-trash"></i>
+              </button>
+            </div>
+          </td>
+        </tr>`;
+      }).join('');
+    }
+
+    function escapeHtml(text) {
+      if (!text) return '';
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    }
+
+    function bukaDetail(id) {
+      const p = PesanStore.getById(id);
+      if (!p) return;
+
+      // Isi data ke modal
+      document.getElementById('detailWaktu').textContent = formatTanggalID(p.createdAt);
+      document.getElementById('detailNama').textContent = p.nama || 'Anonim';
+
+      // Email dengan link
+      const emailEl = document.getElementById('detailEmail');
+      if (p.email) {
+        emailEl.innerHTML = `<a href="mailto:${p.email}">${escapeHtml(p.email)}</a>`;
+      } else {
+        emailEl.textContent = '-';
+      }
+
+      // Telepon dengan link
+      const teleponEl = document.getElementById('detailTelepon');
+      if (p.telepon && p.telepon !== '-') {
+        teleponEl.innerHTML = `<a href="tel:${p.telepon}">${escapeHtml(p.telepon)}</a>`;
+      } else {
+        teleponEl.textContent = '-';
+      }
+
+      // Kategori badge
+      const katEl = document.getElementById('detailKategori');
+      katEl.innerHTML = `<span class="kat-badge kat-${p.kategori || 'lainnya'}">${kategoriLabel[p.kategori] || p.kategori || '-'}</span>`;
+
+      // Status badge
+      const statusEl = document.getElementById('detailStatus');
+      if (p.dibaca) {
+        statusEl.innerHTML = '<span class="badge-modal success"><i class="fas fa-check-circle"></i> Sudah Dibaca</span>';
+      } else {
+        statusEl.innerHTML = '<span class="badge-modal info"><i class="fas fa-circle" style="font-size:0.5rem;"></i> Belum Dibaca</span>';
+      }
+
+      // Isi pesan
+      document.getElementById('detailPesan').textContent = p.pesan || 'Tidak ada isi pesan.';
+
+      // Tandai sudah dibaca saat dibuka
+      if (!p.dibaca) {
+        PesanStore.markRead(id);
+        renderPesan();
+      }
+
+      // Tampilkan modal
+      document.getElementById('detailModal').classList.add('active');
+      document.body.classList.add('modal-open');
+    }
+
+    function closeDetailModal() {
+      document.getElementById('detailModal').classList.remove('active');
+      document.body.classList.remove('modal-open');
     }
 
     function tandaiDibaca(id) {
@@ -89,11 +436,16 @@
     }
 
     function hapusPesan(id) {
-      if (confirm('Hapus pesan ini?')) {
+      if (confirm('Yakin ingin menghapus pesan ini?\n\nTindakan ini tidak dapat dibatalkan.')) {
         PesanStore.remove(id);
         renderPesan();
       }
     }
+
+    // Tutup modal dengan ESC
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeDetailModal();
+    });
   </script>
 </body>
 

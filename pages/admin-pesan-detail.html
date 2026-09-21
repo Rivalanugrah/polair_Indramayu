@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detail Pesan Masuk - Admin POLAIR</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/admin.css">
+  <style>
+    .btn-back {
+      display: inline-flex; align-items: center; gap: 8px;
+      color: var(--accent); text-decoration: none; font-size: 0.88rem; font-weight: 600;
+      margin-bottom: 18px;
+    }
+    .btn-back:hover { text-decoration: underline; }
+
+    .detail-header {
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+      margin-bottom: 22px; padding-bottom: 18px; border-bottom: 1px solid var(--border);
+    }
+    .detail-header h4 { font-family: 'Rajdhani', sans-serif; font-size: 1.3rem; color: var(--white); margin: 0; }
+
+    .detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
+    @media (max-width: 700px) { .detail-grid { grid-template-columns: 1fr; } }
+
+    .info-box {
+      background: rgba(255,255,255,0.02); border: 1px solid var(--border);
+      border-radius: var(--radius-md); padding: 18px;
+    }
+    .info-box h5 { font-size: 0.85rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-secondary); margin: 0 0 14px; display: flex; align-items: center; gap: 8px; }
+    .info-row { display: flex; justify-content: space-between; gap: 10px; padding: 8px 0; border-bottom: 1px dashed rgba(255,255,255,0.06); font-size: 0.9rem; }
+    .info-row:last-child { border-bottom: none; }
+    .info-label { color: var(--text-muted); }
+    .info-value { color: var(--text-primary); font-weight: 600; text-align: right; }
+
+    .info-value-box { background: rgba(255,255,255,0.03); border-radius: var(--radius-sm); padding: 14px; color: var(--text-secondary); line-height: 1.7; font-size: 0.9rem; }
+
+    .status-update-box { background: rgba(0,180,216,0.05); border: 1px solid var(--border); padding: 20px; border-radius: var(--radius-md); }
+    .status-actions { display: flex; gap: 12px; margin-top: 15px; flex-wrap: wrap; }
+    .btn-status {
+      padding: 10px 18px; border: none; border-radius: 6px; font-weight: 600; cursor: pointer;
+      transition: var(--transition); color: #fff; display: flex; align-items: center; gap: 8px; font-size: 0.86rem;
+      opacity: 0.55;
+    }
+    .btn-status.current { opacity: 1; box-shadow: 0 0 0 2px rgba(255,255,255,0.25) inset; }
+    .btn-status:hover { filter: brightness(1.1); opacity: 1; }
+    .btn-mark-read { background: var(--success); }
+    .btn-delete { background: var(--danger); }
+    .btn-view-all { background: var(--primary); }
+  </style>
+</head>
+
+<body data-page="pesan" data-title="Detail Pesan Masuk">
+
+  <div class="admin-container">
+    <div id="admin-sidebar-mount"></div>
+
+    <main class="admin-main">
+      <div id="admin-topbar-mount"></div>
+
+      <section class="admin-content">
+        <a href="admin-pesan.html" class="btn-back"><i class="fas fa-arrow-left"></i> Kembali ke Daftar Pesan</a>
+
+        <div id="detailContainer">
+          <!-- diisi oleh JS -->
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="../assets/js/db.js?v=20260920"></script>
+  <script src="../assets/js/auth.js?v=20260920"></script>
+  <script src="../assets/js/admin-shell.js?v=20260920"></script>
+  <script>
+    const KAT = {
+      laporan: 'Laporan',
+      informasi: 'Permintaan Informasi',
+      pengaduan: 'Pengaduan',
+      kerjasama: 'Kerja Sama',
+      lainnya: 'Lainnya'
+    };
+
+    const params = new URLSearchParams(window.location.search);
+    const pesanId = params.get('id');
+
+    document.addEventListener('DOMContentLoaded', renderDetail);
+
+    function renderDetail() {
+      const container = document.getElementById('detailContainer');
+      const pesan = pesanId ? PesanStore.getById(pesanId) : null;
+
+      if (!pesan) {
+        container.innerHTML = `
+          <div class="admin-card" style="text-align:center; padding:50px 20px;">
+            <i class="fas fa-circle-question" style="font-size:2.4rem;color:var(--text-muted);display:block;margin-bottom:14px;"></i>
+            <h4 style="color:var(--white);">Pesan tidak ditemukan</h4>
+            <p style="color:var(--text-secondary);">Pesan mungkin sudah dihapus, atau tautan yang dibuka tidak valid.</p>
+            <a href="admin-pesan.html" class="btn-action" style="margin-top:10px;display:inline-flex;"><i class="fas fa-list"></i> Kembali ke Daftar</a>
+          </div>`;
+        return;
+      }
+
+      const kat = KAT[pesan.kategori] || pesan.kategori || '-';
+      const statusBadge = pesan.dibaca
+        ? '<span class="badge badge-success"><i class="fas fa-check"></i> Sudah Dibaca</span>'
+        : '<span class="badge badge-info"><i class="fas fa-envelope"></i> Baru</span>';
+
+      container.innerHTML = `
+        <div class="admin-card">
+          <div class="detail-header">
+            <h4>PESAN MASUK</h4>
+            ${statusBadge}
+          </div>
+
+          <div class="detail-grid">
+            <div class="info-box">
+              <h5><i class="fas fa-user" style="color:#c084fc;"></i> Identitas Pengirim</h5>
+              <div class="info-row"><span class="info-label">Nama Lengkap</span><span class="info-value">${pesan.nama}</span></div>
+              <div class="info-row"><span class="info-label">Email</span><span class="info-value">${pesan.email || '-'}</span></div>
+              <div class="info-row"><span class="info-label">No. Telepon / WhatsApp</span><span class="info-value">${pesan.telepon || '-'}</span></div>
+            </div>
+            <div class="info-box">
+              <h5><i class="fas fa-tag" style="color:var(--accent);"></i> Detail Informasi</h5>
+              <div class="info-row"><span class="info-label">Kategori</span><span class="info-value" style="color:var(--accent);">${kat}</span></div>
+              <div class="info-row"><span class="info-label">Waktu Masuk</span><span class="info-value">${formatTanggalID(pesan.createdAt)}</span></div>
+            </div>
+          </div>
+
+          <div class="info-box" style="margin-bottom:20px;">
+            <h5><i class="fas fa-envelope-open-text" style="color:#fcd34d;"></i> Isi Pesan</h5>
+            <div class="info-value-box">${pesan.pesan || '-'}</div>
+          </div>
+
+          <div class="status-update-box">
+            <h5 style="margin:0 0 4px;color:#fff;">Aksi Pesan</h5>
+            <p style="font-size:0.83rem;color:var(--text-secondary);margin:0 0 6px;">Kelola pesan masuk dari warga. Hubungi pengirim melalui kontak yang tertera di atas jika diperlukan.</p>
+            <div class="status-actions">
+              ${!pesan.dibaca ? `<button onclick="markRead('${pesan.id}')" class="btn-status btn-mark-read"><i class="fas fa-check"></i> Tandai Sudah Dibaca</button>` : ''}
+              <button onclick="deletePesan('${pesan.id}')" class="btn-status btn-delete"><i class="fas fa-trash"></i> Hapus Pesan</button>
+              <a href="admin-pesan.html" class="btn-status btn-view-all"><i class="fas fa-list"></i> Lihat Semua Pesan</a>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function markRead(id) {
+      if (!id) return;
+      PesanStore.markRead(id);
+      renderDetail();
+    }
+
+    function deletePesan(id) {
+      if (!id) return;
+      if (confirm('Hapus pesan ini? Tindakan ini tidak dapat dibatalkan.')) {
+        PesanStore.remove(id);
+        window.location.href = 'admin-pesan.html';
+      }
+    }
+  </script>
+</body>
+
+</html>

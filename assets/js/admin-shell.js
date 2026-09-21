@@ -50,7 +50,7 @@ function renderAdminSidebar(activeKey) {
     <ul class="admin-menu">
       ${items}
       <li class="admin-menu-divider"></li>
-      <li><a href="admin-dashboard.html#settings-section" class="${activeKey === 'settings' ? 'active' : ''}"><i class="fas fa-gear"></i> Pengaturan Akun</a></li>
+      <li><a href="admin-pengaturan.html" class="${activeKey === 'pengaturan' ? 'active' : ''}"><i class="fas fa-gear"></i> Pengaturan Akun</a></li>
     </ul>
     <button class="admin-logout-btn" onclick="if(confirm('Keluar dari Admin Panel?')) authLogout();">
       <i class="fas fa-right-from-bracket"></i> Keluar

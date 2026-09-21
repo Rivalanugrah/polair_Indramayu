@@ -40,17 +40,31 @@ function authGetCredentials() {
 
 /**
  * Mencoba login. Mengembalikan true/false.
+ * Memeriksa kredensial default dan akun tambahan di AdminStore.
  */
 function authLogin(username, password) {
+  // Cek kredensial default
   const cred = authGetCredentials();
-  const ok = username.trim() === cred.username && password === cred.password;
-  if (ok) {
+  if (username.trim() === cred.username && password === cred.password) {
     sessionStorage.setItem(SESSION_KEY, JSON.stringify({
       username: cred.username,
       loginAt: new Date().toISOString()
     }));
+    return true;
   }
-  return ok;
+
+  // Cek akun tambahan di AdminStore
+  const admins = AdminStore ? AdminStore.all() : [];
+  const adminAccount = admins.find(a => a.username === username.trim() && a.password === password);
+  if (adminAccount) {
+    sessionStorage.setItem(SESSION_KEY, JSON.stringify({
+      username: adminAccount.username,
+      loginAt: new Date().toISOString()
+    }));
+    return true;
+  }
+
+  return false;
 }
 
 function authIsLoggedIn() {
@@ -69,7 +83,45 @@ function authLogout() {
 }
 
 /**
- * Ganti username & password admin.
+ * Ganti username saja.
+ * Mengembalikan { ok: boolean, message: string }
+ */
+function authChangeUsername(currentPassword, newUsername) {
+  const cred = authGetCredentials();
+  if (currentPassword !== cred.password) {
+    return { ok: false, message: 'Password saat ini salah.' };
+  }
+  if (!newUsername || newUsername.trim().length < 3) {
+    return { ok: false, message: 'Username baru minimal 3 karakter.' };
+  }
+  const updated = { username: newUsername.trim(), password: cred.password };
+  localStorage.setItem(AUTH_KEY, JSON.stringify(updated));
+  sessionStorage.setItem(SESSION_KEY, JSON.stringify({
+    username: updated.username,
+    loginAt: new Date().toISOString()
+  }));
+  return { ok: true, message: 'Username berhasil diperbarui.' };
+}
+
+/**
+ * Ganti password saja.
+ * Mengembalikan { ok: boolean, message: string }
+ */
+function authChangePassword(currentPassword, newPassword) {
+  const cred = authGetCredentials();
+  if (currentPassword !== cred.password) {
+    return { ok: false, message: 'Password saat ini salah.' };
+  }
+  if (!newPassword || newPassword.length < 6) {
+    return { ok: false, message: 'Password baru minimal 6 karakter.' };
+  }
+  const updated = { username: cred.username, password: newPassword };
+  localStorage.setItem(AUTH_KEY, JSON.stringify(updated));
+  return { ok: true, message: 'Password berhasil diperbarui.' };
+}
+
+/**
+ * Ganti username & password admin (keduanya sekaligus).
  * Mengembalikan { ok: boolean, message: string }
  */
 function authChangeCredentials(currentPassword, newUsername, newPassword) {

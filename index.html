@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
@@ -40,10 +40,6 @@
       <li><a href="#armada">Armada</a></li>
       <li><a href="#fasilitas">Fasilitas</a></li>
       <li><a href="#kegiatan">Kegiatan</a></li>
-<<<<<<< HEAD
-=======
-      <li><a href="pages/berita.html">Berita</a></li>
->>>>>>> 506b8546327d85654ea5078ffb37e48809175be4
       <li><a href="pages/galeri.html">Galeri</a></li>
       <li><a href="#wilayah">Wilayah</a></li>
       <li><a href="#edukasi">Edukasi</a></li>
@@ -64,10 +60,6 @@
     <a href="#armada">🚢 Armada</a>
     <a href="#fasilitas">🏗️ Fasilitas</a>
     <a href="#kegiatan">⚡ Kegiatan</a>
-<<<<<<< HEAD
-=======
-    <a href="pages/berita.html">📰 Berita</a>
->>>>>>> 506b8546327d85654ea5078ffb37e48809175be4
     <a href="pages/galeri.html">📷 Galeri</a>
     <a href="#wilayah">🗺️ Wilayah Kerja</a>
     <a href="#kontak">📞 Kontak</a>
@@ -135,11 +127,7 @@
             <div class="hero-stat-label">Unit Armada</div>
           </div>
           <div class="hero-stat">
-<<<<<<< HEAD
             <div class="hero-stat-num"><span class="counter" data-target="76">0</span>+</div>
-=======
-            <div class="hero-stat-num"><span class="counter" data-target="240">0</span>+</div>
->>>>>>> 506b8546327d85654ea5078ffb37e48809175be4
             <div class="hero-stat-label">Patroli / Tahun</div>
           </div>
           <div class="hero-stat">
@@ -415,72 +403,11 @@
     <!-- Struktur Organisasi -->
     <div class="org-chart reveal" style="margin-top:5rem;">
       <p class="org-title">🏛️ Struktur Organisasi</p>
-      <div class="org-tree">
-        <!-- Kasat -->
-        <div class="org-node top">
-          <div class="org-node-title">Kepala Satuan</div>
-          <div class="org-node-name">Kasat POLAIR</div>
-          <div class="org-node-rank">AKBP / Kompol</div>
-        </div>
-        <div class="org-connector"></div>
-
-        <!-- Row 1 -->
-        <div class="org-row">
-          <div class="org-branch">
-            <div class="org-node">
-              <div class="org-node-title">Wakasat</div>
-              <div class="org-node-name">Wakil Kasatpolair</div>
-              <div class="org-node-rank">AKP</div>
-            </div>
-          </div>
-          <div class="org-branch">
-            <div class="org-node">
-              <div class="org-node-title">Bagren</div>
-              <div class="org-node-name">Bag. Perencanaan</div>
-              <div class="org-node-rank">Pama/Bintara</div>
-            </div>
-          </div>
-          <div class="org-branch">
-            <div class="org-node">
-              <div class="org-node-title">Bagsumda</div>
-              <div class="org-node-name">Bag. SDM & Anggaran</div>
-              <div class="org-node-rank">Pama/Bintara</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="org-connector"></div>
-
-        <!-- Row 2 -->
-        <div class="org-row">
-          <div class="org-branch">
-            <div class="org-node">
-              <div class="org-node-title">Satrol</div>
-              <div class="org-node-name">Satuan Patroli</div>
-              <div class="org-node-rank">Pama/Bintara</div>
-            </div>
-          </div>
-          <div class="org-branch">
-            <div class="org-node">
-              <div class="org-node-title">Satgakkum</div>
-              <div class="org-node-name">Sat. Gakkum</div>
-              <div class="org-node-rank">Pama/Bintara</div>
-            </div>
-          </div>
-          <div class="org-branch">
-            <div class="org-node">
-              <div class="org-node-title">SAR</div>
-              <div class="org-node-name">Tim SAR & Rescue</div>
-              <div class="org-node-rank">Pama/Bintara</div>
-            </div>
-          </div>
-          <div class="org-branch">
-            <div class="org-node">
-              <div class="org-node-title">Teknisi</div>
-              <div class="org-node-name">Tim Teknisi Kapal</div>
-              <div class="org-node-rank">Bintara</div>
-            </div>
-          </div>
+      <div class="org-tree" id="orgTreeContainer">
+        <!-- Loader akan diganti oleh JavaScript -->
+        <div style="text-align:center; padding:40px; color:var(--text-muted);">
+          <i class="fas fa-spinner fa-spin" style="font-size:1.5rem; margin-bottom:10px;"></i>
+          <p>Memuat struktur organisasi...</p>
         </div>
       </div>
     </div>
@@ -738,7 +665,7 @@
 
     <div class="kegiatan-grid" id="kegiatanGrid">
 
-      <div class="kegiatan-card reveal" data-cat="patroli">
+      <div class="kegiatan-card reveal" data-cat="patroli" data-static="true">
         <div class="kegiatan-visual" style="background:linear-gradient(135deg,#001a5e,#003087)">
           <svg viewBox="0 0 300 150" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%">
             <rect x="10" y="85" width="280" height="50" rx="4" fill="#002060"/>
@@ -763,7 +690,7 @@
         </div>
       </div>
 
-      <div class="kegiatan-card reveal" data-cat="sar">
+      <div class="kegiatan-card reveal" data-cat="sar" data-static="true">
         <div class="kegiatan-visual" style="background:linear-gradient(135deg,#1a0a00,#4a1a00)">
           <div style="font-size:5rem;display:flex;align-items:center;justify-content:center;height:100%;filter:drop-shadow(0 0 20px rgba(255,100,0,0.5))">🆘</div>
         </div>
@@ -778,7 +705,7 @@
         </div>
       </div>
 
-      <div class="kegiatan-card reveal" data-cat="sosial">
+      <div class="kegiatan-card reveal" data-cat="sosial" data-static="true">
         <div class="kegiatan-visual" style="background:linear-gradient(135deg,#0a1a00,#1a3a00)">
           <div style="font-size:5rem;display:flex;align-items:center;justify-content:center;height:100%;filter:drop-shadow(0 0 20px rgba(50,200,50,0.4))">🎓</div>
         </div>
@@ -793,7 +720,7 @@
         </div>
       </div>
 
-      <div class="kegiatan-card reveal" data-cat="gakkum">
+      <div class="kegiatan-card reveal" data-cat="gakkum" data-static="true">
         <div class="kegiatan-visual" style="background:linear-gradient(135deg,#1a0010,#3a0030)">
           <div style="font-size:5rem;display:flex;align-items:center;justify-content:center;height:100%;filter:drop-shadow(0 0 20px rgba(200,0,200,0.4))">⚖️</div>
         </div>
@@ -808,7 +735,7 @@
         </div>
       </div>
 
-      <div class="kegiatan-card reveal" data-cat="sosial">
+      <div class="kegiatan-card reveal" data-cat="sosial" data-static="true">
         <div class="kegiatan-visual" style="background:linear-gradient(135deg,#001a10,#003020)">
           <div style="font-size:5rem;display:flex;align-items:center;justify-content:center;height:100%;filter:drop-shadow(0 0 20px rgba(0,200,100,0.4))">🌊</div>
         </div>
@@ -823,7 +750,7 @@
         </div>
       </div>
 
-      <div class="kegiatan-card reveal" data-cat="patroli">
+      <div class="kegiatan-card reveal" data-cat="patroli" data-static="true">
         <div class="kegiatan-visual" style="background:linear-gradient(135deg,#0a0010,#001a3a)">
           <div style="font-size:5rem;display:flex;align-items:center;justify-content:center;height:100%;filter:drop-shadow(0 0 20px rgba(0,100,255,0.5))">🌙</div>
         </div>
@@ -841,259 +768,6 @@
     </div>
   </div>
 </section>
-
-
-<!-- ══════════════════════════════════════════════════════
-     6. BERITA
-═══════════════════════════════════════════════════════ -->
-<section id="berita" class="section">
-  <div class="container">
-    <div class="section-header reveal">
-      <div class="section-badge">📰 Informasi Terkini</div>
-      <h2 class="section-title">Berita & Informasi</h2>
-      <p class="section-subtitle">Update terbaru seputar kegiatan, operasi, dan informasi dari POLAIR Indramayu.</p>
-    </div>
-
-    <div class="berita-grid reveal">
-      <!-- Featured -->
-      <div class="berita-featured">
-        <div class="berita-featured-img" style="background:linear-gradient(135deg,#001a5e,#003087,#004ab0)">
-          <svg viewBox="0 0 600 280" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%">
-            <rect width="600" height="280" fill="url(#bBg)"/>
-            <defs>
-              <linearGradient id="bBg" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" style="stop-color:#001a5e"/>
-                <stop offset="100%" style="stop-color:#003087"/>
-              </linearGradient>
-            </defs>
-            <ellipse cx="300" cy="140" rx="250" ry="150" fill="rgba(0,180,216,0.05)"/>
-            <!-- Fleet formation -->
-            <rect x="60" y="155" width="180" height="70" rx="5" fill="#002060" stroke="rgba(0,180,216,0.5)" stroke-width="1.5"/>
-            <rect x="90" y="118" width="120" height="39" rx="3" fill="#001540" stroke="rgba(0,180,216,0.4)" stroke-width="1"/>
-            <rect x="350" y="165" width="140" height="55" rx="4" fill="#002060" stroke="rgba(0,180,216,0.4)" stroke-width="1"/>
-            <rect x="370" y="132" width="100" height="35" rx="3" fill="#001540" stroke="rgba(0,180,216,0.3)" stroke-width="1"/>
-            <path d="M0,175 Q150,165 300,172 Q450,179 600,175" stroke="rgba(0,180,216,0.4)" stroke-width="2" fill="none"/>
-            <path d="M0,195 Q150,187 300,192 Q450,197 600,195" stroke="rgba(0,180,216,0.2)" stroke-width="2" fill="none"/>
-            <circle cx="490" cy="50" r="25" fill="none" stroke="rgba(0,180,216,0.3)" stroke-width="1.5" stroke-dasharray="5,3"/>
-            <circle cx="490" cy="50" r="8" fill="rgba(0,180,216,0.5)"/>
-            <text x="300" y="248" font-family="Arial" font-size="11" font-weight="bold" fill="rgba(255,255,255,0.5)" text-anchor="middle" letter-spacing="4">OPERASI BERSAMA POLRES INDRAMAYU</text>
-          </svg>
-        </div>
-        <div class="berita-featured-body">
-          <div class="berita-cat">🔴 BERITA UTAMA</div>
-          <h3><a href="pages/detail-berita.html" style="color:inherit;text-decoration:none;">POLAIR Indramayu Berhasil Gagalkan Penyelundupan BBM Subsidi di Perairan Utara</a></h3>
-          <p>Tim gabungan POLAIR Indramayu berhasil menggagalkan upaya penyelundupan Bahan Bakar Minyak (BBM) bersubsidi senilai lebih dari Rp 2 miliar yang rencananya akan diseludupkan melalui jalur laut menuju Cirebon. Tiga tersangka berhasil diamankan beserta satu kapal motor berisi ribuan liter BBM ilegal.</p>
-          <div class="berita-meta">
-            <span>📅 14 September 2026</span>
-            <span>👤 Tim Humas POLAIR</span>
-            <span>👁️ 1.240 views</span>
-            <a href="pages/detail-berita.html" style="color:var(--accent);font-weight:600;text-decoration:none;margin-left:auto;">Baca Selengkapnya →</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Sidebar berita -->
-      <div class="berita-sidebar">
-
-        <a href="pages/detail-berita.html" class="berita-item" style="text-decoration:none;">
-          <div class="berita-item-img" style="background:linear-gradient(135deg,#001a3a,#003087)">
-            <span style="font-size:2rem">🆘</span>
-          </div>
-          <div class="berita-item-body">
-            <div class="berita-item-cat">SAR</div>
-            <h4>Tim SAR POLAIR Selamatkan 7 Nelayan Korban Cuaca Buruk</h4>
-            <div class="berita-item-date">📅 10 Sep 2026</div>
-          </div>
-        </a>
-
-        <a href="pages/detail-berita.html" class="berita-item" style="text-decoration:none;">
-          <div class="berita-item-img" style="background:linear-gradient(135deg,#0a1a00,#1a4000)">
-            <span style="font-size:2rem">🤝</span>
-          </div>
-          <div class="berita-item-body">
-            <div class="berita-item-cat">Sosial</div>
-            <h4>POLAIR Gelar Sosialisasi Keselamatan Laut bagi 300 Nelayan</h4>
-            <div class="berita-item-date">📅 5 Sep 2026</div>
-          </div>
-        </a>
-
-        <a href="pages/detail-berita.html" class="berita-item" style="text-decoration:none;">
-          <div class="berita-item-img" style="background:linear-gradient(135deg,#1a0010,#400030)">
-            <span style="font-size:2rem">⚓</span>
-          </div>
-          <div class="berita-item-body">
-            <div class="berita-item-cat">Armada</div>
-            <h4>Dua Kapal Patroli Baru Perkuat Armada POLAIR Indramayu</h4>
-            <div class="berita-item-date">📅 1 Sep 2026</div>
-          </div>
-        </a>
-
-        <a href="pages/detail-berita.html" class="berita-item" style="text-decoration:none;">
-          <div class="berita-item-img" style="background:linear-gradient(135deg,#1a1000,#3a2000)">
-            <span style="font-size:2rem">🏅</span>
-          </div>
-          <div class="berita-item-body">
-            <div class="berita-item-cat">Prestasi</div>
-            <h4>POLAIR Indramayu Raih Penghargaan Satuan Berprestasi 2026</h4>
-            <div class="berita-item-date">📅 25 Agt 2026</div>
-          </div>
-        </a>
-
-      </div>
-    </div>
-
-    <!-- Tombol Lihat Semua Berita -->
-    <div class="text-center" style="margin-top:2.5rem;">
-      <a href="pages/berita.html" class="btn-outline" style="text-decoration:none;">
-        📰 Lihat Semua Siaran Pers & Berita Lengkap →
-      </a>
-    </div>
-  </div>
-</section>
-
-
-<!-- ══════════════════════════════════════════════════════
-     7. GALERI
-═══════════════════════════════════════════════════════ -->
-<section id="galeri" class="section">
-  <div class="container">
-    <div class="section-header reveal">
-      <div class="section-badge">📸 Dokumentasi</div>
-      <h2 class="section-title">Galeri Foto & Video</h2>
-      <p class="section-subtitle">Dokumentasi kegiatan, armada, dan fasilitas POLAIR Indramayu.</p>
-    </div>
-
-    <div class="galeri-filter reveal">
-      <button class="filter-btn active" data-filter="all">Semua</button>
-      <button class="filter-btn" data-filter="kapal">🚢 Kapal</button>
-      <button class="filter-btn" data-filter="kegiatan">⚡ Kegiatan</button>
-      <button class="filter-btn" data-filter="fasilitas">🏗️ Fasilitas</button>
-      <button class="filter-btn" data-filter="personel">👮 Personel</button>
-    </div>
-
-    <div class="galeri-masonry" id="galeriGrid">
-
-      <!-- SVG-based gallery items -->
-      <div class="galeri-item" data-cat="kapal" onclick="openLightbox(this)">
-        <svg viewBox="0 0 280 200" xmlns="http://www.w3.org/2000/svg" class="galeri-thumb" style="width:100%;display:block">
-          <rect width="280" height="200" fill="#001a5e"/>
-          <rect x="30" y="120" width="220" height="60" rx="4" fill="#002060" stroke="rgba(0,180,216,0.5)" stroke-width="1.5"/>
-          <rect x="65" y="82" width="150" height="40" rx="3" fill="#001540" stroke="rgba(0,180,216,0.4)" stroke-width="1"/>
-          <rect x="100" y="48" width="80" height="36" rx="3" fill="#003087" stroke="rgba(0,180,216,0.7)" stroke-width="1.5"/>
-          <rect x="107" y="56" width="20" height="14" rx="2" fill="rgba(0,200,255,0.8)"/>
-          <rect x="133" y="56" width="20" height="14" rx="2" fill="rgba(0,200,255,0.7)"/>
-          <line x1="140" y1="20" x2="140" y2="48" stroke="rgba(200,220,255,0.8)" stroke-width="2"/>
-          <path d="M0,133 Q70,126 140,131 Q210,136 280,133" stroke="rgba(0,180,216,0.4)" stroke-width="1.5" fill="none"/>
-          <text x="140" y="165" font-family="Arial" font-size="8" fill="rgba(255,255,255,0.6)" text-anchor="middle" letter-spacing="3">POLISI</text>
-          <text x="140" y="185" font-family="Arial" font-size="9" fill="rgba(0,180,216,0.7)" text-anchor="middle">KP Indramayu I</text>
-        </svg>
-        <div class="galeri-overlay"><div class="galeri-overlay-icon">🔍</div></div>
-      </div>
-
-      <div class="galeri-item" data-cat="kegiatan" onclick="openLightbox(this)">
-        <svg viewBox="0 0 280 320" xmlns="http://www.w3.org/2000/svg" class="galeri-thumb" style="width:100%;display:block">
-          <rect width="280" height="320" fill="#001a10"/>
-          <ellipse cx="140" cy="160" rx="120" ry="130" fill="rgba(0,150,50,0.08)"/>
-          <text x="140" y="120" font-size="70" text-anchor="middle" dominant-baseline="middle">🆘</text>
-          <rect x="30" y="195" width="220" height="2" fill="rgba(0,200,100,0.3)"/>
-          <text x="140" y="235" font-family="Arial" font-size="12" fill="rgba(0,200,100,0.8)" text-anchor="middle" font-weight="bold">OPERASI SAR</text>
-          <text x="140" y="258" font-family="Arial" font-size="10" fill="rgba(255,255,255,0.5)" text-anchor="middle">Evakuasi Korban</text>
-          <text x="140" y="290" font-family="Arial" font-size="9" fill="rgba(255,255,255,0.3)" text-anchor="middle">Sep 2026</text>
-        </svg>
-        <div class="galeri-overlay"><div class="galeri-overlay-icon">🔍</div></div>
-      </div>
-
-      <div class="galeri-item" data-cat="fasilitas" onclick="openLightbox(this)">
-        <svg viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg" class="galeri-thumb" style="width:100%;display:block">
-          <rect width="280" height="180" fill="#0a0f20"/>
-          <rect x="20" y="80" width="240" height="70" rx="3" fill="#001540" stroke="rgba(0,180,216,0.3)" stroke-width="1"/>
-          <!-- Dermaga -->
-          <rect x="30" y="50" width="30" height="100" rx="2" fill="#002060" stroke="rgba(0,180,216,0.2)" stroke-width="1"/>
-          <rect x="220" y="50" width="30" height="100" rx="2" fill="#002060" stroke="rgba(0,180,216,0.2)" stroke-width="1"/>
-          <line x1="30" y1="100" x2="250" y2="100" stroke="rgba(0,180,216,0.5)" stroke-width="2"/>
-          <text x="140" y="95" font-family="Arial" font-size="10" fill="rgba(255,255,255,0.5)" text-anchor="middle">⚓ DERMAGA POLAIR</text>
-          <path d="M0,115 Q70,108 140,113 Q210,118 280,115" stroke="rgba(0,180,216,0.3)" stroke-width="1.5" fill="none"/>
-          <text x="140" y="160" font-family="Arial" font-size="10" fill="rgba(0,180,216,0.7)" text-anchor="middle">Dermaga Indramayu</text>
-        </svg>
-        <div class="galeri-overlay"><div class="galeri-overlay-icon">🔍</div></div>
-      </div>
-
-      <div class="galeri-item" data-cat="personel" onclick="openLightbox(this)">
-        <svg viewBox="0 0 280 240" xmlns="http://www.w3.org/2000/svg" class="galeri-thumb" style="width:100%;display:block">
-          <rect width="280" height="240" fill="#060c1a"/>
-          <text x="140" y="100" font-size="60" text-anchor="middle" dominant-baseline="middle">👮</text>
-          <rect x="40" y="148" width="200" height="2" fill="rgba(0,180,216,0.4)"/>
-          <text x="140" y="170" font-family="Arial" font-size="11" fill="rgba(255,255,255,0.7)" text-anchor="middle" font-weight="bold">PERSONEL SIAP TUGAS</text>
-          <text x="140" y="195" font-family="Arial" font-size="9" fill="rgba(0,180,216,0.6)" text-anchor="middle">POLAIR Indramayu</text>
-          <text x="140" y="220" font-family="Arial" font-size="8" fill="rgba(255,255,255,0.3)" text-anchor="middle">Apel Pagi</text>
-        </svg>
-        <div class="galeri-overlay"><div class="galeri-overlay-icon">🔍</div></div>
-      </div>
-
-      <div class="galeri-item" data-cat="kegiatan" onclick="openLightbox(this)">
-        <svg viewBox="0 0 280 190" xmlns="http://www.w3.org/2000/svg" class="galeri-thumb" style="width:100%;display:block">
-          <rect width="280" height="190" fill="#0a1a00"/>
-          <text x="140" y="90" font-size="50" text-anchor="middle" dominant-baseline="middle">🎓</text>
-          <text x="140" y="135" font-family="Arial" font-size="11" fill="rgba(100,255,100,0.8)" text-anchor="middle" font-weight="bold">SOSIALISASI NELAYAN</text>
-          <text x="140" y="158" font-family="Arial" font-size="9" fill="rgba(255,255,255,0.5)" text-anchor="middle">Keselamatan Pelayaran</text>
-          <text x="140" y="178" font-family="Arial" font-size="8" fill="rgba(255,255,255,0.3)" text-anchor="middle">Karangsong, Agt 2026</text>
-        </svg>
-        <div class="galeri-overlay"><div class="galeri-overlay-icon">🔍</div></div>
-      </div>
-
-      <div class="galeri-item" data-cat="kapal" onclick="openLightbox(this)">
-        <svg viewBox="0 0 280 280" xmlns="http://www.w3.org/2000/svg" class="galeri-thumb" style="width:100%;display:block">
-          <rect width="280" height="280" fill="#001030"/>
-          <rect x="15" y="180" width="250" height="75" rx="5" fill="#002060" stroke="rgba(0,180,216,0.5)" stroke-width="2"/>
-          <rect x="45" y="135" width="190" height="47" rx="3" fill="#001540" stroke="rgba(0,180,216,0.4)" stroke-width="1"/>
-          <rect x="75" y="95" width="130" height="42" rx="4" fill="#003087" stroke="rgba(0,180,216,0.7)" stroke-width="2"/>
-          <rect x="85" y="103" width="25" height="18" rx="2" fill="rgba(0,200,255,0.8)"/>
-          <rect x="118" y="103" width="25" height="18" rx="2" fill="rgba(0,200,255,0.7)"/>
-          <rect x="151" y="103" width="25" height="18" rx="2" fill="rgba(0,200,255,0.8)"/>
-          <rect x="184" y="103" width="12" height="18" rx="2" fill="rgba(0,200,255,0.6)"/>
-          <line x1="140" y1="40" x2="140" y2="95" stroke="rgba(200,220,255,0.9)" stroke-width="2.5"/>
-          <line x1="115" y1="55" x2="165" y2="55" stroke="rgba(200,220,255,0.6)" stroke-width="1"/>
-          <rect x="142" y="46" width="22" height="8" rx="1" fill="#CE1126"/>
-          <rect x="142" y="54" width="22" height="8" rx="1" fill="#FFFFFF"/>
-          <path d="M0,193 Q70,185 140,191 Q210,197 280,193" stroke="rgba(0,180,216,0.4)" stroke-width="1.5" fill="none"/>
-          <text x="140" y="245" font-family="Arial" font-size="9" fill="rgba(255,255,255,0.65)" text-anchor="middle" letter-spacing="3">POLISI</text>
-          <text x="140" y="268" font-family="Arial" font-size="9" fill="rgba(0,180,216,0.7)" text-anchor="middle">KP Cirebon IV</text>
-        </svg>
-        <div class="galeri-overlay"><div class="galeri-overlay-icon">🔍</div></div>
-      </div>
-
-      <div class="galeri-item" data-cat="kegiatan" onclick="openLightbox(this)">
-        <svg viewBox="0 0 280 160" xmlns="http://www.w3.org/2000/svg" class="galeri-thumb" style="width:100%;display:block">
-          <rect width="280" height="160" fill="#100010"/>
-          <text x="140" y="72" font-size="48" text-anchor="middle" dominant-baseline="middle">🌊</text>
-          <text x="140" y="108" font-family="Arial" font-size="11" fill="rgba(100,150,255,0.8)" text-anchor="middle" font-weight="bold">BAKTI SOSIAL PESISIR</text>
-          <text x="140" y="130" font-family="Arial" font-size="9" fill="rgba(255,255,255,0.4)" text-anchor="middle">Bersih Pantai & Bansos</text>
-          <text x="140" y="150" font-family="Arial" font-size="8" fill="rgba(255,255,255,0.3)" text-anchor="middle">Jun 2026</text>
-        </svg>
-        <div class="galeri-overlay"><div class="galeri-overlay-icon">🔍</div></div>
-      </div>
-
-      <div class="galeri-item" data-cat="fasilitas" onclick="openLightbox(this)">
-        <svg viewBox="0 0 280 220" xmlns="http://www.w3.org/2000/svg" class="galeri-thumb" style="width:100%;display:block">
-          <rect width="280" height="220" fill="#050a15"/>
-          <rect x="20" y="50" width="240" height="140" rx="5" fill="#001030" stroke="rgba(0,180,216,0.3)" stroke-width="1"/>
-          <!-- Monitor grid -->
-          <rect x="35" y="65" width="70" height="50" rx="3" fill="#002060" stroke="rgba(0,180,216,0.4)" stroke-width="1"/>
-          <rect x="115" y="65" width="70" height="50" rx="3" fill="#002060" stroke="rgba(0,180,216,0.4)" stroke-width="1"/>
-          <rect x="195" y="65" width="50" height="50" rx="3" fill="#002060" stroke="rgba(0,180,216,0.4)" stroke-width="1"/>
-          <rect x="35" y="125" width="210" height="50" rx="3" fill="#001540" stroke="rgba(0,180,216,0.3)" stroke-width="1"/>
-          <!-- Radar blip -->
-          <circle cx="70" cy="90" r="18" fill="none" stroke="rgba(0,180,216,0.4)" stroke-width="1" stroke-dasharray="3,2"/>
-          <circle cx="70" cy="90" r="6" fill="rgba(0,220,180,0.7)"/>
-          <text x="140" y="205" font-family="Arial" font-size="9" fill="rgba(0,180,216,0.7)" text-anchor="middle">Ruang Operasi</text>
-        </svg>
-        <div class="galeri-overlay"><div class="galeri-overlay-icon">🔍</div></div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
 
 <!-- ══════════════════════════════════════════════════════
      8. WILAYAH KERJA
@@ -1278,9 +952,7 @@
     <div class="kontak-grid">
       <!-- Info -->
       <div class="reveal-left">
-        <h3>Satuan Polisi Air Polres Indramayu</h3>
-        <p>Siap melayani 24 jam untuk kebutuhan keamanan dan kedaruratan di wilayah perairan Indramayu.</p>
-
+        
         <div class="kontak-items">
           <a class="kontak-item" href="tel:+62234201234">
             <div class="kontak-icon">📞</div>
@@ -1329,12 +1001,54 @@
         <!-- Sosmed -->
         <div style="margin-top:1.5rem;">
           <div style="font-size:0.82rem;color:var(--text-muted);margin-bottom:0.75rem;font-weight:600;">IKUTI KAMI DI:</div>
-          <div class="sosmed-row">
-            <a href="#" class="sosmed-btn ig">📸 Instagram</a>
-            <a href="#" class="sosmed-btn fb">👥 Facebook</a>
-            <a href="#" class="sosmed-btn yt">▶️ YouTube</a>
-            <a href="#" class="sosmed-btn tw">🐦 Twitter</a>
-          </div>
+          <style>
+          /* Styling dasar untuk ikon bulat */
+          .social-icon-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.08); /* Latar belakang transparan gelap */
+            color: #94a3b8; /* Warna ikon default (abu-abu terang) */
+            font-size: 20px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            margin-right: 12px;
+            margin-top: 10px;
+          }
+          
+          /* Efek Hover Khas Instagram (Gradien) */
+          .social-icon-btn.ig:hover {
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            color: #ffffff;
+            transform: translateY(-3px); /* Efek tombol terangkat */
+          }
+
+          /* Efek Hover Khas Facebook (Biru Solid) */
+          .social-icon-btn.fb:hover {
+            background-color: #1877F2;
+            color: #ffffff;
+            transform: translateY(-3px);
+          }
+        </style>
+
+        <div class="social-wrapper">
+          <!-- Tombol Instagram -->
+          <a href="#" target="_blank" class="social-icon-btn ig" title="Instagram">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+              <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.036 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.487.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z"/>
+            </svg>
+          </a>
+          
+          <!-- Tombol Facebook -->
+          <a href="#" target="_blank" class="social-icon-btn fb" title="Facebook">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+              <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/>
+            </svg>
+          </a>
+        </div>
         </div>
       </div>
 
@@ -1409,10 +1123,21 @@
         </div>
         <p>Satuan Polisi Air Polres Indramayu — Melayani, Melindungi, dan Mengayomi Masyarakat Perairan Indramayu demi Kejayaan Bangsa.</p>
         <div class="sosmed-row" style="margin-top:1rem">
-          <a href="#" class="sosmed-btn ig" style="font-size:1.2rem;padding:0.6rem 0.8rem">📸</a>
-          <a href="#" class="sosmed-btn fb" style="font-size:1.2rem;padding:0.6rem 0.8rem">👥</a>
-          <a href="#" class="sosmed-btn yt" style="font-size:1.2rem;padding:0.6rem 0.8rem">▶️</a>
-          <a href="#" class="sosmed-btn tw" style="font-size:1.2rem;padding:0.6rem 0.8rem">🐦</a>
+          <div class="social-wrapper">
+            <!-- Instagram -->
+            <a href="#" target="_blank" class="social-icon-btn ig" title="Instagram">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.036 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.487.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z"/>
+              </svg>
+            </a>
+            
+            <!-- Facebook -->
+            <a href="#" target="_blank" class="social-icon-btn fb" title="Facebook">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/>
+              </svg>
+            </a>
+          </div>
         </div>
       </div>
 
@@ -1431,7 +1156,6 @@
         <h4>Informasi</h4>
         <ul class="footer-links">
           <li><a href="pages/pengaduan.html" style="color:#f87171;font-weight:600;">🚨 Lapor Darurat</a></li>
-          <li><a href="#berita">Berita</a></li>
           <li><a href="#galeri">Galeri</a></li>
           <li><a href="#wilayah">Wilayah Kerja</a></li>
           <li><a href="#edukasi">Edukasi</a></li>
@@ -1471,10 +1195,103 @@
 <button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Kembali ke atas">↑</button>
 
 
-<<<<<<< HEAD
 <script src="assets/js/db.js"></script>
-=======
->>>>>>> 506b8546327d85654ea5078ffb37e48809175be4
 <script src="assets/js/script.js"></script>
+<script>
+window.addEventListener('load', function() {
+  setTimeout(function() {
+    var container = document.getElementById('orgTreeContainer');
+    if (!container) return;
+
+    if (typeof OrgStore === 'undefined') {
+      container.innerHTML = '<div style="text-align:center; padding:40px; color:#94a3b8;"><i class="fas fa-exclamation-triangle" style="font-size:1.5rem; display:block; margin-bottom:10px;"></i><p>Gagal memuat struktur organisasi.</p></div>';
+      return;
+    }
+
+    var orgs = OrgStore.getAll();
+    if (!orgs || orgs.length === 0) {
+      container.innerHTML = '<div style="text-align:center; padding:40px; color:#94a3b8;"><i class="fas fa-users" style="font-size:1.5rem; display:block; margin-bottom:10px;"></i><p>Struktur organisasi belum tersedia.</p></div>';
+      return;
+    }
+
+    var html = '';
+    var level1 = [];
+    var level2 = [];
+    var level3 = [];
+
+    var level4 = [];
+
+    for (var i = 0; i < orgs.length; i++) {
+      if (orgs[i].level === 1) level1.push(orgs[i]);
+      else if (orgs[i].level === 2) level2.push(orgs[i]);
+      else if (orgs[i].level === 3) level3.push(orgs[i]);
+      else if (orgs[i].level === 4) level4.push(orgs[i]);
+    }
+
+    // Level 1
+    if (level1.length > 0) {
+      html += '<div class="org-node top">';
+      for (var j = 0; j < level1.length; j++) {
+        html += '<div class="org-node-title">' + level1[j].jabatan + '</div>';
+        if (level1[j].nama && level1[j].nama !== '-') {
+          html += '<div class="org-node-name">' + level1[j].nama + '</div>';
+        }
+        html += '<div class="org-node-rank">' + level1[j].pangkat + '</div>';
+      }
+      html += '</div>';
+    }
+
+    // Level 2
+    if (level2.length > 0) {
+      if (level1.length > 0) html += '<div class="org-connector"></div>';
+      html += '<div class="org-row">';
+      for (var k = 0; k < level2.length; k++) {
+        html += '<div class="org-branch"><div class="org-node">';
+        html += '<div class="org-node-title">' + level2[k].jabatan + '</div>';
+        if (level2[k].nama && level2[k].nama !== '-') {
+          html += '<div class="org-node-name">' + level2[k].nama + '</div>';
+        }
+        html += '<div class="org-node-rank">' + level2[k].pangkat + '</div>';
+        html += '</div></div>';
+      }
+      html += '</div>';
+    }
+
+    // Level 3
+    if (level3.length > 0) {
+      html += '<div class="org-connector"></div>';
+      html += '<div class="org-row">';
+      for (var l = 0; l < level3.length; l++) {
+        html += '<div class="org-branch"><div class="org-node">';
+        html += '<div class="org-node-title">' + level3[l].jabatan + '</div>';
+        if (level3[l].nama && level3[l].nama !== '-') {
+          html += '<div class="org-node-name">' + level3[l].nama + '</div>';
+        }
+        html += '<div class="org-node-rank">' + level3[l].pangkat + '</div>';
+        html += '</div></div>';
+      }
+      html += '</div>';
+    }
+
+    // Level 4
+    if (level4.length > 0) {
+      html += '<div class="org-connector"></div>';
+      html += '<div class="org-row">';
+      for (var m = 0; m < level4.length; m++) {
+        html += '<div class="org-branch"><div class="org-node">';
+        html += '<div class="org-node-title">' + level4[m].jabatan + '</div>';
+        if (level4[m].nama && level4[m].nama !== '-') {
+          html += '<div class="org-node-name">' + level4[m].nama + '</div>';
+        }
+        html += '<div class="org-node-rank">' + level4[m].pangkat + '</div>';
+        html += '</div></div>';
+      }
+      html += '</div>';
+    }
+
+    container.innerHTML = html;
+  }, 300);
+});
+</script>
 </body>
 </html>

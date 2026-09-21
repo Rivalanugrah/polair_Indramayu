@@ -1,0 +1,364 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Galeri Dokumentasi Foto Kegiatan Satuan Polisi Air (POLAIR) Polk Resorts Indramayu. Patroli laut, evakuasi SAR, bakti sosial, dan pengamanan perairan.">
+  <meta name="keywords" content="Galeri Polair Indramayu, Foto Patroli Laut, Dokumentasi SAR, Foto Kapal Polair">
+  <meta property="og:title" content="Galeri Foto Kegiatan — POLAIR Indramayu">
+  <meta property="og:description" content="Dokumentasi visual resmi pengabdian dan operasi Satuan Polisi Air Polk Resorts Indramayu.">
+  <meta property="og:type" content="website">
+  <title>Galeri Foto Kegiatan — POLAIR Indramayu</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-logo">
+      <div class="nav-logo-icon">⚓</div>
+      <div class="nav-logo-text">
+        <span class="brand">POLAIR</span>
+        <span class="sub">Indramayu</span>
+      </div>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="../index.html#beranda">Beranda</a></li>
+      <li><a href="../index.html#profil">Profil</a></li>
+      <li><a href="../index.html#armada">Armada</a></li>
+      <li><a href="../index.html#fasilitas">Fasilitas</a></li>
+      <li><a href="../index.html#kegiatan">Kegiatan</a></li>
+      <li><a href="galeri.html" class="active">Galeri</a></li>
+      <li><a href="../index.html#wilayah">Wilayah</a></li>
+      <li><a href="../index.html#edukasi">Edukasi</a></li>
+      <li><a href="../index.html#kontak">Kontak</a></li>
+      <li><a href="pengaduan.html" class="nav-cta">🚨 Lapor Darurat</a></li>
+    </ul>
+
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="../index.html#beranda">Beranda</a>
+  <a href="../index.html#profil">Profil</a>
+  <a href="../index.html#armada">Armada</a>
+  <a href="../index.html#fasilitas">Fasilitas</a>
+  <a href="../index.html#kegiatan">Kegiatan</a>
+  <a href="galeri.html" style="color:var(--accent);font-weight:700;">Galeri Foto</a>
+  <a href="../index.html#wilayah">Wilayah Kerja</a>
+  <a href="../index.html#edukasi">Edukasi</a>
+  <a href="../index.html#kontak">Kontak</a>
+  <a href="pengaduan.html" style="color:#f87171;font-weight:700;">Formulir Laporan Darurat</a>
+</div>
+
+<!-- MAIN CONTENT — GALERI FOTO KEGIATAN -->
+<main class="galeri-page">
+  <div class="container">
+
+    <!-- Header Section -->
+    <div class="text-center" style="margin-bottom:2.5rem;">
+      <div class="section-badge">📸 Dokumentasi Visual Resmi</div>
+      <h1 class="section-title">Galeri Foto Kegiatan POLAIR</h1>
+      <p class="section-subtitle">
+        Kumpulan dokumentasi foto dan rekaman kegiatan operasional, misi SAR kemanusiaan, pemeliharaan armada, bakti sosial, serta pembinaan masyarakat maritim Indramayu.
+      </p>
+    </div>
+
+    <!-- Filter Buttons -->
+    <div class="news-filter-bar" style="justify-content:center;">
+      <div class="news-filter-tabs">
+        <button class="news-filter-btn active" onclick="filterGaleri('all', this)">Semua Foto</button>
+        <button class="news-filter-btn" onclick="filterGaleri('patroli', this)">🚢 Patroli Laut</button>
+        <button class="news-filter-btn" onclick="filterGaleri('sar', this)">🛟 Misi SAR</button>
+        <button class="news-filter-btn" onclick="filterGaleri('armada', this)">⚓ Kapal Armada</button>
+        <button class="news-filter-btn" onclick="filterGaleri('sosial', this)">🤝 Bakti Sosial</button>
+        <button class="news-filter-btn" onclick="filterGaleri('personel', this)">👮 Personel & Latihan</button>
+      </div>
+    </div>
+
+    <!-- Grid Layout -->
+    <div class="galeri-grid-box" id="galeriBoxGrid">
+
+      <!-- Item 1: Patroli Fajar -->
+      <div class="galeri-box-card" data-cat="patroli" data-static="true" onclick="openLightbox(this)">
+        <div class="galeri-box-badge">Patroli Laut</div>
+        <div class="galeri-box-img">
+          <svg viewBox="0 0 360 220" xmlns="http://www.w3.org/2000/svg" class="galeri-thumb">
+            <rect width="360" height="220" fill="#061226"/>
+            <ellipse cx="180" cy="140" rx="160" ry="70" fill="rgba(0,180,216,0.15)"/>
+            <path d="M0,150 Q90,135 180,145 Q270,155 360,148 L360,220 L0,220 Z" fill="#003087"/>
+            <path d="M50,135 L280,135 L300,150 L270,165 L65,165 Z" fill="#001a5e" stroke="rgba(0,180,216,0.7)" stroke-width="1.5"/>
+            <rect x="110" y="95" width="120" height="42" rx="3" fill="#002b75"/>
+            <line x1="170" y1="55" x2="170" y2="95" stroke="white" stroke-width="2"/>
+            <circle cx="170" cy="55" r="10" fill="none" stroke="rgba(0,180,216,0.8)" stroke-width="1.5" stroke-dasharray="3,2"/>
+            <text x="180" y="152" font-family="Arial" font-size="9" font-weight="bold" fill="white" letter-spacing="2" text-anchor="middle">POLISI AIR</text>
+          </svg>
+          <div class="galeri-overlay"><div class="galeri-overlay-icon">🔍</div></div>
+        </div>
+        <div class="galeri-box-info">
+          <div class="galeri-box-title">Patroli Fajar Pengamanan Alur Pelayaran Karangsong</div>
+          <div class="galeri-box-date">📅 13 September 2026 · Muara Karangsong</div>
+        </div>
+      </div>
+
+      <!-- Item 2: Evakuasi SAR -->
+      <div class="galeri-box-card" data-cat="sar" data-static="true" onclick="openLightbox(this)">
+        <div class="galeri-box-badge" style="color:#fde047;">Misi SAR</div>
+        <div class="galeri-box-img">
+          <svg viewBox="0 0 360 220" xmlns="http://www.w3.org/2000/svg" class="galeri-thumb">
+            <rect width="360" height="220" fill="#0b172a"/>
+            <path d="M0,130 Q90,160 180,130 Q270,100 360,140 L360,220 L0,220 Z" fill="#002870"/>
+            <ellipse cx="180" cy="140" rx="45" ry="25" fill="#f97316" stroke="#ea580c" stroke-width="3"/>
+            <ellipse cx="180" cy="140" rx="30" ry="14" fill="#fdba74"/>
+            <circle cx="180" cy="120" r="10" fill="#0284c7"/>
+            <circle cx="280" cy="80" r="30" fill="none" stroke="#ef4444" stroke-width="7"/>
+            <path d="M280,50 L280,110 M250,80 L310,80" stroke="white" stroke-width="3"/>
+          </svg>
+          <div class="galeri-overlay"><div class="galeri-overlay-icon">🔍</div></div>
+        </div>
+        <div class="galeri-box-info">
+          <div class="galeri-box-title">Evakuasi Cepat Korban Terombang-ambling di Laut Jawa</div>
+          <div class="galeri-box-date">📅 11 September 2026 · Perairan Utara Eretan</div>
+        </div>
+      </div>
+
+      <!-- Item 3: Apel Pasukan Personel -->
+      <div class="galeri-box-card" data-cat="personel" data-static="true" onclick="openLightbox(this)">
+        <div class="galeri-box-badge" style="color:#a5b4fc;">Personel</div>
+        <div class="galeri-box-img">
+          <svg viewBox="0 0 360 220" xmlns="http://www.w3.org/2000/svg" class="galeri-thumb">
+            <rect width="360" height="220" fill="#09142b"/>
+            <rect x="0" y="150" width="360" height="70" fill="#1e293b"/>
+            <line x1="0" y1="150" x2="360" y2="150" stroke="#00B4D8" stroke-width="2"/>
+            <circle cx="70" cy="100" r="10" fill="#38bdf8"/>
+            <rect x="62" y="112" width="16" height="38" rx="2" fill="#003087"/>
+            <circle cx="170" cy="100" r="10" fill="#38bdf8"/>
+            <rect x="162" y="112" width="16" height="38" rx="2" fill="#003087"/>
+            <circle cx="270" cy="100" r="10" fill="#38bdf8"/>
+            <rect x="262" y="112" width="16" height="38" rx="2" fill="#003087"/>
+            <circle cx="320" cy="130" r="6" fill="#ef4444"/>
+          </svg>
+          <div class="galeri-overlay"><div class="galeri-overlay-icon">🔍</div></div>
+        </div>
+        <div class="galeri-box-info">
+          <div class="galeri-box-title">Apel Gelar Kesiapsiagaan Operasi Pengamanan Perairan</div>
+          <div class="galeri-box-date">📅 08 September 2026 · Dermaga Karangsong</div>
+        </div>
+      </div>
+
+      <!-- Item 4: RHIB Falcon -->
+      <div class="galeri-box-card" data-cat="armada" data-static="true" onclick="openLightbox(this)">
+        <div class="galeri-box-badge">Kapal Armada</div>
+        <div class="galeri-box-img">
+          <svg viewBox="0 0 360 220" xmlns="http://www.w3.org/2000/svg" class="galeri-thumb">
+            <rect width="360" height="220" fill="#021024"/>
+            <path d="M40,155 Q10,165 0,185" stroke="rgba(255,255,255,0.4)" stroke-width="6" fill="none" stroke-linecap="round"/>
+            <path d="M50,150 L280,150 L310,165 L270,175 L70,175 L30,160 Z" fill="#001e52" stroke="rgba(0,180,216,0.6)" stroke-width="1.5"/>
+            <path d="M45,150 L285,150" stroke="#0284c7" stroke-width="8" stroke-linecap="round"/>
+            <rect x="110" y="110" width="90" height="42" rx="3" fill="#003594"/>
+            <rect x="130" y="105" width="20" height="6" fill="#2563eb"/>
+            <rect x="155" y="105" width="20" height="6" fill="#dc2626"/>
+            <text x="160" y="166" font-family="Arial" font-size="8" font-weight="bold" fill="white" text-anchor="middle">RHIB FALCON-III</text>
+          </svg>
+          <div class="galeri-overlay"><div class="galeri-overlay-icon">🔍</div></div>
+        </div>
+        <div class="galeri-box-info">
+          <div class="galeri-box-title">Uji Kecepatan & Manuver RHIB Falcon - III di Laut Lepas</div>
+          <div class="galeri-box-date">📅 05 September 2026 · Perairan Karangsong</div>
+        </div>
+      </div>
+
+      <!-- Item 5: Sosialisasi Nelayan -->
+      <div class="galeri-box-card" data-cat="sosial" data-static="true" onclick="openLightbox(this)">
+        <div class="galeri-box-badge" style="color:#86efac;">Bakti Sosial</div>
+        <div class="galeri-box-img">
+          <svg viewBox="0 0 360 220" xmlns="http://www.w3.org/2000/svg" class="galeri-thumb">
+            <rect width="360" height="220" fill="#071a1c"/>
+            <circle cx="180" cy="90" r="40" fill="rgba(34,197,94,0.15)" stroke="rgba(34,197,94,0.4)" stroke-width="1.5"/>
+            <text x="180" y="102" font-size="32" text-anchor="middle">🛟</text>
+            <rect x="40" y="150" width="280" height="60" rx="4" fill="#0c2e28"/>
+            <text x="180" y="185" font-family="Arial" font-size="10" font-weight="bold" fill="#86efac" text-anchor="middle">PENYERAHAN 500 LIFE JACKET</text>
+          </svg>
+          <div class="galeri-overlay"><div class="galeri-overlay-icon">🔍</div></div>
+        </div>
+        <div class="galeri-box-info">
+          <div class="galeri-box-title">Edukasi Keselamatan Berlayar dan Pembagian Jaket Pelampung</div>
+          <div class="galeri-box-date">📅 02 September 2026 · TPI Karangsong</div>
+        </div>
+      </div>
+
+      <!-- Item 6: Simulasi Kebakaran -->
+      <div class="galeri-box-card" data-cat="personel" data-static="true" onclick="openLightbox(this)">
+        <div class="galeri-box-badge" style="color:#a5b4fc;">Latihan</div>
+        <div class="galeri-box-img">
+          <svg viewBox="0 0 360 220" xmlns="http://www.w3.org/2000/svg" class="galeri-thumb">
+            <rect width="360" height="220" fill="#1c0e07"/>
+            <path d="M80,120 Q180,60 270,100" stroke="rgba(0,210,255,0.8)" stroke-width="6" fill="none" stroke-linecap="round"/>
+            <path d="M80,125 Q180,70 280,105" stroke="rgba(255,255,255,0.7)" stroke-width="3" fill="none"/>
+            <circle cx="280" cy="100" r="18" fill="rgba(239,68,68,0.2)"/>
+            <text x="280" y="108" font-size="22" text-anchor="middle">🔥</text>
+            <text x="180" y="190" font-family="Arial" font-size="9" fill="white" text-anchor="middle">SIMULASI FIRE DRILL DI ATAS AIR</text>
+          </svg>
+          <div class="galeri-overlay"><div class="galeri-overlay-icon">🔍</div></div>
+        </div>
+        <div class="galeri-box-info">
+          <div class="galeri-box-title">Simulasi Penanggulangan Kebakaran Kapal dan Tanggap Bencana</div>
+          <div class="galeri-box-date">📅 29 Agustus 2026 · Kolam Pelabuhan</div>
+        </div>
+      </div>
+
+      <!-- Item 7: Patroli Konservasi -->
+      <div class="galeri-box-card" data-cat="patroli" data-static="true" onclick="openLightbox(this)">
+        <div class="galeri-box-badge">Patroli Laut</div>
+        <div class="galeri-box-img">
+          <svg viewBox="0 0 360 220" xmlns="http://www.w3.org/2000/svg" class="galeri-thumb">
+            <rect width="360" height="220" fill="#04182b"/>
+            <path d="M0,170 Q100,150 200,175 Q300,160 360,170 L360,220 L0,220 Z" fill="#064e3b"/>
+            <circle cx="60" cy="140" r="22" fill="#059669"/>
+            <circle cx="100" cy="135" r="26" fill="#10b981"/>
+            <circle cx="140" cy="145" r="20" fill="#047857"/>
+            <path d="M220,150 L320,150 L330,160 L310,168 L230,168 Z" fill="#002060" stroke="#00B4D8" stroke-width="1"/>
+            <text x="180" y="205" font-family="Arial" font-size="9" fill="#86efac" text-anchor="middle">PATROLI HUTAN MANGROVE & PESISIR</text>
+          </svg>
+          <div class="galeri-overlay"><div class="galeri-overlay-icon">🔍</div></div>
+        </div>
+        <div class="galeri-box-info">
+          <div class="galeri-box-title">Patroli Wilayah Konservasi Pesisir dan Mangrove Karangsong</div>
+          <div class="galeri-box-date">📅 26 Agustus 2026 · Hutan Mangrove Pantai</div>
+        </div>
+      </div>
+
+      <!-- Item 8: Penyelaman SAR -->
+      <div class="galeri-box-card" data-cat="sar" data-static="true" onclick="openLightbox(this)">
+        <div class="galeri-box-badge" style="color:#fde047;">Misi SAR</div>
+        <div class="galeri-box-img">
+          <svg viewBox="0 0 360 220" xmlns="http://www.w3.org/2000/svg" class="galeri-thumb">
+            <rect width="360" height="220" fill="#001830"/>
+            <circle cx="150" cy="160" r="4" fill="rgba(0,180,216,0.6)"/>
+            <circle cx="160" cy="140" r="6" fill="rgba(0,180,216,0.5)"/>
+            <circle cx="155" cy="115" r="8" fill="rgba(0,180,216,0.4)"/>
+            <circle cx="170" cy="80" r="10" fill="rgba(0,180,216,0.3)"/>
+            <ellipse cx="180" cy="130" rx="16" ry="12" fill="#0284c7" stroke="white" stroke-width="2"/>
+            <rect x="168" y="138" width="24" height="6" rx="2" fill="#facc15"/>
+            <text x="180" y="195" font-family="Arial" font-size="9" fill="white" text-anchor="middle">TIM PENYELAM RESMI SAR POLAIR</text>
+          </svg>
+          <div class="galeri-overlay"><div class="galeri-overlay-icon">🔍</div></div>
+        </div>
+        <div class="galeri-box-info">
+          <div class="galeri-box-title">Latihan Penyelaman Bawah Air Tim Evakuasi SAR Bahari</div>
+          <div class="galeri-box-date">📅 22 Agustus 2026 · Dermaga Ujung Barat</div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</main>
+
+<!-- LIGHTBOX MODAL -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <div class="lightbox-inner" id="lightboxInner" onclick="event.stopPropagation()">
+    <button class="lightbox-close" onclick="closeLightbox()" aria-label="Tutup">✕</button>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer id="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="nav-logo" style="margin-bottom:1rem">
+          <div class="nav-logo-icon">⚓</div>
+          <div class="nav-logo-text">
+            <span class="brand">POLAIR</span>
+            <span class="sub">Indramayu</span>
+          </div>
+        </div>
+        <p>Satuan Polisi Air Resorts Indramayu — Melayani, Melindungi, dan Mengayomi Masyarakat Perairan Indramayu demi Kejayaan Bangsa.</p>
+        <div class="social-wrapper">
+          <a href="#" class="social-icon-btn ig" title="Instagram">📷</a>
+          <a href="#" class="social-icon-btn fb" title="Facebook">📘</a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Navigasi</h4>
+        <ul class="footer-links">
+          <li><a href="#beranda">Beranda</a></li>
+          <li><a href="#profil">Profil</a></li>
+          <li><a href="#armada">Armada</a></li>
+          <li><a href="#kegiatan">Kegiatan</a></li>
+          <li><a href="galeri.html">Galeri</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Informasi</h4>
+        <ul class="footer-links">
+          <li><a href="pengaduan.html" style="color:#f87171;font-weight:600;">🚨 Lapor Darurat</a></li>
+          <li><a href="#wilayah">Wilayah Kerja</a></li>
+          <li><a href="#edukasi">Edukasi</a></li>
+          <li><a href="#kontak">Kontak</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Kontak Cepat</h4>
+        <ul class="footer-links">
+          <li><a href="tel:110">🚨 Darurat: 110</a></li>
+          <li><a href="tel:+62234201234">📞 (0234) 201234</a></li>
+          <li><a href="mailto:polair.indramayu@polri.go.id">📧 Email Kami</a></li>
+          <li style="color:var(--text-muted);padding:0.3rem 0;font-size:0.85rem">📍 Karangsong, Indramayu</li>
+          <li style="color:var(--text-muted);padding:0.3rem 0;font-size:0.85rem">🕐 24 Jam Siaga</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2026 POLAIR Resorts Indramayu. Hak cipta dilindungi. | Satuan Polisi Air — <a href="https://www.polri.go.id" target="_blank">Polri.go.id</a></p>
+      <p>🔒 Website Resmi Pemerintah | <a href="#navbar">Kembali ke atas ↑</a></p>
+    </div>
+  </div>
+</footer>
+
+<!-- Back to Top -->
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Kembali ke atas">↑</button>
+
+<!-- Scripts for Dynamic Galeri -->
+<script src="../assets/js/db.js"></script>
+<script src="../assets/js/script.js"></script>
+
+<!-- Filter script for galeri page -->
+<script>
+  function filterGaleri(category, btn) {
+    if (btn) {
+      document.querySelectorAll('.news-filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    }
+    
+    const filter = btn ? btn.dataset.filter : category;
+    
+    document.querySelectorAll('.galeri-box-card').forEach(card => {
+      const cardCat = card.getAttribute('data-cat');
+      if (filter === 'all' || cardCat === filter) {
+        card.style.display = '';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+    
+    if (typeof GaleriStore !== 'undefined' && document.getElementById('galeriBoxGrid')) {
+      renderDynamicGaleri();
+    }
+  }
+</script>
+
+</body>
+</html>

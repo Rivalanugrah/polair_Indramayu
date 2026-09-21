@@ -9,6 +9,8 @@
   <link rel="stylesheet" href="../assets/css/style.css">
   <link rel="stylesheet" href="../assets/css/admin.css">
   <style>
+    body { background: var(--dark); }
+
     .filter-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
     .filter-tab {
       padding: 8px 16px; border-radius: var(--radius-full); font-size: 0.82rem; font-weight: 600;
@@ -16,6 +18,31 @@
       cursor: pointer; transition: var(--transition);
     }
     .filter-tab.active, .filter-tab:hover { border-color: var(--accent); color: var(--white); background: rgba(0,180,216,0.12); }
+
+    /* Action buttons wrapper - Flexbox horizontal alignment */
+    .action-wrapper {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Uniform button sizing for aksi column */
+    .action-wrapper .btn-view,
+    .action-wrapper .btn-delete {
+      width: 36px;
+      height: 36px;
+      padding: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0;
+      border-radius: 6px;
+    }
+    .action-wrapper .btn-view i,
+    .action-wrapper .btn-delete i {
+      margin: 0;
+    }
   </style>
 </head>
 
@@ -45,13 +72,13 @@
             <table class="admin-table">
               <thead>
                 <tr>
-                  <th>No</th>
+                  <th style="width:50px; text-align:center;">No</th>
                   <th>Tanggal & Waktu</th>
                   <th>Nama Pelapor</th>
                   <th>Kategori Insiden</th>
                   <th>Lokasi / Perairan</th>
                   <th>Status</th>
-                  <th>Aksi</th>
+                  <th style="width:100px; text-align:center;">Aksi</th>
                 </tr>
               </thead>
               <tbody id="laporBody"></tbody>
@@ -62,9 +89,9 @@
     </main>
   </div>
 
-  <script src="../assets/js/db.js"></script>
-  <script src="../assets/js/auth.js"></script>
-  <script src="../assets/js/admin-shell.js"></script>
+  <script src="../assets/js/db.js?v=20260920"></script>
+  <script src="../assets/js/auth.js?v=20260920"></script>
+  <script src="../assets/js/admin-shell.js?v=20260920"></script>
   <script>
     let currentFilter = 'semua';
 
@@ -102,8 +129,14 @@
             <td>${l.lokasi}</td>
             <td><span class="badge ${meta.badgeClass}"><i class="fas ${meta.icon}"></i> ${meta.label}</span></td>
             <td>
-              <a href="admin-lapor-detail.html?id=${l.id}" class="btn-view"><i class="fas fa-search"></i> Detail</a>
-              <button class="btn-delete" onclick="hapusLaporan('${l.id}', '${l.nama.replace(/'/g, "\\'")}')"><i class="fas fa-trash"></i></button>
+              <div class="action-wrapper">
+                <a href="admin-lapor-detail.html?id=${l.id}" class="btn-view" title="Lihat Detail">
+                  <i class="fas fa-search"></i>
+                </a>
+                <button class="btn-delete" onclick="hapusLaporan('${l.id}', '${l.nama.replace(/'/g, "\\'")}')" title="Hapus">
+                  <i class="fas fa-trash"></i>
+                </button>
+              </div>
             </td>
           </tr>
         `;
