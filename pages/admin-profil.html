@@ -49,26 +49,171 @@
     .nilai-card p, .tugfung-card p { margin: 0; color: var(--text-secondary); font-size: 0.85rem; }
     .nilai-icon { font-size: 1.5rem; margin-right: 8px; }
 
-    .nilai-list, .tugfung-list { margin-bottom: 16px; }
+    .misi-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    .misi-item {
+      position: relative;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      transition: var(--transition);
+    }
+    .misi-item:hover {
+      border-color: rgba(0, 180, 216, 0.35);
+      background: rgba(255, 255, 255, 0.04);
+    }
+    .misi-num-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: rgba(0, 180, 216, 0.15);
+      color: var(--accent);
+      font-size: 0.8rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .misi-item input.misi-input {
+      flex: 1;
+      background: rgba(0, 0, 0, 0.25);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 9px 14px;
+      color: var(--text-primary);
+      font-family: inherit;
+      font-size: 0.9rem;
+      transition: var(--transition);
+    }
+    .misi-item input.misi-input:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(0, 180, 216, 0.15);
+      background: rgba(0, 0, 0, 0.35);
+    }
+
+    .nilai-list, .tugfung-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-bottom: 20px;
+    }
     .nilai-item, .tugfung-item {
-      display: flex; gap: 12px; align-items: flex-start;
-      background: rgba(255,255,255,0.02); border: 1px solid var(--border);
-      border-radius: var(--radius-md); padding: 12px 16px; margin-bottom: 10px;
+      position: relative;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 16px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: var(--transition);
     }
-    .nilai-item input, .tugfung-item input { flex: 1; }
-    .nilai-item textarea, .tugfung-item textarea { flex: 1; min-height: 60px; }
-    .nilai-item .item-icon, .tugfung-item .item-icon { font-size: 1.2rem; min-width: 30px; text-align: center; padding-top: 4px; }
+    .nilai-item:hover, .tugfung-item:hover {
+      border-color: rgba(0, 180, 216, 0.35);
+      background: rgba(255, 255, 255, 0.04);
+    }
+    .item-top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 8px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    .item-badge-label {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .item-fields {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .item-field-group {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .item-field-group label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .item-field-group input,
+    .item-field-group textarea {
+      width: 100%;
+      background: rgba(0, 0, 0, 0.25);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 10px 14px;
+      color: var(--text-primary);
+      font-family: inherit;
+      font-size: 0.9rem;
+      transition: var(--transition);
+    }
+    .item-field-group input:focus,
+    .item-field-group textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(0, 180, 216, 0.15);
+      background: rgba(0, 0, 0, 0.35);
+    }
+    .item-field-group textarea {
+      resize: vertical;
+      min-height: 65px;
+    }
     .btn-remove-item {
-      background: rgba(239,68,68,0.15); border: 1px solid var(--danger); color: var(--danger);
-      border-radius: 4px; padding: 6px 10px; cursor: pointer; font-size: 0.8rem;
+      background: rgba(239, 68, 68, 0.12);
+      border: 1px solid rgba(239, 68, 68, 0.4);
+      color: #fca5a5;
+      border-radius: 4px;
+      padding: 5px 10px;
+      cursor: pointer;
+      font-size: 0.78rem;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: var(--transition);
     }
-    .btn-remove-item:hover { background: var(--danger); color: #fff; }
+    .btn-remove-item:hover {
+      background: var(--danger);
+      border-color: var(--danger);
+      color: #fff;
+    }
     .btn-add-item {
-      background: rgba(34,197,94,0.15); border: 1px solid var(--success); color: var(--success);
-      border-radius: 6px; padding: 10px 16px; cursor: pointer; font-size: 0.85rem; font-weight: 600;
-      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(34, 197, 94, 0.15);
+      border: 1px solid var(--success);
+      color: var(--success);
+      border-radius: 6px;
+      padding: 10px 18px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: var(--transition);
     }
-    .btn-add-item:hover { background: var(--success); color: #fff; }
+    .btn-add-item:hover {
+      background: var(--success);
+      color: #fff;
+    }
 
     /* ============ STRUKTUR ORGANISASI ============ */
     .struktur-header {
@@ -360,27 +505,29 @@
               <textarea id="visiText" placeholder="Masukkan teks visi POLAIR..."></textarea>
             </div>
             <div class="profil-form-group">
-              <label>Misi (Satu poin per baris)</label>
-              <textarea id="misiText" class="misi-textarea" placeholder="Masukkan misi, satu poin per baris..."></textarea>
+              <label>Poin-Poin Misi</label>
+              <p style="color:var(--text-secondary);font-size:0.82rem;margin:0 0 12px;">Kelola poin misi satu per baris. Klik "Tambah Misi" untuk menambahkan.</p>
+              <div class="misi-list" id="misiListContainer"></div>
+              <button type="button" class="btn-add-item" onclick="addMisi()"><i class="fas fa-plus"></i> Tambah Misi</button>
             </div>
           </div>
 
           <!-- Tab: Nilai -->
           <div id="tab-nilai" class="tab-panel" style="display:none;">
             <p style="color:var(--text-secondary); font-size:0.85rem; margin-bottom:16px;">
-              Kelola nilai-nilai inti POLAIR. Setiap item memiliki ikon, judul, dan deskripsi.
+              Kelola nilai-nilai inti POLAIR. Setiap item memiliki judul dan penjelasan deskripsi.
             </p>
             <div class="nilai-list" id="nilaiList"></div>
-            <button class="btn-add-item" onclick="addNilai()"><i class="fas fa-plus"></i> Tambah Nilai</button>
+            <button type="button" class="btn-add-item" onclick="addNilai()"><i class="fas fa-plus"></i> Tambah Nilai</button>
           </div>
 
           <!-- Tab: Tugas & Fungsi -->
           <div id="tab-tugfung" class="tab-panel" style="display:none;">
             <p style="color:var(--text-secondary); font-size:0.85rem; margin-bottom:16px;">
-              Kelola tugas dan fungsi POLAIR Indramayu.
+              Kelola rincian tugas dan fungsi operasional POLAIR Indramayu.
             </p>
             <div class="tugfung-list" id="tugfungList"></div>
-            <button class="btn-add-item" onclick="addTugfung()"><i class="fas fa-plus"></i> Tambah Tugas/Fungsi</button>
+            <button type="button" class="btn-add-item" onclick="addTugfung()"><i class="fas fa-plus"></i> Tambah Tugas / Fungsi</button>
           </div>
 
           <!-- Tab: Kontak -->
@@ -514,7 +661,7 @@
       document.getElementById('sejarahText').value = profil.sejarah || '';
       document.getElementById('quoteText').value = profil.quote || '';
       document.getElementById('visiText').value = profil.visi || '';
-      document.getElementById('misiText').value = (profil.misi || []).join('\n');
+      renderMisiList(profil.misi || []);
       renderNilaiList(profil.nilai || []);
       renderTugfungList(profil.tugfung || []);
       var kontak = profil.kontak || {};
@@ -524,43 +671,122 @@
       document.getElementById('kontakAlamat').value = kontak.alamat || '';
     }
 
+    // ============ MISI ============
+    function renderMisiList(misiArr) {
+      var container = document.getElementById('misiListContainer');
+      if (!misiArr || misiArr.length === 0) {
+        container.innerHTML = '<div style="color:var(--text-muted);font-size:0.85rem;padding:8px 0;">Belum ada poin misi. Klik "Tambah Misi" untuk menambahkan.</div>';
+        return;
+      }
+      container.innerHTML = misiArr.map(function(m, i) {
+        return createMisiItemHtml(i + 1, m);
+      }).join('');
+    }
+
+    function createMisiItemHtml(num, text) {
+      return '<div class="misi-item">' +
+        '<span class="misi-num-badge">' + num + '</span>' +
+        '<input type="text" class="misi-input" value="' + escapeHtml(text) + '" placeholder="Tuliskan poin misi...">' +
+        '<button type="button" class="btn-remove-item" onclick="removeMisiItem(this)" title="Hapus Poin Misi"><i class="fas fa-trash-alt"></i> Hapus</button>' +
+      '</div>';
+    }
+
+    function addMisi() {
+      var container = document.getElementById('misiListContainer');
+      var firstChild = container.querySelector('.misi-item');
+      if (!firstChild) { container.innerHTML = ''; }
+      var count = container.querySelectorAll('.misi-item').length;
+      var div = document.createElement('div');
+      div.innerHTML = createMisiItemHtml(count + 1, '');
+      container.appendChild(div.firstElementChild);
+      renumberMisiItems();
+      container.lastElementChild.querySelector('.misi-input').focus();
+    }
+
+    function removeMisiItem(btn) {
+      var item = btn.closest('.misi-item');
+      if (item) {
+        item.remove();
+        renumberMisiItems();
+      }
+    }
+
+    function renumberMisiItems() {
+      var container = document.getElementById('misiListContainer');
+      container.querySelectorAll('.misi-item').forEach(function(el, idx) {
+        var badge = el.querySelector('.misi-num-badge');
+        if (badge) badge.textContent = idx + 1;
+      });
+    }
+
+    function getMisiFromForm() {
+      var items = document.querySelectorAll('#misiListContainer .misi-item');
+      var misi = [];
+      items.forEach(function(item) {
+        var val = item.querySelector('.misi-input').value.trim();
+        if (val) misi.push(val);
+      });
+      return misi;
+    }
+
     // ============ NILAI ============
     function renderNilaiList(nilaiList) {
       var container = document.getElementById('nilaiList');
+      if (!nilaiList || nilaiList.length === 0) {
+        container.innerHTML = '<div style="color:var(--text-muted);font-size:0.85rem;padding:12px 0;">Belum ada nilai yang ditambahkan. Klik "Tambah Nilai" untuk menambahkan.</div>';
+        return;
+      }
       container.innerHTML = nilaiList.map(function(n, i) {
-        return '<div class="nilai-item">' +
-          '<input type="text" class="nilai-icon-input" value="' + (n.icon || '') + '" placeholder="Icon" style="max-width:60px; text-align:center;">' +
-          '<input type="text" class="nilai-title-input" value="' + (n.title || '') + '" placeholder="Judul Nilai">' +
-          '<input type="text" class="nilai-desc-input" value="' + (n.desc || '') + '" placeholder="Deskripsi">' +
-          '<button class="btn-remove-item" onclick="removeNilai(' + i + ')"><i class="fas fa-times"></i></button>' +
-          '</div>';
+        return createNilaiItemHtml(i + 1, n.title || '', n.desc || '');
       }).join('');
+    }
+
+    function createNilaiItemHtml(num, title, desc) {
+      return '<div class="nilai-item">' +
+        '<div class="item-top-bar">' +
+          '<span class="item-badge-label"><i class="fas fa-award"></i> Nilai #' + num + '</span>' +
+          '<button type="button" class="btn-remove-item" onclick="removeNilaiItem(this)" title="Hapus Nilai"><i class="fas fa-trash-alt"></i> Hapus</button>' +
+        '</div>' +
+        '<div class="item-fields">' +
+          '<div class="item-field-group">' +
+            '<label>Judul Nilai</label>' +
+            '<input type="text" class="nilai-title-input" value="' + escapeHtml(title) + '" placeholder="Contoh: Integritas / Profesionalisme">' +
+          '</div>' +
+          '<div class="item-field-group">' +
+            '<label>Deskripsi</label>' +
+            '<textarea class="nilai-desc-input" placeholder="Tuliskan penjelasan nilai ini...">' + escapeHtml(desc) + '</textarea>' +
+          '</div>' +
+        '</div>' +
+      '</div>';
     }
 
     function addNilai() {
       var container = document.getElementById('nilaiList');
+      if (container.querySelector('.nilai-item') === null) {
+        container.innerHTML = '';
+      }
+      var existingCount = container.querySelectorAll('.nilai-item').length;
       var div = document.createElement('div');
-      div.className = 'nilai-item';
-      div.innerHTML = '<input type="text" class="nilai-icon-input" value="" placeholder="Icon" style="max-width:60px; text-align:center;">' +
-        '<input type="text" class="nilai-title-input" value="" placeholder="Judul Nilai">' +
-        '<input type="text" class="nilai-desc-input" value="" placeholder="Deskripsi">' +
-        '<button class="btn-remove-item" onclick="this.parentNode.remove()"><i class="fas fa-times"></i></button>';
-      container.appendChild(div);
+      div.innerHTML = createNilaiItemHtml(existingCount + 1, '', '');
+      container.appendChild(div.firstElementChild);
+      renumberItems('.nilai-item', '.item-badge-label', '<i class="fas fa-award"></i> Nilai #');
     }
 
-    function removeNilai(index) {
-      var container = document.getElementById('nilaiList');
-      if (container.children[index]) container.children[index].remove();
+    function removeNilaiItem(btn) {
+      var item = btn.closest('.nilai-item');
+      if (item) {
+        item.remove();
+        renumberItems('.nilai-item', '.item-badge-label', '<i class="fas fa-award"></i> Nilai #');
+      }
     }
 
     function getNilaiFromForm() {
       var items = document.querySelectorAll('.nilai-item');
       var nilai = [];
       items.forEach(function(item) {
-        var icon = item.querySelector('.nilai-icon-input').value.trim();
         var title = item.querySelector('.nilai-title-input').value.trim();
         var desc = item.querySelector('.nilai-desc-input').value.trim();
-        if (title) nilai.push({ icon: icon, title: title, desc: desc });
+        if (title || desc) nilai.push({ title: title, desc: desc });
       });
       return nilai;
     }
@@ -568,42 +794,77 @@
     // ============ TUGAS FUNGSI ============
     function renderTugfungList(tugfungList) {
       var container = document.getElementById('tugfungList');
+      if (!tugfungList || tugfungList.length === 0) {
+        container.innerHTML = '<div style="color:var(--text-muted);font-size:0.85rem;padding:12px 0;">Belum ada tugas/fungsi yang ditambahkan. Klik "Tambah Tugas / Fungsi" untuk menambahkan.</div>';
+        return;
+      }
       container.innerHTML = tugfungList.map(function(t, i) {
-        return '<div class="tugfung-item">' +
-          '<input type="text" class="tugfung-icon-input" value="' + (t.icon || '') + '" placeholder="Icon" style="max-width:60px; text-align:center;">' +
-          '<input type="text" class="tugfung-title-input" value="' + (t.title || '') + '" placeholder="Judul">' +
-          '<textarea class="tugfung-desc-input" placeholder="Deskripsi">' + (t.desc || '') + '</textarea>' +
-          '<button class="btn-remove-item" onclick="removeTugfung(' + i + ')"><i class="fas fa-times"></i></button>' +
-          '</div>';
+        return createTugfungItemHtml(i + 1, t.title || '', t.desc || '');
       }).join('');
+    }
+
+    function createTugfungItemHtml(num, title, desc) {
+      return '<div class="tugfung-item">' +
+        '<div class="item-top-bar">' +
+          '<span class="item-badge-label"><i class="fas fa-shield-halved"></i> Tugas & Fungsi #' + num + '</span>' +
+          '<button type="button" class="btn-remove-item" onclick="removeTugfungItem(this)" title="Hapus Tugas/Fungsi"><i class="fas fa-trash-alt"></i> Hapus</button>' +
+        '</div>' +
+        '<div class="item-fields">' +
+          '<div class="item-field-group">' +
+            '<label>Judul Tugas / Fungsi</label>' +
+            '<input type="text" class="tugfung-title-input" value="' + escapeHtml(title) + '" placeholder="Contoh: Patroli Perairan / Penegakan Hukum">' +
+          '</div>' +
+          '<div class="item-field-group">' +
+            '<label>Deskripsi</label>' +
+            '<textarea class="tugfung-desc-input" placeholder="Tuliskan rincian tugas atau fungsi...">' + escapeHtml(desc) + '</textarea>' +
+          '</div>' +
+        '</div>' +
+      '</div>';
     }
 
     function addTugfung() {
       var container = document.getElementById('tugfungList');
+      if (container.querySelector('.tugfung-item') === null) {
+        container.innerHTML = '';
+      }
+      var existingCount = container.querySelectorAll('.tugfung-item').length;
       var div = document.createElement('div');
-      div.className = 'tugfung-item';
-      div.innerHTML = '<input type="text" class="tugfung-icon-input" value="" placeholder="Icon" style="max-width:60px; text-align:center;">' +
-        '<input type="text" class="tugfung-title-input" value="" placeholder="Judul">' +
-        '<textarea class="tugfung-desc-input" placeholder="Deskripsi"></textarea>' +
-        '<button class="btn-remove-item" onclick="this.parentNode.remove()"><i class="fas fa-times"></i></button>';
-      container.appendChild(div);
+      div.innerHTML = createTugfungItemHtml(existingCount + 1, '', '');
+      container.appendChild(div.firstElementChild);
+      renumberItems('.tugfung-item', '.item-badge-label', '<i class="fas fa-shield-halved"></i> Tugas & Fungsi #');
     }
 
-    function removeTugfung(index) {
-      var container = document.getElementById('tugfungList');
-      if (container.children[index]) container.children[index].remove();
+    function removeTugfungItem(btn) {
+      var item = btn.closest('.tugfung-item');
+      if (item) {
+        item.remove();
+        renumberItems('.tugfung-item', '.item-badge-label', '<i class="fas fa-shield-halved"></i> Tugas & Fungsi #');
+      }
     }
 
     function getTugfungFromForm() {
       var items = document.querySelectorAll('.tugfung-item');
       var tugfung = [];
       items.forEach(function(item) {
-        var icon = item.querySelector('.tugfung-icon-input').value.trim();
         var title = item.querySelector('.tugfung-title-input').value.trim();
         var desc = item.querySelector('.tugfung-desc-input').value.trim();
-        if (title) tugfung.push({ icon: icon, title: title, desc: desc });
+        if (title || desc) tugfung.push({ title: title, desc: desc });
       });
       return tugfung;
+    }
+
+    function renumberItems(itemSelector, labelSelector, prefixHtml) {
+      document.querySelectorAll(itemSelector).forEach(function(el, idx) {
+        var lbl = el.querySelector(labelSelector);
+        if (lbl) lbl.innerHTML = prefixHtml + (idx + 1);
+      });
+    }
+
+    function escapeHtml(text) {
+      if (!text) return '';
+      var div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
     }
 
     // ============ SIMPAN PROFIL ============
@@ -615,7 +876,7 @@
         profil.sejarah = document.getElementById('sejarahText').value;
         profil.quote = document.getElementById('quoteText').value;
         profil.visi = document.getElementById('visiText').value;
-        profil.misi = document.getElementById('misiText').value.split('\n').filter(function(m) { return m.trim(); });
+        profil.misi = getMisiFromForm();
         profil.nilai = getNilaiFromForm();
         profil.tugfung = getTugfungFromForm();
         profil.kontak = {
@@ -625,6 +886,16 @@
           alamat: document.getElementById('kontakAlamat').value
         };
         ProfilStore.update(profil);
+
+        // Broadcast ke tab publik yang terbuka agar langsung refresh
+        try {
+          if (typeof BroadcastChannel !== 'undefined') {
+            var ch = new BroadcastChannel('polair_sync');
+            ch.postMessage({ type: 'profil_updated' });
+            ch.close();
+          }
+        } catch(e) {}
+
         document.getElementById('profilSuccessText').textContent = 'Profil berhasil disimpan!';
         successBox.style.display = 'flex';
         errorBox.style.display = 'none';

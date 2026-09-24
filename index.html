@@ -26,13 +26,15 @@
 ═══════════════════════════════════════════════════════ -->
 <nav id="navbar">
   <div class="nav-inner">
-    <a href="#beranda" class="nav-logo">
-      <div class="nav-logo-icon">⚓</div>
-      <div class="nav-logo-text">
-        <span class="brand">POLAIR</span>
-        <span class="sub">Indramayu</span>
-      </div>
-    </a>
+      <a href="index.html" class="nav-logo">
+          <div class="nav-logo-icon" style="background: transparent; box-shadow: none; border-radius: 6px; overflow: hidden;">
+              <img src="assets/images/img/logoPolair.png" alt="Logo Korpolairud" style="width: 100%; height: 100%; object-fit: contain;">
+          </div>
+          <div class="nav-logo-text">
+              <span class="brand">POLAIR</span>
+              <span class="sub">INDRAMAYU</span>
+          </div>
+  </a>
 
   <ul class="nav-links">
       <li><a href="#beranda">Beranda</a></li>
@@ -40,7 +42,6 @@
       <li><a href="#armada">Armada</a></li>
       <li><a href="#fasilitas">Fasilitas</a></li>
       <li><a href="#kegiatan">Kegiatan</a></li>
-      <li><a href="pages/galeri.html">Galeri</a></li>
       <li><a href="#wilayah">Wilayah</a></li>
       <li><a href="#edukasi">Edukasi</a></li>
       <li><a href="#kontak">Kontak</a></li>
@@ -55,14 +56,14 @@
 
 <!-- Mobile Menu -->
 <div class="mobile-menu" id="mobileMenu">
-    <a href="#beranda">🏠 Beranda</a>
-    <a href="#profil">📋 Profil</a>
-    <a href="#armada">🚢 Armada</a>
-    <a href="#fasilitas">🏗️ Fasilitas</a>
-    <a href="#kegiatan">⚡ Kegiatan</a>
-    <a href="pages/galeri.html">📷 Galeri</a>
-    <a href="#wilayah">🗺️ Wilayah Kerja</a>
-    <a href="#kontak">📞 Kontak</a>
+    <a href="#beranda">Beranda</a>
+    <a href="#profil">Profil</a>
+    <a href="#armada">Armada</a>
+    <a href="#fasilitas">Fasilitas</a>
+    <a href="#kegiatan">Kegiatan</a>
+    <a href="#edukasi"><i class="fas fa-graduation-cap"></i> Edukasi</a>
+    <a href="#wilayah"> Wilayah Kerja</a>
+    <a href="#kontak">Kontak</a>
     <a href="pages/pengaduan.html" style="color:#f87171;font-weight:700;">🚨 Lapor Darurat</a>
 </div>
 
@@ -297,16 +298,18 @@
       <!-- Left: Sejarah -->
       <div class="profil-text reveal-left">
         <div class="section-badge" style="margin-bottom:1.25rem;">📜 Sejarah</div>
-        <p>
-          Satuan Polisi Air (POLAIR) Polres Indramayu merupakan satuan fungsi Kepolisian Negara Republik Indonesia yang bertugas di wilayah perairan. Terbentuk seiring perkembangan kepolisian daerah untuk memenuhi kebutuhan pengamanan wilayah maritim Kabupaten Indramayu.
-        </p>
-        <p>
-          Kabupaten Indramayu memiliki garis pantai sepanjang ±147 km yang membentang dari timur ke barat, berbatasan langsung dengan Laut Jawa. Wilayah ini menjadi jalur vital pelayaran dan perikanan yang membutuhkan pengawasan intensif dari aparat kepolisian.
-        </p>
-        <div class="profil-highlight">
+        <div id="publicSejarahText">
+          <p>
+            Satuan Polisi Air (POLAIR) Polres Indramayu merupakan satuan fungsi Kepolisian Negara Republik Indonesia yang bertugas di wilayah perairan. Terbentuk seiring perkembangan kepolisian daerah untuk memenuhi kebutuhan pengamanan wilayah maritim Kabupaten Indramayu.
+          </p>
+          <p>
+            Kabupaten Indramayu memiliki garis pantai sepanjang ±147 km yang membentang dari timur ke barat, berbatasan langsung dengan Laut Jawa. Wilayah ini menjadi jalur vital pelayaran dan perikanan yang membutuhkan pengawasan intensif dari aparat kepolisian.
+          </p>
+        </div>
+        <div class="profil-highlight" id="publicQuote">
           "POLAIR Indramayu berkomitmen untuk menjadi garda terdepan dalam menjaga keamanan, ketertiban, dan kesejahteraan masyarakat perairan Indramayu."
         </div>
-        <p>
+        <p id="publicSejarahBottom">
           Dengan armada modern dan personel terlatih, POLAIR Indramayu terus berinovasi dalam memberikan pelayanan terbaik kepada masyarakat pesisir dan pelaut yang beroperasi di wilayah perairan Indramayu.
         </p>
       </div>
@@ -322,14 +325,14 @@
 
         <div id="tab-visi" class="tab-content active">
           <p><strong style="color:var(--accent)">Visi POLAIR Indramayu:</strong></p>
-          <p>
+          <p id="publicVisiText">
             "Terwujudnya Satuan Polisi Air Polres Indramayu yang Profesional, Modern, Terpercaya, dan Berwibawa dalam Mewujudkan Keamanan di Wilayah Perairan Indramayu guna Mendukung Pembangunan Daerah."
           </p>
         </div>
 
         <div id="tab-misi" class="tab-content">
           <p><strong style="color:var(--accent)">Misi POLAIR Indramayu:</strong></p>
-          <ul class="misi-list">
+          <ul class="misi-list" id="publicMisiList">
             <li>Melaksanakan patroli rutin di seluruh wilayah perairan Indramayu</li>
             <li>Menegakkan hukum di perairan secara tegas, adil, dan manusiawi</li>
             <li>Meningkatkan kapasitas SDM personel yang profesional dan berintegritas</li>
@@ -342,7 +345,7 @@
 
         <div id="tab-nilai" class="tab-content">
           <p><strong style="color:var(--accent)">Nilai-Nilai Inti:</strong></p>
-          <ul class="misi-list">
+          <ul class="misi-list" id="publicNilaiList">
             <li>🛡️ <strong>Integritas</strong> — Jujur, berani, dan bertanggung jawab dalam setiap tindakan</li>
             <li>⚖️ <strong>Profesionalisme</strong> — Kompeten, handal, dan terlatih dalam tugas kepolisian</li>
             <li>🤝 <strong>Kemanusiaan</strong> — Menjunjung hak asasi dan melayani dengan tulus</li>
@@ -353,7 +356,7 @@
 
         <!-- Tugas & Fungsi -->
         <div class="section-badge" style="margin:2rem 0 1rem;">⚡ Tugas & Fungsi</div>
-        <div class="tugfung-grid">
+        <div class="tugfung-grid" id="publicTugfungGrid">
           <div class="tugfung-item">
             <div class="tugfung-icon">🚢</div>
             <div>
@@ -426,7 +429,7 @@
       <p class="section-subtitle">Armada modern yang siap beroperasi 24/7 untuk menjaga keamanan perairan Indramayu.</p>
     </div>
 
-    <div class="armada-grid">
+    <div class="armada-grid" id="armadaGrid">
 
       <!-- Kapal 1 -->
       <div class="kapal-card reveal">
@@ -954,32 +957,32 @@
       <div class="reveal-left">
         
         <div class="kontak-items">
-          <a class="kontak-item" href="tel:+62234201234">
+          <a class="kontak-item" id="publicKontakTelepon" href="tel:+62234201234">
             <div class="kontak-icon">📞</div>
             <div class="kontak-item-text">
-              <strong>Telepon Darurat</strong>
-              <span>(0234) 201234 — Siaga 24 Jam</span>
+              <strong>Telepon</strong>
+              <span id="publicKontakTeleponText">(0234) 201234 — Siaga 24 Jam</span>
             </div>
           </a>
-          <a class="kontak-item" href="tel:+62234205678">
-            <div class="kontak-icon">📟</div>
+          <a class="kontak-item" id="publicKontakWa" href="#">
+            <div class="kontak-icon">💬</div>
             <div class="kontak-item-text">
-              <strong>Telepon Kantor</strong>
-              <span>(0234) 205678</span>
+              <strong>WhatsApp</strong>
+              <span id="publicKontakWaText">0812-3456-7890</span>
             </div>
           </a>
-          <a class="kontak-item" href="mailto:polair.indramayu@polri.go.id">
+          <a class="kontak-item" id="publicKontakEmail" href="mailto:polair.indramayu@polri.go.id">
             <div class="kontak-icon">📧</div>
             <div class="kontak-item-text">
               <strong>Email Resmi</strong>
-              <span>polair.indramayu@polri.go.id</span>
+              <span id="publicKontakEmailText">polair.indramayu@polri.go.id</span>
             </div>
           </a>
           <div class="kontak-item" style="cursor:default">
             <div class="kontak-icon">📍</div>
             <div class="kontak-item-text">
               <strong>Alamat</strong>
-              <span>Jl. Raya Pantai Karangsong, Indramayu, Jawa Barat 45214</span>
+              <span id="publicKontakAlamat">Jl. Raya Pantai Karangsong, Indramayu, Jawa Barat 45214</span>
             </div>
           </div>
           <div class="kontak-item" style="cursor:default">
@@ -1036,14 +1039,14 @@
 
         <div class="social-wrapper">
           <!-- Tombol Instagram -->
-          <a href="#" target="_blank" class="social-icon-btn ig" title="Instagram">
+          <a href="https://www.instagram.com/satpolair_polresindramayu?stkn=c3V2MG9yajc4YzN5" target="_blank" class="social-icon-btn ig" title="Instagram">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
               <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.036 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.487.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z"/>
             </svg>
           </a>
           
           <!-- Tombol Facebook -->
-          <a href="#" target="_blank" class="social-icon-btn fb" title="Facebook">
+          <a href="https://www.facebook.com/polair.indramayu?rdid=6GJBi4ElGZr7Wab8&share_url=https%253A%252F%252Fwww.facebook.com%252Fshare%252F1VqzNHEDi5%252F#" target="_blank" class="social-icon-btn fb" title="Facebook">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
               <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/>
             </svg>
@@ -1115,7 +1118,9 @@
     <div class="footer-grid">
       <div class="footer-brand">
         <div class="nav-logo" style="margin-bottom:0.5rem">
-          <div class="nav-logo-icon">⚓</div>
+          <div class="nav-logo-icon" style="background: transparent; box-shadow: none; overflow: hidden; width: 40px; height: 40px;">
+          <img src="assets/images/img/logoPolair.png" alt="Logo Polair" style="width: 100%; height: 100%; object-fit: contain;">
+        </div>
           <div class="nav-logo-text">
             <span class="brand">POLAIR</span>
             <span class="sub">Indramayu</span>
@@ -1125,14 +1130,14 @@
         <div class="sosmed-row" style="margin-top:1rem">
           <div class="social-wrapper">
             <!-- Instagram -->
-            <a href="#" target="_blank" class="social-icon-btn ig" title="Instagram">
+            <a href="https://www.instagram.com/satpolair_polresindramayu?stkn=c3V2MG9yajc4YzN5" target="_blank" class="social-icon-btn ig" title="Instagram">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
                 <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.036 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.487.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z"/>
               </svg>
             </a>
             
             <!-- Facebook -->
-            <a href="#" target="_blank" class="social-icon-btn fb" title="Facebook">
+            <a href="https://www.facebook.com/polair.indramayu?rdid=6GJBi4ElGZr7Wab8&share_url=https%253A%252F%252Fwww.facebook.com%252Fshare%252F1VqzNHEDi5%252F#" target="_blank" class="social-icon-btn fb" title="Facebook">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
                 <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/>
               </svg>
@@ -1156,7 +1161,6 @@
         <h4>Informasi</h4>
         <ul class="footer-links">
           <li><a href="pages/pengaduan.html" style="color:#f87171;font-weight:600;">🚨 Lapor Darurat</a></li>
-          <li><a href="#galeri">Galeri</a></li>
           <li><a href="#wilayah">Wilayah Kerja</a></li>
           <li><a href="#edukasi">Edukasi</a></li>
           <li><a href="#kontak">Kontak</a></li>
@@ -1177,8 +1181,12 @@
 
     <div class="footer-bottom">
       <p>© 2026 POLAIR Polres Indramayu. Hak cipta dilindungi. | Satuan Polisi Air — <a href="https://www.polri.go.id" target="_blank">Polri.go.id</a></p>
-      <p>🔒 Website Resmi Pemerintah | <a href="#beranda">Kembali ke atas ↑</a></p>
-    </div>
+     <p>
+                <span><i class="fas fa-lock"></i> Website Resmi Pemerintah</span> | 
+                <a href="#top">Kembali ke atas &uarr;</a> 
+                | <a href="pages/admin-login.html" class="link-login-admin"><i class="fas fa-user-shield"></i> Login Admin</a>
+            </p>
+        </div>
   </div>
 </footer>
 

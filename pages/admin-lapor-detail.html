@@ -102,7 +102,7 @@
 
       const meta = LaporanStore.statusMeta(laporan.status);
       const fotoHtml = (laporan.foto && laporan.foto.length > 0)
-        ? laporan.foto.map(() => `<div class="photo-item"><i class="fas fa-image"></i></div>`).join('')
+        ? laporan.foto.map(fotoData => `<img src="${fotoData}" alt="Foto Bukti" onclick="bukaGambarLengkap(this.src)" style="width: 110px; height: 110px; object-fit: cover; border-radius: var(--radius-sm); border: 1px solid var(--border); cursor: pointer;" title="Klik untuk perbesar">`).join('')
         : `<p style="color:var(--text-muted); font-size:0.85rem;">Tidak ada foto bukti dilampirkan.</p>`;
 
       container.innerHTML = `
@@ -161,6 +161,39 @@
       if (!reportId) return;
       LaporanStore.updateStatus(reportId, status);
       renderDetail(); // refresh badge & tombol tanpa reload halaman
+    }
+
+    function bukaGambarLengkap(srcBase64) {
+      // 1. Buat latar belakang gelap (overlay)
+      const overlay = document.createElement('div');
+      overlay.style.position = 'fixed';
+      overlay.style.top = '0';
+      overlay.style.left = '0';
+      overlay.style.width = '100vw';
+      overlay.style.height = '100vh';
+      overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.85)';
+      overlay.style.zIndex = '9999'; // Pastikan berada di atas semua elemen
+      overlay.style.display = 'flex';
+      overlay.style.justifyContent = 'center';
+      overlay.style.alignItems = 'center';
+      overlay.style.cursor = 'zoom-out'; // Kursor untuk menutup
+
+      // 2. Buat elemen gambar besar
+      const imgLengkap = document.createElement('img');
+      imgLengkap.src = srcBase64;
+      imgLengkap.style.maxWidth = '90%';
+      imgLengkap.style.maxHeight = '90%';
+      imgLengkap.style.borderRadius = '8px';
+      imgLengkap.style.boxShadow = '0 5px 20px rgba(0,0,0,0.5)';
+
+      // 3. Fungsi untuk menutup pop-up saat latar belakang/gambar diklik
+      overlay.onclick = function() {
+        document.body.removeChild(overlay);
+      };
+
+      // 4. Masukkan ke dalam layar
+      overlay.appendChild(imgLengkap);
+      document.body.appendChild(overlay);
     }
   </script>
 </body>

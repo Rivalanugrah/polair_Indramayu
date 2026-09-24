@@ -19,112 +19,6 @@
       <div id="admin-topbar-mount"></div>
 
       <section class="admin-content">
-        <!-- ============ CARD 1: INFORMASI PROFIL ============ -->
-        <div class="admin-card">
-          <div class="card-header">
-            <h4><i class="fas fa-user"></i> Informasi Profil</h4>
-          </div>
-          <p style="color:var(--text-secondary); font-size:0.88rem; margin-top:-8px; margin-bottom:20px;">
-            Ubah username akun admin Anda. Anda perlu memasukkan password saat ini untuk konfirmasi.
-          </p>
-
-          <div class="admin-alert success" id="usernameSuccess" style="display:none;">
-            <i class="fas fa-circle-check"></i> <span id="usernameSuccessText"></span>
-          </div>
-          <div class="admin-alert error" id="usernameError" style="display:none;">
-            <i class="fas fa-circle-exclamation"></i> <span id="usernameErrorText"></span>
-          </div>
-
-          <form id="usernameForm">
-            <div class="form-row">
-              <div class="form-group">
-                <label for="currentUsernameDisplay">Username Saat Ini</label>
-                <input type="text" id="currentUsernameDisplay" readonly style="opacity:0.6; cursor:not-allowed;">
-              </div>
-              <div class="form-group">
-                <label for="newUsername">Username Baru</label>
-                <input type="text" id="newUsername" placeholder="Minimal 3 karakter" required>
-              </div>
-            </div>
-            <div class="form-group" style="max-width:340px;">
-              <label for="usernameConfirmPassword">Password Saat Ini (konfirmasi)</label>
-              <input type="password" id="usernameConfirmPassword" placeholder="Wajib diisi untuk menyimpan perubahan" required>
-            </div>
-            <div class="form-actions" style="justify-content:flex-start; border-top:none; padding-top:0; margin-top:10px;">
-              <button type="submit" class="btn-save"><i class="fas fa-floppy-disk"></i> Simpan Username</button>
-            </div>
-          </form>
-        </div>
-
-        <!-- ============ CARD 2: KEAMANAN / UBAH PASSWORD ============ -->
-        <div class="admin-card">
-          <div class="card-header">
-            <h4><i class="fas fa-lock"></i> Keamanan / Ubah Password</h4>
-          </div>
-          <p style="color:var(--text-secondary); font-size:0.88rem; margin-top:-8px; margin-bottom:20px;">
-            Ubah password akun admin Anda untuk menjaga keamanan akun.
-          </p>
-
-          <div class="admin-alert success" id="passwordSuccess" style="display:none;">
-            <i class="fas fa-circle-check"></i> <span id="passwordSuccessText"></span>
-          </div>
-          <div class="admin-alert error" id="passwordError" style="display:none;">
-            <i class="fas fa-circle-exclamation"></i> <span id="passwordErrorText"></span>
-          </div>
-
-          <form id="passwordForm">
-            <div class="form-row">
-              <div class="form-group">
-                <label for="passwordCurrent">Password Saat Ini</label>
-                <input type="password" id="passwordCurrent" placeholder="Masukkan password saat ini" required>
-              </div>
-              <div class="form-group">
-                <label for="passwordNew">Password Baru</label>
-                <input type="password" id="passwordNew" placeholder="Minimal 6 karakter" required>
-              </div>
-            </div>
-            <div class="form-actions" style="justify-content:flex-start; border-top:none; padding-top:0; margin-top:10px;">
-              <button type="submit" class="btn-save"><i class="fas fa-key"></i> Perbarui Password</button>
-            </div>
-          </form>
-        </div>
-
-        <!-- ============ TAMBAH AKUN ADMIN BARU ============ -->
-        <div class="admin-card" id="add-admin-section">
-          <div class="card-header">
-            <h4><i class="fas fa-user-plus"></i> Tambah Akun Admin Baru</h4>
-          </div>
-          <p style="color:var(--text-secondary); font-size:0.88rem; margin-top:-8px; margin-bottom:20px;">
-            Tambahkan akun admin baru untuk memungkinkan beberapa orang mengakses panel admin. Akun baru dapat login langsung menggunakan kredensial yang dibuat.
-          </p>
-
-          <div class="admin-alert success" id="addAdminSuccess" style="display:none;">
-            <i class="fas fa-circle-check"></i> <span id="addAdminSuccessText"></span>
-          </div>
-          <div class="admin-alert error" id="addAdminError" style="display:none;">
-            <i class="fas fa-circle-exclamation"></i> <span id="addAdminErrorText"></span>
-          </div>
-
-          <form id="addAdminForm">
-            <div class="form-row">
-              <div class="form-group">
-                <label for="newAdminUsername">Username Baru</label>
-                <input type="text" id="newAdminUsername" placeholder="Minimal 3 karakter, unik" required>
-              </div>
-              <div class="form-group">
-                <label for="newAdminPassword">Password</label>
-                <input type="password" id="newAdminPassword" placeholder="Minimal 6 karakter" required>
-              </div>
-            </div>
-            <div class="form-group" style="max-width:340px;">
-              <label for="newAdminPasswordConfirm">Konfirmasi Password</label>
-              <input type="password" id="newAdminPasswordConfirm" placeholder="Masukkan password yang sama" required>
-            </div>
-            <div class="form-actions" style="justify-content:flex-start; border-top:none; padding-top:0; margin-top:10px;">
-              <button type="submit" class="btn-add"><i class="fas fa-user-plus"></i> Tambah Akun</button>
-            </div>
-          </form>
-        </div>
 
         <!-- ============ DAFTAR AKUN ADMIN ============ -->
         <div class="admin-card">
@@ -152,71 +46,20 @@
   <script src="../assets/js/db.js?v=20260920"></script>
   <script src="../assets/js/auth.js?v=20260920"></script>
   <script src="../assets/js/admin-shell.js?v=20260920"></script>
+  <script src="../assets/js/db.js?v=20260920"></script>
+  <script src="../assets/js/auth.js?v=20260920"></script>
+  <script src="../assets/js/admin-shell.js?v=20260920"></script>
   <script>
     // ── Inisialisasi ──
     document.addEventListener('DOMContentLoaded', function () {
-      // Tampilkan username saat ini di field readonly
-      const user = authCurrentUser();
-      if (user) {
-        document.getElementById('currentUsernameDisplay').value = user.username;
-      }
-      // Render daftar akun
       renderAdminList();
-    });
-
-    // ── Form Ubah Username ──
-    document.getElementById('usernameForm').addEventListener('submit', function (e) {
-      e.preventDefault();
-      const confirmPassword = document.getElementById('usernameConfirmPassword').value;
-      const newUsername = document.getElementById('newUsername').value.trim();
-      const successBox = document.getElementById('usernameSuccess');
-      const errorBox = document.getElementById('usernameError');
-
-      const result = authChangeUsername(confirmPassword, newUsername);
-
-      if (result.ok) {
-        document.getElementById('usernameSuccessText').textContent = result.message;
-        successBox.style.display = 'flex';
-        errorBox.style.display = 'none';
-        document.getElementById('usernameForm').reset();
-        // Kembalikan username saat ini setelah reset
-        const user = authCurrentUser();
-        if (user) {
-          document.getElementById('currentUsernameDisplay').value = user.username;
-        }
-        renderAdminList(); // Refresh tabel daftar akun
-      } else {
-        document.getElementById('usernameErrorText').textContent = result.message;
-        errorBox.style.display = 'flex';
-        successBox.style.display = 'none';
-      }
-    });
-
-    // ── Form Ubah Password ──
-    document.getElementById('passwordForm').addEventListener('submit', function (e) {
-      e.preventDefault();
-      const currentPassword = document.getElementById('passwordCurrent').value;
-      const newPassword = document.getElementById('passwordNew').value;
-      const successBox = document.getElementById('passwordSuccess');
-      const errorBox = document.getElementById('passwordError');
-
-      const result = authChangePassword(currentPassword, newPassword);
-
-      if (result.ok) {
-        document.getElementById('passwordSuccessText').textContent = result.message + ' Gunakan password baru saat login berikutnya.';
-        successBox.style.display = 'flex';
-        errorBox.style.display = 'none';
-        document.getElementById('passwordForm').reset();
-      } else {
-        document.getElementById('passwordErrorText').textContent = result.message;
-        errorBox.style.display = 'flex';
-        successBox.style.display = 'none';
-      }
     });
 
     // ── Render Daftar Akun Admin ──
     function renderAdminList() {
       const tbody = document.getElementById('adminListBody');
+      if (!tbody) return;
+      
       const admins = AdminStore.all();
       const currentUser = authCurrentUser();
 
@@ -232,7 +75,7 @@
       });
 
       if (allAccounts.length === 0) {
-        tbody.innerHTML = '<tr class="empty-row"><td colspan="4"><i class="fas fa-users" style="font-size:1.4rem;display:block;margin-bottom:8px;"></i>Belum ada akun tambahan.</td></tr>';
+        tbody.innerHTML = '<tr class="empty-row"><td colspan="4"><i class="fas fa-users" style="font-size:1.4rem;display:block;margin-bottom:8px;"></i>Belum ada akun.</td></tr>';
         return;
       }
 
@@ -257,70 +100,6 @@
         `;
       }).join('');
     }
-
-    // ── Form Tambah Akun Admin Baru ──
-    document.getElementById('addAdminForm').addEventListener('submit', function (e) {
-      e.preventDefault();
-
-      const username = document.getElementById('newAdminUsername').value.trim();
-      const password = document.getElementById('newAdminPassword').value;
-      const passwordConfirm = document.getElementById('newAdminPasswordConfirm').value;
-      const successBox = document.getElementById('addAdminSuccess');
-      const errorBox = document.getElementById('addAdminError');
-
-      // Validasi
-      if (!username) {
-        document.getElementById('addAdminErrorText').textContent = 'Username tidak boleh kosong.';
-        errorBox.style.display = 'flex';
-        successBox.style.display = 'none';
-        return;
-      }
-
-      if (username.length < 3) {
-        document.getElementById('addAdminErrorText').textContent = 'Username minimal 3 karakter.';
-        errorBox.style.display = 'flex';
-        successBox.style.display = 'none';
-        return;
-      }
-
-      if (password.length < 6) {
-        document.getElementById('addAdminErrorText').textContent = 'Password minimal 6 karakter.';
-        errorBox.style.display = 'flex';
-        successBox.style.display = 'none';
-        return;
-      }
-
-      if (password !== passwordConfirm) {
-        document.getElementById('addAdminErrorText').textContent = 'Password dan konfirmasi password tidak cocok.';
-        errorBox.style.display = 'flex';
-        successBox.style.display = 'none';
-        return;
-      }
-
-      // Cek apakah username sudah ada di default credentials
-      const defaultCred = authGetCredentials();
-      if (username.toLowerCase() === defaultCred.username.toLowerCase()) {
-        document.getElementById('addAdminErrorText').textContent = 'Username sudah digunakan oleh akun default. Pilih username lain.';
-        errorBox.style.display = 'flex';
-        successBox.style.display = 'none';
-        return;
-      }
-
-      // Tambahkan akun
-      const result = AdminStore.add({ username, password });
-
-      if (result.ok) {
-        document.getElementById('addAdminSuccessText').textContent = result.message + ' Akun "' + username + '" dapat langsung digunakan untuk login.';
-        successBox.style.display = 'flex';
-        errorBox.style.display = 'none';
-        document.getElementById('addAdminForm').reset();
-        renderAdminList(); // Refresh tabel
-      } else {
-        document.getElementById('addAdminErrorText').textContent = result.message;
-        errorBox.style.display = 'flex';
-        successBox.style.display = 'none';
-      }
-    });
 
     // ── Hapus Akun Admin ──
     function deleteAdmin(id, username) {

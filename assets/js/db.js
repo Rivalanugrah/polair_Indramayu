@@ -95,19 +95,19 @@ Dengan armada modern dan personel terlatih, POLAIR Indramayu terus berinovasi da
         "Meningkatkan sarana-prasana armada dan peralatan modern"
       ],
       nilai: [
-        { icon: "🛡️", title: "Integritas", desc: "Jujur, berani, dan bertanggung jawab dalam setiap tindakan" },
-        { icon: "⚖️", title: "Profesionalisme", desc: "Kompeten, handal, dan terlatih dalam tugas kepolisian" },
-        { icon: "🤝", title: "Kemanusiaan", desc: "Menjunjung hak asasi dan melayani dengan tulus" },
-        { icon: "🌊", title: "Kepedulian", desc: "Peduli terhadap keselamatan masyarakat perairan" },
-        { icon: "🏅", title: "Sinergi", desc: "Bekerja sama lintas instansi demi keamanan bersama" }
+        { title: "Integritas", desc: "Jujur, berani, dan bertanggung jawab dalam setiap tindakan" },
+        { title: "Profesionalisme", desc: "Kompeten, handal, dan terlatih dalam tugas kepolisian" },
+        { title: "Kemanusiaan", desc: "Menjunjung hak asasi dan melayani dengan tulus" },
+        { title: "Kepedulian", desc: "Peduli terhadap keselamatan masyarakat perairan" },
+        { title: "Sinergi", desc: "Bekerja sama lintas instansi demi keamanan bersama" }
       ],
       tugfung: [
-        { icon: "🚢", title: "Patroli Perairan", desc: "Patroli rutin di seluruh wilayah perairan untuk menjaga keamanan dan ketertiban" },
-        { icon: "🚨", title: "Penegakan Hukum", desc: "Menindak pelanggaran hukum di perairan dan jalur pelayaran" },
-        { icon: "🆘", title: "SAR Perairan", desc: "Operasi pencarian dan penyelamatan korban kecelakaan di laut" },
-        { icon: "🎓", title: "Sosialisasi", desc: "Edukasi keselamatan pelayaran kepada nelayan dan masyarakat pesisir" },
-        { icon: "🔍", title: "Penyelidikan", desc: "Penyelidikan kasus kejahatan dan kecelakaan di wilayah perairan" },
-        { icon: "🤝", title: "Kemitraan", desc: "Koordinasi lintas instansi: TNI AL, KPLP, Basarnas, dan Dishub" }
+        { title: "Patroli Perairan", desc: "Patroli rutin di seluruh wilayah perairan untuk menjaga keamanan dan ketertiban" },
+        { title: "Penegakan Hukum", desc: "Menindak pelanggaran hukum di perairan dan jalur pelayaran" },
+        { title: "SAR Perairan", desc: "Operasi pencarian dan penyelamatan korban kecelakaan di laut" },
+        { title: "Sosialisasi", desc: "Edukasi keselamatan pelayaran kepada nelayan dan masyarakat pesisir" },
+        { title: "Penyelidikan", desc: "Penyelidikan kasus kejahatan dan kecelakaan di wilayah perairan" },
+        { title: "Kemitraan", desc: "Koordinasi lintas instansi: TNI AL, KPLP, Basarnas, dan Dishub" }
       ],
       kontak: {
         telepon: "(0234) 201234",
@@ -216,46 +216,49 @@ const LaporanStore = {
 };
 
 /* ================= ARMADA ================= */
-const ArmadaStore = {
-  all() { return dbRead().armada; },
-  getById(id) { return dbRead().armada.find(a => a.id === id) || null; },
-  add(payload) {
-    const data = dbRead();
-    const id = dbNextId('ARM', data.armada);
-    const item = Object.assign({ id, status: 'siap' }, payload);
-    data.armada.push(item);
-    dbWrite(data);
-    return item;
-  },
-  update(id, payload) {
-    const data = dbRead();
-    const item = data.armada.find(a => a.id === id);
-    if (!item) return null;
-    Object.assign(item, payload);
-    dbWrite(data);
-    return item;
-  },
-  remove(id) {
-    const data = dbRead();
-    data.armada = data.armada.filter(a => a.id !== id);
-    dbWrite(data);
-  },
-  statusMeta(status) {
-    return status === 'perbaikan'
-      ? { label: 'Dalam Perbaikan', badgeClass: 'badge-warning' }
-      : { label: 'Siap Operasi', badgeClass: 'badge-success' };
-  }
-};
-
-/* ================= ARMADA (HALAMAN PUBLIK) ================= */
 const ARMADA_KEY = 'polair_armada_data';
 
 function getArmadaSeedData() {
   return [
-    { id: 'ARM-PUB-001', nama: 'KP Indramayu - I', kategori: 'KAPAL PATROLI', jenis: 'Kapal Patroli Cepat', panjang: '28 m', kecepatan: '25 knot', mesin: '2x Diesel', abk: '12 orang', jangkauan: '-', status: 'siap', deskripsi: 'Kapal patroli cepat untuk pengawasan dan penegakan hukum di wilayah perairan pantai utara Indramayu. Dilengkapi peralatan navigasi modern dan komunikasi radio.', foto: '' },
-    { id: 'ARM-PUB-002', nama: 'KP Rescue - II', kategori: 'SAR', jenis: 'Kapal SAR & Penyelamatan', panjang: '22 m', kecepatan: '20 knot', mesin: '-', abk: '15 orang', jangkauan: '150 nm', status: 'siap', deskripsi: 'Kapal khusus operasi SAR dilengkapi peralatan penyelamatan, perahu karet, dan medis darurat. Siap merespons darurat di laut dalam 15 menit.', foto: '' },
-    { id: 'ARM-PUB-003', nama: 'RHIB Falcon - III', kategori: 'RIGIT', jenis: 'Rigid Hull Inflatable Boat', panjang: '8.5 m', kecepatan: '45 knot', mesin: '2x Yamaha', abk: '6 orang', jangkauan: '-', status: 'siap', deskripsi: 'Perahu cepat RHIB untuk respons darurat, pengejaran, dan operasi khusus di perairan dangkal. Mampu beroperasi dalam kondisi gelombang tinggi.', foto: '' },
-    { id: 'ARM-PUB-004', nama: 'KP Cirebon - IV', kategori: 'KOMANDO', jenis: 'Kapal Komando & Koordinasi', panjang: '38 m', kecepatan: '18 knot', mesin: '-', abk: '20 orang', jangkauan: '7 hari', status: 'siap', deskripsi: 'Kapal utama komando dilengkapi ruang operasi, sistem komunikasi canggih, dan fasilitas akomodasi untuk operasi jangka panjang di laut lepas.', foto: '' }
+    {
+      id: 'ARM-001',
+      nama: 'KP Indramayu — I',
+      kode: 'KP Indramayu — I',
+      kategori: 'KAPAL PATROLI',
+      jenis: 'Kapal Patroli Cepat',
+      kapasitas: '12 Personel',
+      panjang: '28 m',
+      kecepatan: '25 knot',
+      status: 'siap',
+      deskripsi: 'Kapal patroli cepat untuk pengawasan dan penegakan hukum di wilayah perairan pantai utara Indramayu. Dilengkapi peralatan navigasi radar dan radio maritim.',
+      gambar: ''
+    },
+    {
+      id: 'ARM-002',
+      nama: 'KP Rescue — II',
+      kode: 'KP Rescue — II',
+      kategori: 'SAR',
+      jenis: 'Kapal SAR & Penyelamatan',
+      kapasitas: '15 Personel',
+      panjang: '22 m',
+      kecepatan: '20 knot',
+      status: 'siap',
+      deskripsi: 'Kapal khusus operasi pencarian dan pertolongan (SAR) dilengkapi peralatan evakuasi medis darurat, perahu karet pendukung, dan perlengkapan selam.',
+      gambar: ''
+    },
+    {
+      id: 'ARM-003',
+      nama: 'RHIB Falcon — III',
+      kode: 'RHIB Falcon — III',
+      kategori: 'RIGIT',
+      jenis: 'Rigid Hull Inflatable Boat',
+      kapasitas: '6 Personel',
+      panjang: '8.5 m',
+      kecepatan: '45 knot',
+      status: 'siap',
+      deskripsi: 'Perahu cepat interseptor taktis untuk respon darurat, pengejaran pelanggar hukum laut, dan manuver patroli di perairan dangkal serta muara sungai.',
+      gambar: ''
+    }
   ];
 }
 
@@ -267,9 +270,14 @@ function getArmadaData() {
     return seed;
   }
   try {
-    return JSON.parse(raw);
+    const parsed = JSON.parse(raw);
+    if (!Array.isArray(parsed) || parsed.length === 0) {
+      const seed = getArmadaSeedData();
+      localStorage.setItem(ARMADA_KEY, JSON.stringify(seed));
+      return seed;
+    }
+    return parsed;
   } catch (e) {
-    console.error('polair armada: data korup, reset ke seed.', e);
     const seed = getArmadaSeedData();
     localStorage.setItem(ARMADA_KEY, JSON.stringify(seed));
     return seed;
@@ -278,19 +286,38 @@ function getArmadaData() {
 
 function saveArmadaData(data) {
   localStorage.setItem(ARMADA_KEY, JSON.stringify(data));
+  if (typeof BroadcastChannel !== 'undefined') {
+    try {
+      const ch = new BroadcastChannel('polair_sync');
+      ch.postMessage({ type: 'armada_updated' });
+    } catch (e) {}
+  }
 }
 
-const ArmadaDataStore = {
+const ArmadaStore = {
   all() { return getArmadaData(); },
-  getById(id) { return this.all().find(a => a.id === id) || null; },
+  getById(id) { return getArmadaData().find(a => a.id === id) || null; },
   add(payload) {
     const data = getArmadaData();
     const maxId = data.reduce((max, item) => {
-      const num = parseInt(item.id.replace('ARM-PUB-', ''), 10);
+      const num = parseInt(String(item.id).replace(/\D/g, ''), 10);
       return isNaN(num) ? max : Math.max(max, num);
     }, 0);
-    const id = 'ARM-PUB-' + String(maxId + 1).padStart(3, '0');
-    const item = Object.assign({ id, status: 'siap', foto: '' }, payload);
+    const id = 'ARM-' + String(maxId + 1).padStart(3, '0');
+    const name = payload.kode || payload.nama || 'Kapal POLAIR';
+    const item = Object.assign({
+      id,
+      nama: name,
+      kode: name,
+      kategori: payload.kategori || 'KAPAL PATROLI',
+      jenis: payload.jenis || '-',
+      kapasitas: payload.kapasitas || '-',
+      panjang: payload.panjang || '-',
+      kecepatan: payload.kecepatan || '-',
+      status: payload.status || 'siap',
+      deskripsi: payload.deskripsi || '',
+      gambar: payload.gambar || payload.foto || ''
+    }, payload, { id, nama: name, kode: name });
     data.push(item);
     saveArmadaData(data);
     return item;
@@ -299,7 +326,8 @@ const ArmadaDataStore = {
     const data = getArmadaData();
     const item = data.find(a => a.id === id);
     if (!item) return null;
-    Object.assign(item, payload);
+    const name = payload.kode || payload.nama || item.nama || item.kode;
+    Object.assign(item, payload, { nama: name, kode: name });
     item.updatedAt = new Date().toISOString();
     saveArmadaData(data);
     return item;
@@ -314,15 +342,18 @@ const ArmadaDataStore = {
       : { label: 'Siap Operasi', badgeClass: 'badge-success', icon: 'fa-check-circle' };
   },
   kategoriMeta(kategori) {
-    const metas = {
-      'KAPAL PATROLI': { label: 'Kapal Patroli', color: '#003087' },
-      'SAR': { label: 'SAR', color: '#b45309' },
-      'RIGIT': { label: 'Rigit', color: '#1e3a5f' },
-      'KOMANDO': { label: 'Komando', color: '#1e1e4a' }
-    };
-    return metas[kategori] || { label: kategori, color: '#003087' };
+    const kat = (kategori || '').toUpperCase();
+    if (kat.includes('SAR')) {
+      return { label: 'SAR', badgeClass: 'badge-warning', color: '#f59e0b', visualBg: 'linear-gradient(135deg,#001540,#002070)' };
+    } else if (kat.includes('RIGIT') || kat.includes('RIB') || kat.includes('RHIB')) {
+      return { label: 'Rigit', badgeClass: 'badge-info', color: '#00b4d8', visualBg: 'linear-gradient(135deg,#0a1830,#001a5e)' };
+    } else {
+      return { label: 'Kapal Patroli', badgeClass: 'badge-primary', color: '#38bdf8', visualBg: 'linear-gradient(135deg,#001a5e,#003087)' };
+    }
   }
 };
+
+const ArmadaDataStore = ArmadaStore;
 
 /* ================= PESAN MASUK (kontak) ================= */
 const PesanStore = {

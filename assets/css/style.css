@@ -218,7 +218,7 @@ h1,h2,h3,h4,h5,h6 {
 .nav-cta:hover {
   transform: translateY(-1px);
   box-shadow: 0 0 40px rgba(0,180,216,0.5) !important;
-  background: rgba(0,180,216,0.1) !important; /* override */
+  background: linear-gradient(135deg, var(--primary-light) 0%, var(--accent) 100%) !important;
 }
 
 .hamburger {
@@ -2894,8 +2894,7 @@ footer {
   .armada-large-img {
     height: 300px;
   }
-<<<<<<< HEAD
-
+}
 
 /* =========================================
    ADMIN PANEL LAYOUT STYLES
@@ -2994,6 +2993,13 @@ footer {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }
 
-=======
->>>>>>> 506b8546327d85654ea5078ffb37e48809175be4
+.link-login-admin {
+    color: inherit;
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: color 0.3s ease; /* Memberikan efek transisi warna yang halus */
+}
+
+.link-login-admin:hover {
+    color: #00a8ff; /* Ini adalah kode warna biru, bisa diganti sesuai selera */
 }

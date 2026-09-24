@@ -371,11 +371,14 @@ function submitForm(e) {
   e.preventDefault();
   const form = document.getElementById('kontakForm');
   const success = document.getElementById('formSuccess');
-
-  // Simulate submit
   const btn = form.querySelector('button[type="submit"]');
-  btn.textContent = '⏳ Mengirim...';
-  btn.disabled = true;
+  const originalBtnText = btn ? btn.textContent : 'Kirim Pesan';
+
+  // Ubah status tombol saat mengirim
+  if (btn) {
+    btn.textContent = '⏳ Mengirim...';
+    btn.disabled = true;
+  }
 
   // Simpan pesan ke penyimpanan bersama agar muncul di Admin > Pesan Masuk
   if (typeof PesanStore !== 'undefined') {
@@ -388,10 +391,25 @@ function submitForm(e) {
     });
   }
 
+  // 1. Tampilkan notifikasi sukses setelah 1,5 detik
   setTimeout(() => {
     form.style.display = 'none';
     success.style.display = 'block';
     success.style.animation = 'fadeInUp 0.5s ease';
+
+    // 2. Sembunyikan notifikasi dan kembalikan form setelah 3 detik
+    setTimeout(() => {
+      form.reset(); // Kosongkan form
+      if (btn) {
+        btn.textContent = originalBtnText; // Kembalikan teks tombol
+        btn.disabled = false; // Aktifkan tombol lagi
+      }
+
+      success.style.display = 'none';
+      form.style.display = 'block';
+      form.style.animation = 'fadeInUp 0.5s ease';
+    }, 3000); // Tampil selama 3 detik
+
   }, 1500);
 }
 
@@ -492,10 +510,22 @@ function initKegiatanFilter() {
 
 document.addEventListener('DOMContentLoaded', () => {
   initKegiatanFilter();
+  renderPublicProfil();
   setTimeout(renderDynamicKegiatan, 300);
+  setTimeout(renderDynamicArmada, 300);
 });
 
 if (typeof BroadcastChannel !== 'undefined') {
+  const syncChannel = new BroadcastChannel('polair_sync');
+  syncChannel.addEventListener('message', (e) => {
+    if (e.data && e.data.type === 'armada_updated') {
+      renderDynamicArmada();
+    }
+    if (e.data && e.data.type === 'profil_updated') {
+      renderPublicProfil();
+    }
+  });
+
   const channel = new BroadcastChannel('polair_kegiatan_sync');
   channel.addEventListener('message', (e) => {
     if (e.data.type === 'kegiatan_updated') {
@@ -508,59 +538,213 @@ if (typeof BroadcastChannel !== 'undefined') {
   });
 }
 
-// ── Render Dynamic Galeri Cards ────────────────────────────────
-function renderDynamicGaleri() {
-  const grid = document.getElementById('galeriBoxGrid');
-  if (!grid) return;
-  
-  const staticCards = grid.querySelectorAll('.galeri-box-card[data-static]');
-  if (staticCards.length > 0) {
-    staticCards.forEach(card => card.remove());
+// ── Render Semua Data Profil Publik ──────────────────────────
+function renderPublicProfil() {
+  if (typeof ProfilStore === 'undefined') return;
+  const profil = ProfilStore.get();
+  if (!profil) return;
+
+  // -- Sejarah --
+  if (profil.sejarah) {
+    const sejarahEl = document.getElementById('publicSejarahText');
+    if (sejarahEl) {
+      // Pisah paragraf per baris kosong (\n\n) atau render satu blok
+      const paras = profil.sejarah.split(/\n\n+/).filter(Boolean);
+      if (paras.length > 1) {
+        sejarahEl.innerHTML = paras.map(p => '<p>' + escapeHtml(p.trim()) + '</p>').join('');
+      } else {
+        // Satu paragraf — bagi per \n jadi <br>
+        sejarahEl.innerHTML = '<p>' + escapeHtml(profil.sejarah.trim()).replace(/\n/g, '<br>') + '</p>';
+      }
+    }
+    // Sembunyikan paragraf bawah statis saat ada data dinamis
+    const bottom = document.getElementById('publicSejarahBottom');
+    if (bottom) bottom.style.display = 'none';
   }
-  
-  const existingDynCards = grid.querySelectorAll('.galeri-box-card:not([data-static])');
-  if (existingDynCards.length > 0) return;
-  
-  if (typeof GaleriStore === 'undefined') {
-    console.warn('GaleriStore belum tersedia');
+
+  // -- Quote --
+  if (profil.quote) {
+    const quoteEl = document.getElementById('publicQuote');
+    if (quoteEl) quoteEl.textContent = '"' + profil.quote + '"';
+  }
+
+  // -- Visi --
+  if (profil.visi) {
+    const visiEl = document.getElementById('publicVisiText');
+    if (visiEl) visiEl.textContent = '"' + profil.visi + '"';
+  }
+
+  // -- Misi --
+  const misi = profil.misi;
+  if (misi && misi.length > 0) {
+    const misiEl = document.getElementById('publicMisiList');
+    if (misiEl) {
+      misiEl.innerHTML = misi.map(m => '<li>' + escapeHtml(m) + '</li>').join('');
+    }
+  }
+
+  // -- Nilai --
+  const nilai = profil.nilai;
+  if (nilai && nilai.length > 0) {
+    const nilaiEl = document.getElementById('publicNilaiList');
+    if (nilaiEl) {
+      nilaiEl.innerHTML = nilai.map(n => {
+        const title = escapeHtml(n.title || '');
+        const desc  = escapeHtml(n.desc  || '');
+        return '<li><strong>' + title + '</strong>' + (desc ? ' — ' + desc : '') + '</li>';
+      }).join('');
+    }
+  }
+
+  // -- Tugas & Fungsi --
+  const tugfung = profil.tugfung;
+  if (tugfung && tugfung.length > 0) {
+    const tugfungEl = document.getElementById('publicTugfungGrid');
+    if (tugfungEl) {
+      tugfungEl.innerHTML = tugfung.map(t => {
+        return '<div class="tugfung-item">' +
+          '<div><h4>' + escapeHtml(t.title || '') + '</h4>' +
+          '<p>' + escapeHtml(t.desc || '') + '</p></div>' +
+        '</div>';
+      }).join('');
+    }
+  }
+
+  // -- Kontak --
+  const kontak = profil.kontak || {};
+
+  if (kontak.telepon) {
+    const tel = kontak.telepon;
+    const telEl = document.getElementById('publicKontakTeleponText');
+    if (telEl) telEl.textContent = tel + ' — Siaga 24 Jam';
+    const telLink = document.getElementById('publicKontakTelepon');
+    if (telLink) telLink.href = 'tel:' + tel.replace(/[^+\d]/g, '');
+  }
+
+  if (kontak.whatsapp) {
+    const wa = kontak.whatsapp;
+    const waEl = document.getElementById('publicKontakWaText');
+    if (waEl) waEl.textContent = wa;
+    const waLink = document.getElementById('publicKontakWa');
+    if (waLink) {
+      const waNum = wa.replace(/[^\d]/g, '');
+      waLink.href = 'https://wa.me/62' + waNum.replace(/^0/, '');
+    }
+  }
+
+  if (kontak.email) {
+    const emailEl = document.getElementById('publicKontakEmailText');
+    if (emailEl) emailEl.textContent = kontak.email;
+    const emailLink = document.getElementById('publicKontakEmail');
+    if (emailLink) emailLink.href = 'mailto:' + kontak.email;
+  }
+
+  if (kontak.alamat) {
+    const alamatEl = document.getElementById('publicKontakAlamat');
+    if (alamatEl) alamatEl.textContent = kontak.alamat;
+  }
+}
+
+// ── Render Dynamic Armada Cards ───────────────────────────────
+function renderDynamicArmada() {
+  const grid = document.getElementById('armadaGrid') || document.querySelector('#armada .armada-grid');
+  if (!grid) return;
+
+  if (typeof ArmadaStore === 'undefined') {
+    console.warn('ArmadaStore belum tersedia');
     return;
   }
-  
-  const galeris = GaleriStore.all();
-  const filter = document.querySelector('.news-filter-btn.active')?.dataset.filter || 'all';
-  const filteredGaleris = filter === 'all' ? galeris : galeris.filter(g => g.kategori === filter);
-  
-  const katMeta = {
-    patroli: { label: 'Patroli Laut', color: '#00B4D8' },
-    sar: { label: 'Misi SAR', color: '#fde047' },
-    armada: { label: 'Kapal Armada', color: '#00B4D8' },
-    sosial: { label: 'Bakti Sosial', color: '#86efac' },
-    personel: { label: 'Personel', color: '#a5b4fc' }
-  };
-  
-  // SVG placeholders untuk setiap kategori
-  const svgPlaceholders = {
-    patroli: '<svg viewBox="0 0 360 220" xmlns="http://www.w3.org/2000/svg"><rect width="360" height="220" fill="#061226"/><ellipse cx="180" cy="140" rx="160" ry="70" fill="rgba(0,180,216,0.15)"/><path d="M0,150 Q90,135 180,145 Q270,155 360,148 L360,220 L0,220 Z" fill="#003087"/><path d="M50,135 L280,135 L300,150 L270,165 L65,165 Z" fill="#001a5e" stroke="rgba(0,180,216,0.7)" stroke-width="1.5"/><rect x="110" y="95" width="120" height="42" rx="3" fill="#002b75"/><line x1="170" y1="55" x2="170" y2="95" stroke="white" stroke-width="2"/><circle cx="170" cy="55" r="10" fill="none" stroke="rgba(0,180,216,0.8)" stroke-width="1.5" stroke-dasharray="3,2"/><text x="180" y="152" font-family="Arial" font-size="9" font-weight="bold" fill="white" letter-spacing="2" text-anchor="middle">POLISI AIR</text></svg>',
-    sar: '<svg viewBox="0 0 360 220" xmlns="http://www.w3.org/2000/svg"><rect width="360" height="220" fill="#0b172a"/><path d="M0,130 Q90,160 180,130 Q270,100 360,140 L360,220 L0,220 Z" fill="#002870"/><ellipse cx="180" cy="140" rx="45" ry="25" fill="#f97316" stroke="#ea580c" stroke-width="3"/><ellipse cx="180" cy="140" rx="30" ry="14" fill="#fdba74"/><circle cx="180" cy="120" r="10" fill="#0284c7"/><circle cx="280" cy="80" r="30" fill="none" stroke="#ef4444" stroke-width="7"/><path d="M280,50 L280,110 M250,80 L310,80" stroke="white" stroke-width="3"/></svg>',
-    armada: '<svg viewBox="0 0 360 220" xmlns="http://www.w3.org/2000/svg"><rect width="360" height="220" fill="#021024"/><path d="M40,155 Q10,165 0,185" stroke="rgba(255,255,255,0.4)" stroke-width="6" fill="none" stroke-linecap="round"/><path d="M50,150 L280,150 L310,165 L270,175 L70,175 L30,160 Z" fill="#001e52" stroke="rgba(0,180,216,0.6)" stroke-width="1.5"/><path d="M45,150 L285,150" stroke="#0284c7" stroke-width="8" stroke-linecap="round"/><rect x="110" y="110" width="90" height="42" rx="3" fill="#003594"/></svg>',
-    sosial: '<svg viewBox="0 0 360 220" xmlns="http://www.w3.org/2000/svg"><rect width="360" height="220" fill="#071a1c"/><circle cx="180" cy="90" r="40" fill="rgba(34,197,94,0.15)" stroke="rgba(34,197,94,0.4)" stroke-width="1.5"/><text x="180" y="102" font-size="32" text-anchor="middle">&#x1F6DF;</text><rect x="40" y="150" width="280" height="60" rx="4" fill="#0c2e28"/></svg>',
-    personel: '<svg viewBox="0 0 360 220" xmlns="http://www.w3.org/2000/svg"><rect width="360" height="220" fill="#09142b"/><rect x="0" y="150" width="360" height="70" fill="#1e293b"/><circle cx="70" cy="100" r="10" fill="#38bdf8"/><rect x="62" y="112" width="16" height="38" rx="2" fill="#003087"/><circle cx="170" cy="100" r="10" fill="#38bdf8"/><rect x="162" y="112" width="16" height="38" rx="2" fill="#003087"/><circle cx="270" cy="100" r="10" fill="#38bdf8"/><rect x="262" y="112" width="16" height="38" rx="2" fill="#003087"/></svg>'
-  };
-  
-  filteredGaleris.forEach(g => {
-    const meta = katMeta[g.kategori] || katMeta.patroli;
-    const placeholder = svgPlaceholders[g.kategori] || svgPlaceholders.patroli;
-    const hasCustomImg = g.gambar && g.gambar.trim() !== '';
-    const tanggalFormatted = g.tanggal ? formatTanggalIndoShort(g.tanggal) : '';
-    const lokasiText = g.lokasi ? ' · ' + g.lokasi : '';
-    
-    const card = document.createElement('div');
-    card.className = 'galeri-box-card';
-    card.dataset.cat = g.kategori;
-    card.dataset.static = 'true';
-    card.innerHTML = '<div class="galeri-box-badge" style="color:' + meta.color + ';">' + meta.label + '</div><div class="galeri-box-img"><svg viewBox="0 0 360 220" xmlns="http://www.w3.org/2000/svg" class="galeri-thumb">' + (hasCustomImg ? '<image href="' + g.gambar + '" width="360" height="220" preserveAspectRatio="xMidYMid slice"/>' : placeholder.replace('<svg ', '<svg ')) + '</svg><div class="galeri-overlay"><div class="galeri-overlay-icon">&#x1F50D;</div></div></div><div class="galeri-box-info"><div class="galeri-box-title">' + escapeHtml(g.judul) + '</div><div class="galeri-box-date">&#x1F4C5; ' + tanggalFormatted + lokasiText + '</div></div>';
-    grid.appendChild(card);
-  });
+
+  const armadas = ArmadaStore.all();
+  if (!armadas || armadas.length === 0) {
+    grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--text-muted);"><i class="fas fa-ship" style="font-size:2rem;margin-bottom:12px;display:block;"></i>Belum ada data armada.</div>';
+    return;
+  }
+
+  grid.innerHTML = armadas.map(a => {
+    const meta = ArmadaStore.kategoriMeta(a.kategori);
+    const statusMeta = ArmadaStore.statusMeta(a.status);
+    const hasCustomImg = a.gambar && a.gambar.trim() !== '';
+
+    let defaultVisual = '';
+    const katUpper = (a.kategori || '').toUpperCase();
+    if (katUpper.includes('SAR')) {
+      defaultVisual = `<svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" style="width:90%;height:90%">
+        <rect x="10" y="115" width="300" height="50" rx="5" fill="#002060" stroke="rgba(0,180,216,0.5)" stroke-width="1.5"/>
+        <rect x="50" y="75" width="220" height="42" rx="3" fill="#001540" stroke="rgba(0,180,216,0.4)" stroke-width="1"/>
+        <rect x="90" y="40" width="140" height="37" rx="4" fill="#003087" stroke="rgba(0,180,216,0.6)" stroke-width="1.5"/>
+        <rect x="100" y="48" width="30" height="20" rx="2" fill="rgba(0,200,255,0.7)"/>
+        <rect x="138" y="48" width="30" height="20" rx="2" fill="rgba(0,200,255,0.6)"/>
+        <rect x="176" y="48" width="30" height="20" rx="2" fill="rgba(0,200,255,0.7)"/>
+        <line x1="160" y1="12" x2="160" y2="40" stroke="rgba(200,220,255,0.9)" stroke-width="2.5"/>
+        <circle cx="160" cy="12" r="8" fill="none" stroke="rgba(0,180,216,0.7)" stroke-width="1.5" stroke-dasharray="3,2"/>
+        <circle cx="160" cy="12" r="3" fill="rgba(0,180,216,0.9)"/>
+        <rect x="55" y="80" width="22" height="22" rx="2" fill="rgba(255,100,50,0.6)" stroke="rgba(255,150,100,0.5)" stroke-width="1"/>
+        <text x="66" y="95" font-family="Arial" font-size="9" fill="white" text-anchor="middle" font-weight="bold">SAR</text>
+        <text x="160" y="148" font-family="Arial" font-size="9" font-weight="bold" fill="rgba(255,255,255,0.7)" text-anchor="middle" letter-spacing="3">POLISI</text>
+        <path d="M0,135 Q80,128 160,133 Q240,138 320,135" stroke="rgba(0,180,216,0.3)" stroke-width="1.5" fill="none"/>
+      </svg>`;
+    } else if (katUpper.includes('RIGIT') || katUpper.includes('RIB') || katUpper.includes('RHIB')) {
+      defaultVisual = `<svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" style="width:90%;height:90%">
+        <path d="M30,120 L290,120 L310,135 L270,148 L50,148 L15,133 Z" fill="#002060" stroke="rgba(0,180,216,0.5)" stroke-width="1.5"/>
+        <rect x="80" y="80" width="160" height="42" rx="3" fill="#001540" stroke="rgba(0,180,216,0.4)" stroke-width="1"/>
+        <rect x="110" y="50" width="100" height="32" rx="3" fill="#003087" stroke="rgba(0,180,216,0.7)" stroke-width="2"/>
+        <rect x="118" y="57" width="22" height="16" rx="2" fill="rgba(0,200,255,0.8)"/>
+        <rect x="148" y="57" width="22" height="16" rx="2" fill="rgba(0,200,255,0.7)"/>
+        <rect x="178" y="57" width="16" height="16" rx="2" fill="rgba(0,200,255,0.6)"/>
+        <line x1="160" y1="18" x2="160" y2="50" stroke="rgba(200,220,255,0.8)" stroke-width="2"/>
+        <rect x="110" y="45" width="48" height="6" rx="2" fill="rgba(0,0,255,0.7)"/>
+        <rect x="160" y="45" width="50" height="6" rx="2" fill="rgba(255,30,30,0.7)"/>
+        <text x="160" y="138" font-family="Arial" font-size="9" font-weight="bold" fill="rgba(255,255,255,0.7)" text-anchor="middle" letter-spacing="3">POLISI</text>
+        <path d="M0,128 Q80,122 160,126 Q240,130 320,128" stroke="rgba(0,180,216,0.3)" stroke-width="1.5" fill="none"/>
+      </svg>`;
+    } else {
+      defaultVisual = `<svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" style="width:90%;height:90%">
+        <rect x="20" y="120" width="280" height="45" rx="4" fill="#001a5e" stroke="rgba(0,180,216,0.5)" stroke-width="1.5"/>
+        <rect x="70" y="80" width="180" height="42" rx="3" fill="#002060" stroke="rgba(0,180,216,0.4)" stroke-width="1"/>
+        <rect x="100" y="45" width="120" height="37" rx="3" fill="#003087" stroke="rgba(0,180,216,0.6)" stroke-width="1.5"/>
+        <rect x="115" y="55" width="25" height="18" rx="2" fill="rgba(0,180,216,0.7)"/>
+        <rect x="148" y="55" width="25" height="18" rx="2" fill="rgba(0,180,216,0.6)"/>
+        <rect x="181" y="55" width="25" height="18" rx="2" fill="rgba(0,180,216,0.7)"/>
+        <line x1="160" y1="15" x2="160" y2="45" stroke="rgba(200,220,255,0.8)" stroke-width="2"/>
+        <rect x="163" y="22" width="18" height="6" rx="1" fill="#CE1126"/>
+        <rect x="163" y="28" width="18" height="6" rx="1" fill="#FFFFFF"/>
+        <text x="160" y="152" font-family="Arial" font-size="10" font-weight="bold" fill="rgba(255,255,255,0.7)" text-anchor="middle" letter-spacing="3">POLISI</text>
+        <path d="M0,140 Q50,132 120,138 Q200,144 320,140" stroke="rgba(0,180,216,0.3)" stroke-width="1.5" fill="none"/>
+      </svg>`;
+    }
+
+    const visualHtml = hasCustomImg
+      ? `<img src="${a.gambar}" alt="${escapeHtml(a.nama || a.kode)}" style="width:100%;height:100%;object-fit:cover;" onerror="this.style.display='none'; if(this.nextElementSibling) this.nextElementSibling.style.display='flex';"><div class="default-svg-fallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;">${defaultVisual}</div>`
+      : defaultVisual;
+
+    const badgeBorderColor = meta.color || 'var(--accent)';
+
+    return `
+      <div class="kapal-card reveal">
+        <div class="kapal-visual" style="background:${meta.visualBg}">
+          ${visualHtml}
+          <div class="kapal-badge" style="border-color:${badgeBorderColor};color:${badgeBorderColor};">${escapeHtml(a.kategori || 'KAPAL PATROLI')}</div>
+        </div>
+        <div class="kapal-info">
+          <div class="kapal-name">${escapeHtml(a.nama || a.kode || 'Kapal Patroli')}</div>
+          <div class="kapal-type">${escapeHtml(a.jenis || '-')}</div>
+          <div class="kapal-specs">
+            <div class="spec-item"><div class="spec-label">Panjang</div><div class="spec-value">${escapeHtml(a.panjang || '-')}</div></div>
+            <div class="spec-item"><div class="spec-label">Kecepatan</div><div class="spec-value">${escapeHtml(a.kecepatan || '-')}</div></div>
+            <div class="spec-item"><div class="spec-label">Kapasitas</div><div class="spec-value">${escapeHtml(a.kapasitas || '-')}</div></div>
+            <div class="spec-item"><div class="spec-label">Status</div><div class="spec-value" style="color:${a.status === 'perbaikan' ? '#fbbf24' : '#4ade80'}">${statusMeta.label}</div></div>
+          </div>
+          <div class="kapal-divider"></div>
+          <p class="kapal-fungsi">${escapeHtml(a.deskripsi || 'Armada operasional Satuan Polisi Air Polres Indramayu.')}</p>
+        </div>
+      </div>
+    `;
+  }).join('');
+
+  if (typeof revealObserver !== 'undefined') {
+    grid.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+  }
 }
 
 function formatTanggalIndoShort(dateStr) {
@@ -578,48 +762,17 @@ function escapeHtml(text) {
   return div.innerHTML;
 }
 
-// Update filterGaleri function untuk mendukung dynamic cards
-var originalFilterGaleri = typeof filterGaleri !== 'undefined' ? filterGaleri : null;
-
-function filterGaleri(category, btn) {
-  if (btn) {
-    document.querySelectorAll('.news-filter-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-  }
-  
-  const filter = btn ? btn.dataset.filter : category;
-  
-  const cards = document.querySelectorAll('.galeri-box-card');
-  cards.forEach(card => {
-    const cardCat = card.getAttribute('data-cat');
-    if (filter === 'all' || cardCat === filter) {
-      card.style.display = 'flex';
-    } else {
-      card.style.display = 'none';
+// Otomatis scroll ke seksi tujuan saat berpindah dari halaman lain
+window.addEventListener('load', function() {
+  if (window.location.hash) {
+    var target = document.querySelector(window.location.hash);
+    if (target) {
+      setTimeout(function() {
+        target.scrollIntoView({ behavior: 'smooth' });
+        
+        // Hapus hash (#kontak) dari URL agar saat di-refresh tidak dipaksa balik ke Kontak
+        history.replaceState(null, null, window.location.pathname);
+      }, 500);
     }
-  });
-  
-  // Render dynamic galeri cards
-  if (typeof GaleriStore !== 'undefined' && document.getElementById('galeriBoxGrid')) {
-    setTimeout(renderDynamicGaleri, 100);
   }
-}
-
-// Initialize galeri filter
-document.addEventListener('DOMContentLoaded', () => {
-  setTimeout(renderDynamicGaleri, 300);
 });
-
-// Listen for updates from admin
-if (typeof BroadcastChannel !== 'undefined') {
-  const galeriChannel = new BroadcastChannel('polair_galeri_sync');
-  galeriChannel.addEventListener('message', (e) => {
-    if (e.data.type === 'galeri_updated') {
-      const grid = document.getElementById('galeriBoxGrid');
-      if (grid) {
-        grid.querySelectorAll('.galeri-box-card:not([data-static])').forEach(c => c.remove());
-        renderDynamicGaleri();
-      }
-    }
-  });
-}

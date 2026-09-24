@@ -13,7 +13,7 @@
      </body>
 
    data-page menentukan menu mana yang aktif. Nilai valid:
-   dashboard | profil | armada | kegiatan | galeri | pesan | lapor
+   dashboard | profil | armada | kegiatan | pesan | lapor
    ============================================================ */
 
 'use strict';
@@ -23,7 +23,6 @@ const ADMIN_MENU = [
   { key: 'profil', href: 'admin-profil.html', icon: 'fa-building', label: 'Kelola Profil' },
   { key: 'armada', href: 'admin-armada.html', icon: 'fa-ship', label: 'Kelola Armada' },
   { key: 'kegiatan', href: 'admin-kegiatan.html', icon: 'fa-calendar-days', label: 'Kelola Kegiatan' },
-  { key: 'galeri', href: 'admin-galeri.html', icon: 'fa-images', label: 'Kelola Galeri' },
   { key: 'pesan', href: 'admin-pesan.html', icon: 'fa-envelope', label: 'Pesan Masuk' },
   { key: 'lapor', href: 'admin-lapor.html', icon: 'fa-triangle-exclamation', label: 'Lapor Darurat', danger: true }
 ];
@@ -49,12 +48,16 @@ function renderAdminSidebar(activeKey) {
     </div>
     <ul class="admin-menu">
       ${items}
-      <li class="admin-menu-divider"></li>
-      <li><a href="admin-pengaturan.html" class="${activeKey === 'pengaturan' ? 'active' : ''}"><i class="fas fa-gear"></i> Pengaturan Akun</a></li>
     </ul>
-    <button class="admin-logout-btn" onclick="if(confirm('Keluar dari Admin Panel?')) authLogout();">
-      <i class="fas fa-right-from-bracket"></i> Keluar
-    </button>
+    <div class="admin-sidebar-footer">
+      <div class="admin-menu-divider"></div>
+      <a href="admin-pengaturan.html" class="admin-footer-link ${activeKey === 'pengaturan' ? 'active' : ''}">
+        <i class="fas fa-gear"></i> Pengaturan Akun
+      </a>
+      <button class="admin-logout-btn" onclick="if(confirm('Keluar dari Admin Panel?')) authLogout();">
+        <i class="fas fa-right-from-bracket"></i> Keluar
+      </button>
+    </div>
   `;
 }
 
@@ -74,21 +77,44 @@ function renderAdminTopbar(title) {
  * Dipanggil di setiap halaman admin setelah DOM siap.
  * pageTitle: judul yang tampil di header kanan atas.
  */
-function initAdminShell(pageTitle) {
-  authGuard(); // tendang ke login kalau belum ada sesi
+function initAdminShell(pagetitle) {
+    authGuard(); // tendang ke login kalau belum ada sesi
+    document.body.classList.add('admin-body');
+    const activeKey = document.body.dataset.page || '';
 
-  document.body.classList.add('admin-body');
-  const activeKey = document.body.dataset.page || '';
+    const sidebarMount = document.getElementById('admin-sidebar-mount');
+    const topbarMount = document.getElementById('admin-topbar-mount');
 
-  const sidebarMount = document.getElementById('admin-sidebar-mount');
-  const topbarMount = document.getElementById('admin-topbar-mount');
+    if (sidebarMount) {
+        sidebarMount.outerHTML = `<aside class="admin-sidebar" id="admin-sidebar-mount">${renderAdminSidebar(activeKey)}</aside>`;
+    }
+    if (topbarMount) {
+        topbarMount.outerHTML = `<header class="admin-header" id="admin-topbar-mount">${renderAdminTopbar(pagetitle)}</header>`;
+    }
 
-  if (sidebarMount) {
-    sidebarMount.outerHTML = `<aside class="admin-sidebar" id="admin-sidebar-mount">${renderAdminSidebar(activeKey)}</aside>`;
-  }
-  if (topbarMount) {
-    topbarMount.outerHTML = `<header class="admin-header" id="admin-topbar-mount">${renderAdminTopbar(pageTitle)}</header>`;
-  }
+    // Kode pengendali tombol hamburger
+// Kode pengendali tombol hamburger dan klik area luar
+    setTimeout(() => {
+        const hamburgerBtn = document.querySelector('.admin-menu-toggle, .menu-toggle, header button, .admin-header button');
+        const adminContainer = document.querySelector('.admin-container');
+        const adminMain = document.querySelector('.admin-main');
+        
+        if (hamburgerBtn && adminContainer) {
+            hamburgerBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                adminContainer.classList.toggle('sidebar-open');
+            });
+
+            // Menutup sidebar jika area utama (kanan) diklik saat sidebar terbuka
+            if (adminMain) {
+                adminMain.addEventListener('click', () => {
+                    if (adminContainer.classList.contains('sidebar-open')) {
+                        adminContainer.classList.remove('sidebar-open');
+                    }
+                });
+            }
+        }
+    }, 100);
 }
 
 document.addEventListener('DOMContentLoaded', function () {

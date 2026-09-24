@@ -352,10 +352,10 @@
             ? '<span class="badge badge-success"><i class="fas fa-check"></i> Dibaca</span>'
             : '<span class="badge badge-info"><i class="fas fa-circle" style="font-size:0.5rem;"></i> Baru</span>'}</td>
           <td>
-            <div class="action-btns">
-              <button class="btn-detail" onclick="bukaDetail('${p.id}')" title="Lihat Detail">
+            <div class="action-wrapper">
+              <a href="admin-pesan-detail.html?id=${p.id}" class="btn-view" title="Lihat Detail">
                 <i class="fas fa-search"></i>
-              </button>
+              </a>
               ${!p.dibaca ? `<button class="btn-view" onclick="tandaiDibaca('${p.id}')" title="Tandai Dibaca">
                 <i class="fas fa-check"></i>
               </button>` : ''}
