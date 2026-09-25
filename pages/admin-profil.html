@@ -327,6 +327,12 @@
       border: 1px solid #6366f1;
     }
 
+    .level-badge.level-5 {
+      background: rgba(156, 39, 176, 0.15);
+      color: #ab47bc;
+      border: 1px solid #ce93d8;
+    }
+
     .struktur-table .action-wrapper {
       display: flex;
       gap: 6px;
@@ -607,15 +613,11 @@
           <label for="strukturLevel">Level Jabatan</label>
           <select id="strukturLevel">
             <option value="" disabled selected>-- Pilih Level --</option>
-            <option value="1">Level 1 - Kepala Satuan (Kasat POLAIR)</option>
-            <option value="2">Level 2 - Wakil Kepala Satuan (Wakasat)</option>
-            <option value="2">Level 2 - Kepala Bagian Perencanaan (Bagren)</option>
-            <option value="2">Level 2 - Kepala Bagian SDM & Anggaran (Bagsumda)</option>
-            <option value="3">Level 3 - Komandan Patroli (Satrol)</option>
-            <option value="3">Level 3 - Komandan Gakkum</option>
-            <option value="3">Level 3 - Komandan SAR</option>
-            <option value="3">Level 3 - Kepala Teknisi</option>
-            <option value="4">Level 4 - Anggota / Staff</option>
+            <option value="1">Level 1 </option>
+            <option value="2">Level 2 </option>
+            <option value="3">Level 3 </option>
+            <option value="4">Level 4 </option>
+            <option value="5">Level 5 </option>
           </select>
         </div>
         <div class="form-group-modal">
@@ -911,16 +913,18 @@
     function renderStrukturTable() {
       var tbody = document.getElementById('strukturTableBody');
       var orgs = OrgStore.getAll();
+      
       if (orgs.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="6" style="text-align:center; color:var(--text-muted); padding:40px;">Belum ada data struktur organisasi. Klik "Tambah Anggota" untuk menambahkan.</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="6" style="text-align:center; color:var(--text-muted); padding:40px;">Belum ada data struktur organisasi.</td></tr>';
         return;
       }
+
       tbody.innerHTML = orgs.map(function(org, i) {
         return '<tr>' +
           '<td>' + (i + 1) + '</td>' +
           '<td><span class="level-badge level-' + org.level + '">Level ' + org.level + '</span></td>' +
           '<td><strong>' + org.jabatan + '</strong></td>' +
-          '<td>' + (org.nama && org.nama !== '-' ? org.nama : '<span style="color:var(--text-muted);">-</span>') + '</td>' +
+          '<td>' + (org.nama ? org.nama : '<span style="color:var(--text-muted)">-</span>') + '</td>' +
           '<td>' + org.pangkat + '</td>' +
           '<td>' +
             '<div class="action-wrapper">' +

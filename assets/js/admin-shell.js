@@ -21,7 +21,7 @@
 const ADMIN_MENU = [
   { key: 'dashboard', href: 'admin-dashboard.html', icon: 'fa-house', label: 'Dashboard' },
   { key: 'profil', href: 'admin-profil.html', icon: 'fa-building', label: 'Kelola Profil' },
-  { key: 'armada', href: 'admin-armada.html', icon: 'fa-ship', label: 'Kelola Armada' },
+  { key: 'armada', href: 'admin-armada.html', icon: 'fa-ship', label: 'Kelola Alat Utama' },
   { key: 'kegiatan', href: 'admin-kegiatan.html', icon: 'fa-calendar-days', label: 'Kelola Kegiatan' },
   { key: 'pesan', href: 'admin-pesan.html', icon: 'fa-envelope', label: 'Pesan Masuk' },
   { key: 'lapor', href: 'admin-lapor.html', icon: 'fa-triangle-exclamation', label: 'Lapor Darurat', danger: true }

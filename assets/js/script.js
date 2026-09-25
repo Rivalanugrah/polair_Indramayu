@@ -466,14 +466,32 @@ function renderDynamicKegiatan() {
     gakkum: { label: 'Gakkum', bg: svgBg.gakkum, icon: svgIcons.gakkum }
   };
   
-  kegiatans.forEach(k => {
+kegiatans.forEach(k => {
     const m = meta[k.kategori] || meta.patroli;
     const hasCustomImg = k.gambar && k.gambar.trim() !== '';
     
     const card = document.createElement('div');
     card.className = 'kegiatan-card reveal';
     card.dataset.cat = k.kategori;
-    card.innerHTML = '<div class="kegiatan-visual" style="background:' + m.bg + '">' + (hasCustomImg ? '<img src="' + k.gambar + '" alt="" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.innerHTML=\'' + m.icon + '\'">' : m.icon) + '</div><div class="kegiatan-card-body"><span class="kegiatan-cat">' + m.label + '</span><h3>' + k.judul + '</h3><p>' + (k.deskripsi || '') + '</p><div class="kegiatan-meta"><span class="kegiatan-date">' + (k.waktu || '-') + '</span><span class="kegiatan-date">' + (k.lokasi || '-') + '</span></div></div>';
+    
+    card.innerHTML = `
+      <div class="kegiatan-visual" style="background:${m.bg}">
+        ${hasCustomImg 
+          ? `<img src="${k.gambar}" alt="" style="width:100%;height:100%;object-fit:cover;" onerror="this.style.display='none'; const fb = this.nextElementSibling; if(fb) fb.style.display='flex';">
+             <div class="svg-fallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;">${m.icon}</div>` 
+          : m.icon}
+      </div>
+      <div class="kegiatan-card-body">
+        <span class="kegiatan-cat">${m.label}</span>
+        <h3>${escapeHtml(k.judul)}</h3>
+        <p>${escapeHtml(k.deskripsi || '')}</p>
+        <div class="kegiatan-meta">
+          <span class="kegiatan-date">${escapeHtml(k.waktu || '-')}</span>
+          <span class="kegiatan-date">${escapeHtml(k.lokasi || '-')}</span>
+        </div>
+      </div>
+    `;
+    
     grid.appendChild(card);
     
     setTimeout(() => {

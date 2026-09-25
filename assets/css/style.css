@@ -726,7 +726,7 @@ h1,h2,h3,h4,h5,h6 {
 .org-node:hover { border-color: var(--accent); box-shadow: var(--glow-blue); }
 .org-node.top { background: linear-gradient(135deg, var(--primary), var(--accent)); border-color: var(--accent); }
 
-.org-node-title { font-size: 0.7rem; color: var(--accent-light); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.25rem; }
+.org-node-title { font-size: 0.8rem; color: white; text-transform: uppercase; margin-bottom: 0.2rem; }
 .org-node-name { font-family: 'Rajdhani', sans-serif; font-size: 1rem; font-weight: 700; color: white; }
 .org-node-rank { font-size: 0.75rem; color: var(--text-muted); margin-top: 0.2rem; }
 
